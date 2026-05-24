@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"/>
+<title>Preview — Chat bubbles</title>
+<link rel="stylesheet" href="../colors_and_type.css"/>
+<style>
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--fg-1);}
+  .wrap{padding:24px 28px;display:flex;flex-direction:column;gap:18px;}
+  .user{align-self:flex-end;max-width:70%;background:var(--msg-user-bg);color:var(--msg-user-fg);padding:10px 16px;border-radius:20px 20px 4px 20px;font-size:15px;line-height:1.55;}
+  .assist{display:flex;gap:12px;max-width:85%;}
+  .avatar{width:28px;height:28px;border-radius:999px;background:var(--accent-bg-soft);color:var(--accent);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+  .avatar svg{width:16px;height:16px;stroke:currentColor;stroke-width:2.2;fill:none;stroke-linecap:round;stroke-linejoin:round;}
+  .body{font-family:var(--font-serif);font-size:17px;line-height:1.6;color:var(--fg-1);}
+  .body em{font-style:italic;color:var(--fg-2);}
+</style></head>
+<body>
+<div class="wrap">
+  <div class="user">Can you rewrite this paragraph to sound more confident?</div>
+  <div class="assist">
+    <div class="avatar"><svg viewBox="0 0 40 40"><path d="M20 2 C 30 2, 36 10, 36 20 C 36 28, 31 34, 25 37 L 25 39 Q 25 40, 23.5 40 L 16.5 40 Q 15 40, 15 39 L 15 37 C 9 34, 4 28, 4 20 C 4 10, 10 2, 20 2 Z"/><circle cx="20" cy="19" r="6"/></svg></div>
+    <div class="body">Of course. Here's a tighter version that keeps your voice but trims the hedging — <em>"I think maybe"</em> becomes <em>"I believe,"</em> and three nested clauses collapse into one.</div>
+  </div>
+</div>
+</body></html>

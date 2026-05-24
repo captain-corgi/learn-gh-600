@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"/>
+<title>Preview — Code block</title>
+<link rel="stylesheet" href="../colors_and_type.css"/>
+<style>
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--fg-1);}
+  .wrap{padding:20px 24px;}
+  .block{background:var(--code-bg);color:var(--code-fg);border-radius:var(--radius-md);overflow:hidden;font-family:var(--font-mono);}
+  .bar{display:flex;justify-content:space-between;align-items:center;padding:8px 14px;background:rgba(255,255,255,0.04);font-size:12px;color:#c8bfae;}
+  .copy{background:transparent;border:1px solid rgba(255,255,255,0.12);color:#e8dfd1;font-family:var(--font-sans);font-size:12px;padding:4px 10px;border-radius:6px;cursor:pointer;}
+  pre{margin:0;padding:14px 16px;font-size:13px;line-height:1.6;overflow-x:auto;}
+  .kw{color:#e9b39f;}
+  .str{color:#b9cfa6;}
+  .com{color:#968b78;font-style:italic;}
+  .fn{color:#e8a957;}
+</style></head>
+<body>
+<div class="wrap">
+  <div class="block">
+    <div class="bar"><span>typescript</span><button class="copy">Copy</button></div>
+<pre><span class="com">// Tidy an array of strings</span>
+<span class="kw">function</span> <span class="fn">tidy</span>(items: string[]) {
+  <span class="kw">return</span> items
+    .<span class="fn">map</span>((s) =&gt; s.<span class="fn">trim</span>())
+    .<span class="fn">filter</span>(Boolean);
+}</pre>
+  </div>
+</div>
+</body></html>
