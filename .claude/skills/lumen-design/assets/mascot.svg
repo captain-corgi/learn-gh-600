@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="Lumen mascot">
+  
+  <path d="M32 6 C 44 6, 52 16, 52 30 C 52 41, 46 49, 38 53 L 38 56 Q 38 58, 36 58 L 28 58 Q 26 58, 26 56 L 26 53 C 18 49, 12 41, 12 30 C 12 16, 20 6, 32 6 Z"></path>
+  
+  <circle cx="32" cy="28" r="8"></circle>
+  
+  <circle cx="28.5" cy="27" r="1.1" fill="currentColor" stroke="none"></circle>
+  <circle cx="35.5" cy="27" r="1.1" fill="currentColor" stroke="none"></circle>
+  
+  <path d="M29 31 Q 32 33.5, 35 31"></path>
+  
+  <path d="M32 4 v -2"></path>
+  <path d="M48 12 l 1.5 -1.5"></path>
+  <path d="M16 12 l -1.5 -1.5"></path>
+  <path d="M54 28 h 2"></path>
+  <path d="M10 28 h -2"></path>
+</svg>

@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"/>
+<title>Preview — Spacing</title>
+<link rel="stylesheet" href="../colors_and_type.css"/>
+<style>
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--fg-1);}
+  .wrap{padding:24px 28px;display:flex;flex-direction:column;gap:10px;}
+  .row{display:grid;grid-template-columns:50px 80px 1fr;gap:16px;align-items:center;font-family:var(--font-mono);font-size:12px;color:var(--fg-2);}
+  .name{color:var(--fg-1);font-weight:500;}
+  .bar{height:14px;background:var(--accent-bg-soft);border-right:2px solid var(--accent);border-radius:2px;}
+</style></head>
+<body>
+<div class="wrap">
+  <div class="row"><span class="name">1</span><span>4px</span><span class="bar" style="width:4px"></span></div>
+  <div class="row"><span class="name">2</span><span>8px</span><span class="bar" style="width:8px"></span></div>
+  <div class="row"><span class="name">3</span><span>12px</span><span class="bar" style="width:12px"></span></div>
+  <div class="row"><span class="name">4</span><span>16px</span><span class="bar" style="width:16px"></span></div>
+  <div class="row"><span class="name">5</span><span>20px</span><span class="bar" style="width:20px"></span></div>
+  <div class="row"><span class="name">6</span><span>24px</span><span class="bar" style="width:24px"></span></div>
+  <div class="row"><span class="name">8</span><span>32px</span><span class="bar" style="width:32px"></span></div>
+  <div class="row"><span class="name">10</span><span>40px</span><span class="bar" style="width:40px"></span></div>
+  <div class="row"><span class="name">12</span><span>48px</span><span class="bar" style="width:48px"></span></div>
+  <div class="row"><span class="name">16</span><span>64px</span><span class="bar" style="width:64px"></span></div>
+  <div class="row"><span class="name">20</span><span>80px</span><span class="bar" style="width:80px"></span></div>
+</div>
+</body></html>
