@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GH-600 mock exams — Captain Corgi Hub index</title>
-<link rel="icon" href=".claude/skills/captain-corgi-hub-design/assets/icons/star.svg" type="image/svg+xml">
-<link rel="stylesheet" href=".claude/skills/captain-corgi-hub-design/colors_and_type.css">
+<title>GH-600 exams — Captain Corgi Hub</title>
+<link rel="icon" href=".cursor/skills/captain-corgi-hub-design/assets/icons/star.svg" type="image/svg+xml">
+<link rel="stylesheet" href=".cursor/skills/captain-corgi-hub-design/colors_and_type.css">
 <style>
 :root {
   --idx-nav-w: 15.5rem;
@@ -258,6 +258,21 @@ body.cc-body {
   line-height: var(--lh-relaxed);
 }
 
+.idx-nav-section {
+  font-size: var(--fs-12);
+  font-weight: var(--fw-semi);
+  color: var(--fg-3);
+  letter-spacing: var(--tr-loose);
+  text-transform: uppercase;
+  margin-top: var(--space-3);
+  margin-bottom: var(--space-1);
+  padding-inline: var(--space-1);
+}
+
+.idx-nav-section:first-child {
+  margin-top: 0;
+}
+
 .idx-nav-list {
   list-style: none;
   display: flex;
@@ -468,13 +483,13 @@ body.cc-body {
   <button type="button" class="idx-nav-expand" id="hub-nav-show" aria-controls="hub-mock-nav" aria-expanded="false" title="Show mock list">
     <span class="visually-hidden">Show mock exam list</span><span aria-hidden="true">›</span>
   </button>
-  <nav class="idx-nav" id="hub-mock-nav" aria-label="Mock exams">
+  <nav class="idx-nav" id="hub-mock-nav" aria-label="GH-600 exams">
     <div class="idx-nav-head">
       <div class="idx-nav-brand-row">
         <div class="idx-brand">
-          <img src=".claude/skills/captain-corgi-hub-design/assets/captain-corgi-hub-avatar.png" alt="" width="44" height="44">
+          <img src=".cursor/skills/captain-corgi-hub-design/assets/captain-corgi-hub-avatar.png" alt="" width="44" height="44">
           <div>
-            <div class="idx-brand-title">GH-600 mocks</div>
+            <div class="idx-brand-title">GH-600 exams</div>
             <div class="idx-brand-sub">Captain Corgi Hub</div>
           </div>
         </div>
@@ -484,31 +499,65 @@ body.cc-body {
       </div>
       <p class="idx-nav-intro">Tap a paper on the left. The preview loads in the framed area (works even when inline scripts are disabled). Best experience: serve this folder over <code>http://localhost</code> from the repo root.</p>
     </div>
+    <div class="idx-nav-section">Baseline</div>
     <ul class="idx-nav-list">
-      <!-- target + name wiring: no JS required -->
       <li>
         <a class="idx-nav-btn idx-nav-current" href="gh600-mock-exam-captain-corgi.html" target="exam-frame"
            data-chip="Baseline · 60 Q · 120 min" aria-current="page"><span class="nb-label">Base line</span><span class="nb-meta">Original question bank</span></a>
       </li>
+    </ul>
+    <div class="idx-nav-section">Mock exams</div>
+    <ul class="idx-nav-list">
       <li>
         <a class="idx-nav-btn" href="gh600-mock-exam-captain-corgi-1.html" target="exam-frame"
-           data-chip="Set 1 · 60 Q · 120 min"><span class="nb-label">Practice set 1</span><span class="nb-meta">Same bank as baseline</span></a>
+           data-chip="Mock 1 · 60 Q · 120 min"><span class="nb-label">Mock exam 1</span><span class="nb-meta">Shuffled full exam</span></a>
       </li>
       <li>
         <a class="idx-nav-btn" href="gh600-mock-exam-captain-corgi-2.html" target="exam-frame"
-           data-chip="Set 2 · 60 Q · 120 min"><span class="nb-label">Practice set 2</span><span class="nb-meta">Same bank as baseline</span></a>
+           data-chip="Mock 2 · 60 Q · 120 min"><span class="nb-label">Mock exam 2</span><span class="nb-meta">Shuffled full exam</span></a>
       </li>
       <li>
         <a class="idx-nav-btn" href="gh600-mock-exam-captain-corgi-3.html" target="exam-frame"
-           data-chip="Set 3 · 60 Q · 120 min"><span class="nb-label">Practice set 3</span><span class="nb-meta">Same bank as baseline</span></a>
+           data-chip="Mock 3 · 60 Q · 120 min"><span class="nb-label">Mock exam 3</span><span class="nb-meta">Shuffled full exam</span></a>
       </li>
       <li>
         <a class="idx-nav-btn" href="gh600-mock-exam-captain-corgi-4.html" target="exam-frame"
-           data-chip="Set 4 · 60 Q · 120 min"><span class="nb-label">Practice set 4</span><span class="nb-meta">Same bank as baseline</span></a>
+           data-chip="Mock 4 · 60 Q · 120 min"><span class="nb-label">Mock exam 4</span><span class="nb-meta">Shuffled full exam</span></a>
       </li>
       <li>
         <a class="idx-nav-btn" href="gh600-mock-exam-captain-corgi-5.html" target="exam-frame"
-           data-chip="Set 5 · 60 Q · 120 min"><span class="nb-label">Practice set 5</span><span class="nb-meta">Same bank as baseline</span></a>
+           data-chip="Mock 5 · 60 Q · 120 min"><span class="nb-label">Mock exam 5</span><span class="nb-meta">Shuffled full exam</span></a>
+      </li>
+    </ul>
+    <div class="idx-nav-section">Practice exams</div>
+    <ul class="idx-nav-list">
+      <li>
+        <a class="idx-nav-btn" href="gh600-practice-exam-captain-corgi-1.html" target="exam-frame"
+           data-chip="Practice 1 · 50 Q · 90 min"><span class="nb-label">Practice exam 1</span><span class="nb-meta">From practice-example-1.md</span></a>
+      </li>
+      <li>
+        <a class="idx-nav-btn" href="gh600-practice-exam-captain-corgi-2.html" target="exam-frame"
+           data-chip="Practice 2 · 50 Q · 90 min"><span class="nb-label">Practice exam 2</span><span class="nb-meta">From practice-example-2.md</span></a>
+      </li>
+      <li>
+        <a class="idx-nav-btn" href="gh600-practice-exam-captain-corgi-3.html" target="exam-frame"
+           data-chip="Practice 3 · 50 Q · 90 min"><span class="nb-label">Practice exam 3</span><span class="nb-meta">From practice-example-3.md</span></a>
+      </li>
+      <li>
+        <a class="idx-nav-btn" href="gh600-practice-exam-captain-corgi-4.html" target="exam-frame"
+           data-chip="Practice 4 · 50 Q · 90 min"><span class="nb-label">Practice exam 4</span><span class="nb-meta">From practice-example-4.md</span></a>
+      </li>
+      <li>
+        <a class="idx-nav-btn" href="gh600-practice-exam-captain-corgi-5.html" target="exam-frame"
+           data-chip="Practice 5 · 50 Q · 90 min"><span class="nb-label">Practice exam 5</span><span class="nb-meta">From practice-example-5.md</span></a>
+      </li>
+      <li>
+        <a class="idx-nav-btn" href="gh600-practice-exam-captain-corgi-6.html" target="exam-frame"
+           data-chip="Practice 6 · 50 Q · 90 min"><span class="nb-label">Practice exam 6</span><span class="nb-meta">From practice-example-6.md</span></a>
+      </li>
+      <li>
+        <a class="idx-nav-btn" href="gh600-practice-exam-captain-corgi-7.html" target="exam-frame"
+           data-chip="Practice 7 · 50 Q · 90 min"><span class="nb-label">Practice exam 7</span><span class="nb-meta">From practice-example-7.md</span></a>
       </li>
     </ul>
     <div class="idx-footer">
