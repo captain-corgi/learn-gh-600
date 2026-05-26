@@ -68,10 +68,9 @@ body.cc-body{min-height:100vh;line-height:var(--lh-normal)}
 .sb-section{padding:0 var(--space-3);margin-bottom:var(--space-1)}
 .sb-label{font-size:var(--fs-xs);font-weight:var(--fw-semi);letter-spacing:var(--tr-normal);color:var(--fg-3);padding:var(--space-2) var(--space-2) var(--space-1)}
 .domain-btn{width:100%;text-align:left;padding:var(--space-3) var(--space-3);border:none;background:transparent;cursor:pointer;border-radius:var(--radius-md);display:flex;align-items:center;gap:var(--space-3);transition:background var(--dur-fast) var(--ease-out);margin-bottom:2px;color:inherit;font-family:var(--font-sans);font-size:var(--fs-small)}
-.domain-btn:hover:not([disabled]){background:var(--surface-2)}
+.domain-btn:hover{background:var(--surface-2)}
 .domain-btn:focus-visible{outline:none;box-shadow:var(--ring)}
 .domain-btn.active{background:var(--surface-2);box-shadow:inset 3px 0 0 var(--accent)}
-.domain-btn[disabled]{opacity:.45;cursor:not-allowed}
 .db-icon{font-size:16px;flex-shrink:0;width:22px;text-align:center;line-height:1}
 .db-info{flex:1;min-width:0;display:flex;flex-direction:column;align-items:stretch;gap:2px}
 .db-name{font-size:var(--fs-small);font-weight:500;color:var(--fg-1);line-height:1.35;white-space:normal;overflow-wrap:anywhere;word-break:break-word}
@@ -79,7 +78,6 @@ body.cc-body{min-height:100vh;line-height:var(--lh-normal)}
 .status-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
 .dot-done{background:var(--success)}
 .dot-open{background:var(--accent)}
-.dot-lock{background:var(--border-strong)}
 
 /* Main */
 .main{flex:1;overflow-y:auto;padding:var(--space-6);background:var(--bg)}
@@ -515,7 +513,6 @@ let S={cur:0,tab:'learn',passed:[]};
 try{const s=JSON.parse(localStorage.getItem('gh600sp_captain_corgi_html')||'null');if(s)S=s;}catch(e){}
 function save(){try{localStorage.setItem('gh600sp_captain_corgi_html',JSON.stringify(S));}catch(e){}}
 
-function isUnlocked(id){return true;}
 function isPassed(id){return S.passed.includes(id);}
 function getPct(){return Math.round(S.passed.length/DOMAINS.length*100);}
 
@@ -527,11 +524,10 @@ function updateHeader(){
 function renderSidebar(){
   const el=document.getElementById('sb-domains');
   el.innerHTML=DOMAINS.map(d=>{
-    const unlocked=isUnlocked(d.id);
     const passed=isPassed(d.id);
     const active=S.cur===d.id;
-    const dot=passed?'dot-done':!unlocked?'dot-lock':'dot-open';
-    return `<button class="domain-btn${active?' active':''}" data-id="${d.id}" ${!unlocked?'disabled':''}>
+    const dot=passed?'dot-done':'dot-open';
+    return `<button class="domain-btn${active?' active':''}" data-id="${d.id}">
 <span class="db-icon">${d.icon}</span>
 <span class="db-info"><span class="db-name">${d.name}</span><span class="db-wt">${d.weight}</span></span>
 <span class="status-dot ${dot}"></span>
@@ -540,7 +536,6 @@ function renderSidebar(){
   el.querySelectorAll('.domain-btn').forEach(btn=>{
     btn.addEventListener('click',()=>{
       const id=parseInt(btn.dataset.id);
-      if(!isUnlocked(id))return;
       S.cur=id;S.tab='learn';save();renderAll();
     });
   });
@@ -638,7 +633,7 @@ function renderQuiz(d,el){
 </div></div>`;
     if(ok&&!isPassed(d.id)){S.passed.push(d.id);save();renderAll();}
     el.querySelector('#rq')?.addEventListener('click',()=>{quizState[d.id]={idx:0,score:0,answered:false,done:false};renderTab();});
-    el.querySelector('#nd')?.addEventListener('click',()=>{const next=d.id+1;if(isUnlocked(next)){S.cur=next;S.tab='learn';save();renderAll();}});
+    el.querySelector('#nd')?.addEventListener('click',()=>{const next=d.id+1;if(next<DOMAINS.length){S.cur=next;S.tab='learn';save();renderAll();}});
     return;
   }
 
