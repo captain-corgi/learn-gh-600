@@ -1,0 +1,21 @@
+{
+  "servers": {
+    "github": {
+      "type": "http",
+      "url": "https://api.githubcopilot.com/mcp/"
+    },
+    "filesystem-readonly": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-filesystem", "."],
+      "env": {
+        "MCP_READ_ONLY": "true"
+      }
+    },
+    "slack-release-notes": {
+      "type": "http",
+      "url": "https://example.invalid/mcp/slack",
+      "disabled": true
+    }
+  }
+}
