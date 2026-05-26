@@ -515,7 +515,7 @@ let S={cur:0,tab:'learn',passed:[]};
 try{const s=JSON.parse(localStorage.getItem('gh600sp_captain_corgi_html')||'null');if(s)S=s;}catch(e){}
 function save(){try{localStorage.setItem('gh600sp_captain_corgi_html',JSON.stringify(S));}catch(e){}}
 
-function isUnlocked(id){return id===0||S.passed.includes(id-1);}
+function isUnlocked(id){return true;}
 function isPassed(id){return S.passed.includes(id);}
 function getPct(){return Math.round(S.passed.length/DOMAINS.length*100);}
 
