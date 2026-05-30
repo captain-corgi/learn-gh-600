@@ -1,0 +1,33 @@
+<!doctype html>
+<html><head><meta charset="utf-8"/>
+<link rel="stylesheet" href="../colors_and_type.css"/>
+<style>
+  html, body { margin: 0; padding: 0; background: var(--warm-cream); }
+  .wrap { padding: 22px 24px; display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+  .badge { font-family: var(--font-body); font-weight: 700; font-size: 12px; padding: 5px 11px; border-radius: 999px; display: inline-flex; align-items: center; gap: 6px; letter-spacing: 0.02em; }
+  .dot { width: 7px; height: 7px; border-radius: 999px; }
+  @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(0.85); } }
+  .new      { background: var(--heart-tan); color: var(--ink); }
+  .live     { background: var(--beanie-pink); color: #FFFFFF; }
+  .live .dot { background: #FFFFFF; animation: pulse 1.2s infinite; }
+  .success  { background: rgba(156,184,152,0.25); color: var(--sage-green-deep); }
+  .success .dot { background: var(--sage-green); }
+  .info     { background: rgba(74,139,139,0.18); color: var(--coat-teal-deep); }
+  .neutral  { background: var(--warm-cream-2); color: var(--ink-2); }
+  .topic    { background: white; color: var(--ink); border: var(--bw) solid var(--border-strong); padding: 4px 10px; }
+  .soft     { background: var(--blush-pink-soft); color: var(--blush-pink-deep); }
+</style></head>
+<body>
+<div class="wrap">
+  <span class="badge new">NEW</span>
+  <span class="badge live"><span class="dot"></span>TODAY</span>
+  <span class="badge success"><span class="dot"></span>Done</span>
+  <span class="badge info">Reminder</span>
+  <span class="badge neutral">20 min</span>
+  <span class="badge soft">Household</span>
+  <span class="badge topic">#chores</span>
+  <span class="badge topic">#meals</span>
+  <span class="badge topic">#school</span>
+  <span class="badge topic">#calendar</span>
+  <span class="badge topic">#groceries</span>
+</div></body></html>

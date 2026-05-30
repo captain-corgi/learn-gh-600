@@ -1,0 +1,50 @@
+<!doctype html>
+<html><head><meta charset="utf-8"/>
+<title>Title slide — Corgi Mate</title>
+<link rel="stylesheet" href="../colors_and_type.css"/>
+<style>
+  html, body { margin: 0; padding: 0; background: var(--ink); overflow: hidden; }
+  .slide { width: 1280px; height: 720px; position: relative; overflow: hidden;
+    background: radial-gradient(circle at 30% 40%, #6BA3C9 0%, var(--soft-blue) 50%, #4578A3 100%);
+    color: var(--warm-cream); font-family: var(--font-body); }
+  .hearts { position: absolute; inset: 0; pointer-events: none; opacity: 0.16; }
+  .content { position: absolute; inset: 0; padding: 80px 96px; display: flex; flex-direction: column; justify-content: space-between; }
+  .topbar { display: flex; justify-content: space-between; align-items: center; }
+  .ep { font-family: var(--font-mono); font-size: 18px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--heart-tan); }
+  .wm { display: flex; align-items: center; gap: 10px; font-family: var(--font-display); font-weight: 800; font-size: 18px; letter-spacing: -0.01em; white-space: nowrap; }
+  .main { display: flex; align-items: flex-end; gap: 56px; }
+  .mascot { width: 360px; height: 360px; border-radius: 999px; object-fit: cover; border: 6px solid rgba(246,242,234,0.18); box-shadow: 0 24px 48px rgba(0,0,0,0.35); flex-shrink: 0; }
+  .text { flex: 1; }
+  .kicker { display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px; background: var(--heart-tan); color: var(--ink); border-radius: 999px; font-family: var(--font-mono); font-weight: 700; font-size: 14px; letter-spacing: 0.06em; white-space: nowrap; }
+  h1 { font-family: var(--font-display); font-weight: 800; font-size: 88px; line-height: 0.95; letter-spacing: -0.03em; margin: 22px 0 18px; text-wrap: balance; }
+  .sub { font-family: var(--font-body); font-size: 24px; color: rgba(246,242,234,0.82); line-height: 1.4; max-width: 640px; }
+  .footer { display: flex; gap: 18px; align-items: center; font-family: var(--font-mono); font-size: 14px; color: rgba(246,242,234,0.65); letter-spacing: 0.06em; text-transform: uppercase; }
+  .footer .dot { width: 4px; height: 4px; border-radius: 999px; background: currentColor; }
+</style></head>
+<body>
+<div class="slide">
+  <svg class="hearts" viewBox="0 0 1280 720" preserveAspectRatio="xMidYMid slice">
+    <g fill="#E8568A" opacity="0.55">
+      <g transform="translate(140 120) scale(1.2)"><path d="M0 0 C-6 -8 -18 -6 -18 6 C-18 16 -8 24 0 36 C8 24 18 16 18 6 C18 -6 6 -8 0 0 Z"/></g>
+      <g transform="translate(1100 90) scale(0.8)"><path d="M0 0 C-6 -8 -18 -6 -18 6 C-18 16 -8 24 0 36 C8 24 18 16 18 6 C18 -6 6 -8 0 0 Z"/></g>
+      <g transform="translate(1180 380) scale(0.6)"><path d="M0 0 C-6 -8 -18 -6 -18 6 C-18 16 -8 24 0 36 C8 24 18 16 18 6 C18 -6 6 -8 0 0 Z"/></g>
+    </g>
+  </svg>
+  <div class="content">
+    <div class="topbar">
+      <span class="ep">Week 22</span>
+      <span class="wm"><img src="../assets/icons/heart.svg" width="32" height="32"/>Corgi Mate /<span style="color:var(--heart-tan);font-size:13px;letter-spacing:.18em">HOME</span></span>
+    </div>
+    <div class="main">
+      <img class="mascot" src="../assets/corgi-mate/corgi-mate-pose-4-calendar.png" alt="Corgi Mate"/>
+      <div class="text">
+        <span class="kicker">Weekly plan</span>
+        <h1>Family calendar sync.</h1>
+        <p class="sub">Pickups, chores, and meal prep in one calm view. Let's get the week sorted — together.</p>
+      </div>
+    </div>
+    <div class="footer">
+      <span>corgimate.app</span><span class="dot"></span><span>household planner</span><span class="dot"></span><span>5 min read</span>
+    </div>
+  </div>
+</div></body></html>
