@@ -1,0 +1,7 @@
+{
+  "model": "claude-3-5-haiku-20241022",
+  "provider": "anthropic",
+  "apiKeyEnv": "ANTHROPIC_API_KEY",
+  "maxTokens": 4096,
+  "temperature": 0.1
+}
