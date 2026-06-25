@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){'use strict';
+  var root=document.documentElement;
+  root.classList.toggle('cc-mock-embed',window.self!==window.top);
+  var KEY='cc-theme';
+  var VALID={'light':1,'dark':1,'night':1};
+  function applyCcTheme(){try{var t=localStorage.getItem(KEY);if(t&&VALID[t])root.setAttribute('data-theme',t);else root.removeAttribute('data-theme');}catch(err){}}
+  applyCcTheme();
+  window.addEventListener('storage',function(ev){if(ev.key===KEY)applyCcTheme();});
+  window.addEventListener('message',function(ev){try{var d=ev.data;if(!d||d.type!=='cc-theme-hub')return;var forced=String(d.forced||'');if(forced==='light'||forced==='dark'||forced==='night')root.setAttribute('data-theme',forced);else root.removeAttribute('data-theme');}catch(err2){}});
+})();
+</script>
+<title>Agent Workflow Visualizer — Captain Corgi Hub</title>
+<link rel="icon" href="assets/captain-corgi-hub-design/assets/icons/star.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/captain-corgi-hub-design/colors_and_type.css">
+<style>
+.visually-hidden{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap;border:0}
+:root{--surface:var(--bg-elevated);--surface-2:var(--bg-sunken);--fg-1:var(--fg);--border-subtle:var(--border-soft);--radius-xs:var(--r-xs);--radius-sm:var(--r-sm);--radius-md:var(--r-md);--radius-lg:var(--r-lg);--radius-pill:var(--r-full);--shadow-xs:var(--shadow-1);--shadow-sm:var(--shadow-2);--ring:var(--ring-focus);--lh-loose:var(--lh-relaxed);--tracking-wide:var(--tr-normal);--fs-xs:var(--fs-12);--fs-small:var(--fs-14);--fs-body:var(--fs-16);--fs-h4:var(--fs-24);--fs-h3:var(--fs-30);--font-serif:var(--font-display);--font-sans:var(--font-body);--accent-hover:var(--corgi-orange-deep);--accent-press:color-mix(in srgb,var(--corgi-orange-deep) 92%,black);--accent-bg-soft:color-mix(in srgb,var(--accent) 14%,transparent);--accent-border:color-mix(in srgb,var(--accent) 40%,var(--border))}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body.cc-body{min-height:100vh;line-height:var(--lh-normal)}
+::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:var(--border-strong);border-radius:var(--radius-pill)}
+
+/* Header */
+.header{background:color-mix(in srgb,var(--bg-elevated) 92%,transparent);backdrop-filter:saturate(1.06) blur(12px);border-bottom:var(--bw) solid var(--border);padding:var(--space-5) var(--space-6);display:flex;align-items:center;justify-content:space-between;gap:var(--space-3);flex-wrap:wrap;position:sticky;top:0;z-index:100;box-shadow:var(--shadow-xs)}
+.header-left{display:flex;align-items:center;gap:var(--space-3)}
+.logo{width:44px;height:44px;border-radius:var(--radius-pill);background:var(--surface-2);border:var(--bw) solid var(--border-subtle);display:flex;align-items:center;justify-content:center;flex-shrink:0;overflow:hidden;box-shadow:var(--shadow-xs)}
+.logo img{width:100%;height:100%;display:block;object-fit:cover}
+.header-title{font-family:var(--font-serif);font-size:var(--fs-h4);font-weight:var(--fw-semi);color:var(--fg-1);line-height:var(--lh-snug)}
+.header-sub{font-size:var(--fs-xs);color:var(--fg-3);margin-top:2px}
+.header-right{display:flex;align-items:center;gap:var(--space-3)}
+.exam-badge{font-size:var(--fs-xs);padding:var(--space-1) var(--space-3);border-radius:var(--radius-pill);background:color-mix(in srgb,var(--hub-coral) 16%,var(--accent-bg-soft));color:var(--fg);border:var(--bw) solid var(--accent-border);font-weight:var(--fw-semi)}
+
+/* Main layout */
+.page{width:min(1180px,calc(100% - 2rem));margin:0 auto;padding:var(--space-6) 0 var(--space-8)}
+
+/* Hub hero */
+.hub-hero{text-align:center;margin-bottom:var(--space-6)}
+.hub-hero h1{font-family:var(--font-serif);font-size:var(--fs-38);font-weight:var(--fw-semi);color:var(--fg-1);line-height:var(--lh-snug);margin-bottom:var(--space-2)}
+.hub-hero p{font-size:var(--fs-16);color:var(--fg-3);max-width:48rem;margin:0 auto}
+
+/* Graph container */
+.graph-container{position:relative;width:100%;max-width:740px;margin:0 auto;aspect-ratio:1/1}
+.graph-container svg{width:100%;height:100%}
+
+/* Center node pulse */
+@keyframes pulse{0%,100%{r:32;opacity:.18}50%{r:48;opacity:.06}}
+@keyframes pulse-ring{0%{r:56;stroke-dashoffset:0;opacity:.5}100%{r:72;stroke-dashoffset:120;opacity:0}}
+.center-pulse{animation:pulse 3s ease-in-out infinite}
+.pulse-ring{animation:pulse-ring 3s ease-out infinite}
+
+/* Connection lines */
+@keyframes flow{to{stroke-dashoffset:-24}}
+.conn-line{stroke:var(--border-strong);stroke-width:1.5;fill:none;stroke-dasharray:6 6;animation:flow 1.2s linear infinite}
+.conn-line.active{stroke:var(--accent);stroke-width:2.5}
+
+/* Domain nodes */
+.domain-node{cursor:pointer}
+.domain-node:hover .node-circle{filter:brightness(1.1);transform:scale(1.06)}
+.domain-node:hover .node-label{fill:var(--fg)}
+.node-circle{transition:transform var(--dur-base) var(--ease-clay),filter var(--dur-fast) var(--ease-out);transform-origin:center}
+.node-label{fill:var(--fg-2);transition:fill var(--dur-fast) var(--ease-out)}
+.weight-badge{font-size:9px;font-weight:var(--fw-bold);fill:var(--fg-on-brand);text-anchor:middle;dominant-baseline:central}
+
+/* Detail panel */
+.detail-overlay{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.35);backdrop-filter:blur(4px);opacity:0;visibility:hidden;transition:opacity var(--dur-slow) var(--ease-out),visibility 0s var(--dur-slow)}
+.detail-overlay.open{opacity:1;visibility:visible;transition:opacity var(--dur-slow) var(--ease-out),visibility 0s}
+.detail-panel{position:fixed;top:0;right:0;bottom:0;width:min(580px,92vw);z-index:210;background:var(--bg-elevated);border-left:var(--bw) solid var(--border);box-shadow:var(--shadow-4);overflow-y:auto;transform:translateX(100%);transition:transform var(--dur-slow) var(--ease-clay);display:flex;flex-direction:column}
+.detail-overlay.open .detail-panel{transform:translateX(0)}
+.dp-header{padding:var(--space-5) var(--space-6);border-bottom:var(--bw) solid var(--border);display:flex;align-items:flex-start;gap:var(--space-4);flex-shrink:0}
+.dp-icon{width:48px;height:48px;border-radius:var(--r-lg);display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0}
+.dp-info{flex:1;min-width:0}
+.dp-title{font-family:var(--font-serif);font-size:var(--fs-24);font-weight:var(--fw-semi);color:var(--fg-1);line-height:var(--lh-snug);margin-bottom:var(--space-1)}
+.dp-desc{font-size:var(--fs-small);color:var(--fg-3);line-height:var(--lh-relaxed)}
+.dp-close{position:absolute;top:var(--space-4);right:var(--space-4);width:32px;height:32px;border-radius:var(--r-md);border:var(--bw) solid var(--border);background:var(--surface-2);color:var(--fg-3);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:18px;transition:background var(--dur-fast) var(--ease-out),color var(--dur-fast) var(--ease-out)}
+.dp-close:hover{background:var(--accent-bg-soft);color:var(--fg-1)}
+.dp-close:focus-visible{outline:none;box-shadow:var(--ring)}
+
+/* Detail body */
+.dp-body{flex:1;overflow-y:auto;padding:var(--space-5) var(--space-6)}
+
+/* Flow diagram */
+.flow-diagram{margin-bottom:var(--space-6);padding:var(--space-5);background:var(--surface-2);border:var(--bw) solid var(--border);border-radius:var(--r-lg)}
+.flow-title{font-size:var(--fs-xs);font-weight:var(--fw-bold);letter-spacing:var(--tr-caps);text-transform:uppercase;color:var(--fg-3);margin-bottom:var(--space-4)}
+.flow-steps{display:flex;flex-direction:column;gap:var(--space-3);align-items:center}
+.flow-step{display:flex;align-items:center;gap:var(--space-3);width:100%;padding:var(--space-3) var(--space-4);background:var(--bg-elevated);border:var(--bw) solid var(--border);border-radius:var(--r-md);transition:border-color var(--dur-fast) var(--ease-out)}
+.flow-step.highlight{border-color:var(--accent);background:var(--accent-bg-soft)}
+.flow-step-icon{font-size:16px;flex-shrink:0;width:28px;text-align:center}
+.flow-step-text{font-size:var(--fs-small);font-weight:var(--fw-medium);color:var(--fg-1);flex:1}
+.flow-arrow{font-size:12px;color:var(--fg-3);margin:2px 0}
+.flow-step:hover{border-color:var(--border-strong)}
+
+/* Tabs */
+.tab-bar{display:flex;gap:2px;border-bottom:var(--bw) solid var(--border);margin-bottom:var(--space-5)}
+.tab{padding:var(--space-3) var(--space-4);font-size:var(--fs-small);font-weight:500;cursor:pointer;color:var(--fg-3);border-bottom:2px solid transparent;background:none;border-top:none;border-left:none;border-right:none;transition:color var(--dur-fast) var(--ease-out),border-color var(--dur-fast) var(--ease-out);font-family:var(--font-sans)}
+.tab:hover{color:var(--fg-2)}
+.tab:focus-visible{outline:none;box-shadow:var(--ring);border-radius:var(--radius-xs)}
+.tab.active{color:var(--accent);border-bottom-color:var(--accent)}
+
+/* Topic cards */
+.topic-card{background:var(--surface);border:var(--bw) solid var(--border);border-radius:var(--r-lg);margin-bottom:var(--space-2);overflow:hidden;box-shadow:var(--shadow-xs);transition:border-color var(--dur-fast) var(--ease-out),transform var(--dur-fast) var(--ease-out)}
+.topic-card:hover{border-color:var(--border-strong);transform:translateY(-1px);box-shadow:var(--shadow-sm)}
+.tc-header{padding:var(--space-4);display:flex;align-items:center;gap:var(--space-3);cursor:pointer}
+.tc-icon{font-size:16px;flex-shrink:0;line-height:1}
+.tc-name{font-size:var(--fs-small);font-weight:500;color:var(--fg-1);flex:1;font-family:var(--font-sans)}
+.tc-arrow{font-size:11px;color:var(--fg-3);transition:transform var(--dur-base) var(--ease-out)}
+.tc-arrow.open{transform:rotate(90deg)}
+.tc-body{padding:0 var(--space-4) var(--space-4);display:none;border-top:var(--bw) solid var(--border)}
+.tc-body.show{display:block}
+.tc-body p{font-size:var(--fs-small);color:var(--fg-2);line-height:var(--lh-loose);margin-bottom:var(--space-3);padding-top:var(--space-3)}
+
+/* Callouts */
+.callout{border-radius:var(--radius-md);padding:var(--space-3) var(--space-4);margin-bottom:var(--space-3);font-size:var(--fs-small);line-height:var(--lh-loose);border:var(--bw) solid var(--border-subtle)}
+.callout strong{font-weight:600;color:var(--fg-1)}
+.c-key{border-left:3px solid var(--accent);background:var(--accent-bg-soft);color:var(--fg-1)}
+.c-tip{border-left:3px solid var(--success);background:color-mix(in srgb,var(--success) 14%,transparent);color:var(--fg-1)}
+.c-warn{border-left:3px solid var(--warning);background:color-mix(in srgb,var(--warning) 14%,transparent);color:var(--fg-1)}
+.c-fact{border-left:3px solid var(--info);background:color-mix(in srgb,var(--info) 14%,transparent);color:var(--fg-1)}
+
+/* Interactive demo area */
+.demo-area{margin-top:var(--space-4);padding:var(--space-5);background:var(--surface-2);border:var(--bw) solid var(--border);border-radius:var(--r-lg)}
+.demo-title{font-size:var(--fs-xs);font-weight:var(--fw-bold);letter-spacing:var(--tr-caps);text-transform:uppercase;color:var(--accent);margin-bottom:var(--space-4)}
+.demo-input{width:100%;padding:var(--space-3) var(--space-4);background:var(--bg-elevated);border:var(--bw) solid var(--border);border-radius:var(--r-md);color:var(--fg-1);font-family:var(--font-mono);font-size:var(--fs-14);resize:vertical}
+.demo-input:focus{outline:none;box-shadow:var(--ring);border-color:var(--accent)}
+.demo-btn{display:inline-flex;align-items:center;gap:var(--space-2);padding:var(--space-3) var(--space-5);margin-top:var(--space-3);background:var(--accent);color:var(--accent-fg);border:none;border-radius:var(--r-md);font-family:var(--font-sans);font-size:var(--fs-small);font-weight:var(--fw-semi);cursor:pointer;transition:background var(--dur-fast) var(--ease-out),transform var(--dur-fast) var(--ease-clay)}
+.demo-btn:hover{background:var(--accent-hover)}
+.demo-btn:active{background:var(--accent-press);transform:scale(.97)}
+.demo-btn:focus-visible{outline:none;box-shadow:var(--ring)}
+.demo-output{margin-top:var(--space-3);padding:var(--space-4);background:var(--code-bg);color:var(--code-fg);border-radius:var(--r-md);font-family:var(--font-mono);font-size:var(--fs-14);line-height:var(--lh-relaxed);white-space:pre-wrap;word-break:break-word;min-height:60px}
+.demo-output .log-info{color:var(--info)}
+.demo-output .log-success{color:var(--success)}
+.demo-output .log-warn{color:var(--warning)}
+.demo-output .log-danger{color:var(--danger)}
+
+/* Sliders for eval demo */
+.demo-slider-row{display:flex;align-items:center;gap:var(--space-4);margin-bottom:var(--space-3)}
+.demo-slider-label{font-size:var(--fs-small);color:var(--fg-2);min-width:80px;font-weight:var(--fw-medium)}
+.demo-slider{flex:1;-webkit-appearance:none;appearance:none;height:6px;background:var(--border-strong);border-radius:var(--radius-pill);outline:none}
+.demo-slider::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;background:var(--accent);border-radius:50%;cursor:pointer;transition:transform var(--dur-fast) var(--ease-clay)}
+.demo-slider::-webkit-slider-thumb:hover{transform:scale(1.2)}
+.demo-slider-val{font-size:var(--fs-small);font-weight:var(--fw-bold);color:var(--accent);min-width:40px;text-align:right}
+.demo-metric{text-align:center;padding:var(--space-5);background:var(--bg-elevated);border:var(--bw) solid var(--border);border-radius:var(--r-lg);margin-top:var(--space-3)}
+.demo-metric-value{font-family:var(--font-display);font-size:var(--fs-48);font-weight:var(--fw-bold);color:var(--accent);line-height:1}
+.demo-metric-label{font-size:var(--fs-xs);color:var(--fg-3);margin-top:var(--space-2);letter-spacing:var(--tr-caps);text-transform:uppercase;font-weight:var(--fw-bold)}
+
+/* Topology toggles for multi-agent demo */
+.topo-options{display:flex;gap:var(--space-2);flex-wrap:wrap;margin-bottom:var(--space-4)}
+.topo-btn{padding:var(--space-2) var(--space-4);font-size:var(--fs-small);font-family:var(--font-sans);border:var(--bw) solid var(--border);border-radius:var(--r-md);background:var(--bg-elevated);color:var(--fg-2);cursor:pointer;transition:all var(--dur-fast) var(--ease-out);font-weight:var(--fw-medium)}
+.topo-btn:hover{border-color:var(--border-strong)}
+.topo-btn.active{background:var(--accent);color:var(--accent-fg);border-color:var(--accent)}
+.topo-btn:focus-visible{outline:none;box-shadow:var(--ring)}
+.topo-viz{padding:var(--space-4);background:var(--code-bg);border-radius:var(--r-md);text-align:center}
+.topo-viz svg{max-width:100%}
+
+/* Memory scope toggles */
+.mem-toggles{display:flex;gap:var(--space-2);flex-wrap:wrap;margin-bottom:var(--space-4)}
+.mem-btn{padding:var(--space-2) var(--space-4);font-size:var(--fs-small);font-family:var(--font-sans);border:var(--bw) solid var(--border);border-radius:var(--r-md);background:var(--bg-elevated);color:var(--fg-2);cursor:pointer;transition:all var(--dur-fast) var(--ease-out);font-weight:var(--fw-medium)}
+.mem-btn:hover{border-color:var(--border-strong)}
+.mem-btn.active{background:var(--accent);color:var(--accent-fg);border-color:var(--accent)}
+.mem-btn:focus-visible{outline:none;box-shadow:var(--ring)}
+.mem-block{padding:var(--space-3) var(--space-4);background:var(--bg-elevated);border:var(--bw) solid var(--border);border-radius:var(--r-md);margin-bottom:var(--space-2);transition:all var(--dur-base) var(--ease-out)}
+.mem-block.active{border-color:var(--accent);background:var(--accent-bg-soft)}
+.mem-block-title{font-size:var(--fs-small);font-weight:var(--fw-semi);color:var(--fg-1);margin-bottom:var(--space-1)}
+.mem-block-bar{height:6px;background:var(--border-strong);border-radius:var(--radius-pill);overflow:hidden}
+.mem-block-fill{height:100%;background:var(--accent);border-radius:var(--radius-pill);transition:width var(--dur-base) var(--ease-out)}
+.mem-block-cap{font-size:var(--fs-xs);color:var(--fg-3);margin-top:var(--space-1)}
+
+/* Guardrails demo */
+.guardrule{display:flex;align-items:center;gap:var(--space-3);padding:var(--space-3) var(--space-4);background:var(--bg-elevated);border:var(--bw) solid var(--border);border-radius:var(--r-md);margin-bottom:var(--space-2);transition:all var(--dur-base) var(--ease-out)}
+.guardrule.blocked{border-color:var(--danger);background:color-mix(in srgb,var(--danger) 10%,var(--bg-elevated))}
+.guardrule.allowed{border-color:var(--success);background:color-mix(in srgb,var(--success) 10%,var(--bg-elevated))}
+.guardrule-dot{width:8px;height:8px;border-radius:50%;background:var(--fg-4);flex-shrink:0;transition:background var(--dur-fast) var(--ease-out)}
+.guardrule.blocked .guardrule-dot{background:var(--danger)}
+.guardrule.allowed .guardrule-dot{background:var(--success)}
+.guardrule-label{font-size:var(--fs-small);color:var(--fg-2);flex:1}
+.guardrule-result{font-size:var(--fs-xs);font-weight:var(--fw-bold);opacity:0;transition:opacity var(--dur-fast) var(--ease-out)}
+.guardrule.blocked .guardrule-result{opacity:1;color:var(--danger)}
+.guardrule.allowed .guardrule-result{opacity:1;color:var(--success)}
+
+/* Planning drag demo */
+.plan-drop-zone{min-height:80px;padding:var(--space-4);background:var(--bg-elevated);border:2px dashed var(--border);border-radius:var(--r-lg);margin-bottom:var(--space-3);transition:border-color var(--dur-fast) var(--ease-out)}
+.plan-drop-zone.over{border-color:var(--accent);background:var(--accent-bg-soft)}
+.plan-drop-zone-label{font-size:var(--fs-xs);color:var(--fg-3);text-transform:uppercase;letter-spacing:var(--tr-caps);font-weight:var(--fw-bold);margin-bottom:var(--space-2)}
+.plan-item{display:inline-flex;align-items:center;gap:var(--space-2);padding:var(--space-2) var(--space-3);background:var(--surface);border:var(--bw) solid var(--border);border-radius:var(--r-md);margin:4px;cursor:grab;font-size:var(--fs-small);color:var(--fg-1);transition:all var(--dur-fast) var(--ease-out)}
+.plan-item:hover{border-color:var(--accent);background:var(--accent-bg-soft)}
+.plan-item.correct{border-color:var(--success);background:color-mix(in srgb,var(--success) 14%,var(--surface))}
+.plan-item.incorrect{border-color:var(--danger);background:color-mix(in srgb,var(--danger) 10%,var(--surface))}
+.plan-result{margin-top:var(--space-4);padding:var(--space-4);border-radius:var(--r-md);font-size:var(--fs-small);font-weight:var(--fw-semi);text-align:center;display:none}
+.plan-result.show{display:block}
+.plan-result.success{background:color-mix(in srgb,var(--success) 14%,transparent);color:var(--success);border:var(--bw) solid color-mix(in srgb,var(--success) 40%,var(--border))}
+.plan-result.fail{background:color-mix(in srgb,var(--danger) 10%,transparent);color:var(--danger);border:var(--bw) solid color-mix(in srgb,var(--danger) 40%,var(--border))}
+
+/* Tool call console */
+.tool-console{background:var(--code-bg);border-radius:var(--r-md);padding:var(--space-4);font-family:var(--font-mono);font-size:var(--fs-14);line-height:var(--lh-relaxed);color:var(--code-fg);max-height:240px;overflow-y:auto}
+.tool-console .cmd{color:var(--accent)}
+.tool-console .response{color:var(--code-fg);opacity:.85}
+
+/* Responsive */
+@media(max-width:640px){
+  .header{padding:var(--space-4)}
+  .dp-header{padding:var(--space-4)}
+  .dp-body{padding:var(--space-4)}
+  .hub-hero h1{font-size:var(--fs-30)}
+}
+</style>
+</head>
+<body class="cc-body">
+
+<div class="header">
+  <div class="header-left">
+    <div class="logo"><img src="assets/captain-corgi-hub-design/assets/captain-corgi-hub-avatar.png" alt=""></div>
+    <div>
+      <div class="header-title">Agent Workflow Visualizer</div>
+      <div class="header-sub">Interactive exploration of the 6 GH-600 exam domains</div>
+    </div>
+  </div>
+  <div class="header-right">
+    <span class="exam-badge">GH-600</span>
+  </div>
+</div>
+
+<div class="page">
+  <div class="hub-hero">
+    <h1>How AI Agent Systems Work</h1>
+    <p>Click any domain node below to explore its concepts, see animated workflows, and try interactive demos tied to exam content.</p>
+  </div>
+
+  <div class="graph-container" id="graph-container">
+    <svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg" id="agent-graph" role="img" aria-label="Interactive agent workflow diagram with six domain nodes around a central AI agent node">
+      <!-- Connection lines (drawn first, under nodes) -->
+      <line class="conn-line" data-domain="0" x1="250" y1="250" x2="250" y2="80"/>
+      <line class="conn-line" data-domain="1" x1="250" y1="250" x2="410" y2="160"/>
+      <line class="conn-line" data-domain="2" x1="250" y1="250" x2="410" y2="340"/>
+      <line class="conn-line" data-domain="3" x1="250" y1="250" x2="250" y2="420"/>
+      <line class="conn-line" data-domain="4" x1="250" y1="250" x2="90" y2="340"/>
+      <line class="conn-line" data-domain="5" x1="250" y1="250" x2="90" y2="160"/>
+
+      <!-- Center node -->
+      <circle class="center-pulse" cx="250" cy="250" r="32" fill="var(--accent)" opacity=".15"/>
+      <circle class="pulse-ring" cx="250" cy="250" r="56" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-dasharray="8 8"/>
+      <circle cx="250" cy="250" r="32" fill="var(--bg-elevated)" stroke="var(--accent)" stroke-width="2"/>
+      <text x="250" y="247" text-anchor="middle" dominant-baseline="central" font-size="20">&#x1F916;</text>
+      <text x="250" y="272" text-anchor="middle" font-size="9" font-weight="600" fill="var(--fg-3)" font-family="var(--font-sans)">AI AGENT</text>
+
+      <!-- Domain 1: Architecture (top) -->
+      <g class="domain-node" data-domain="0" tabindex="0" role="button" aria-label="Domain 1: Agent Architecture and SDLC, 15 to 20 percent">
+        <circle class="node-circle" cx="250" cy="80" r="40" fill="var(--bg-elevated)" stroke="var(--captain-red)" stroke-width="2"/>
+        <text x="250" y="76" text-anchor="middle" dominant-baseline="central" font-size="20">&#x1F3D7;</text>
+        <text class="weight-badge" x="250" y="106" font-family="var(--font-mono)">15-20%</text>
+        <text class="node-label" x="250" y="46" text-anchor="middle" font-size="11" font-weight="600" font-family="var(--font-sans)">Architecture</text>
+      </g>
+
+      <!-- Domain 2: Tool Use (top-right) -->
+      <g class="domain-node" data-domain="1" tabindex="0" role="button" aria-label="Domain 2: Tool Use and Environment, 20 to 25 percent">
+        <circle class="node-circle" cx="410" cy="160" r="40" fill="var(--bg-elevated)" stroke="var(--corgi-orange)" stroke-width="2"/>
+        <text x="410" y="156" text-anchor="middle" dominant-baseline="central" font-size="20">&#x1F527;</text>
+        <text class="weight-badge" x="410" y="186" font-family="var(--font-mono)">20-25%</text>
+        <text class="node-label" x="410" y="116" text-anchor="middle" font-size="11" font-weight="600" font-family="var(--font-sans)">Tool Use</text>
+      </g>
+
+      <!-- Domain 3: Memory (bottom-right) -->
+      <g class="domain-node" data-domain="2" tabindex="0" role="button" aria-label="Domain 3: Memory and State, 10 to 15 percent">
+        <circle class="node-circle" cx="410" cy="340" r="40" fill="var(--bg-elevated)" stroke="var(--sky-cyan)" stroke-width="2"/>
+        <text x="410" y="336" text-anchor="middle" dominant-baseline="central" font-size="20">&#x1F9E0;</text>
+        <text class="weight-badge" x="410" y="366" font-family="var(--font-mono)">10-15%</text>
+        <text class="node-label" x="410" y="296" text-anchor="middle" font-size="11" font-weight="600" font-family="var(--font-sans)">Memory</text>
+      </g>
+
+      <!-- Domain 4: Evaluation (bottom) -->
+      <g class="domain-node" data-domain="3" tabindex="0" role="button" aria-label="Domain 4: Evaluation and Tuning, 15 to 20 percent">
+        <circle class="node-circle" cx="250" cy="420" r="40" fill="var(--bg-elevated)" stroke="var(--hub-green)" stroke-width="2"/>
+        <text x="250" y="416" text-anchor="middle" dominant-baseline="central" font-size="20">&#x1F4CA;</text>
+        <text class="weight-badge" x="250" y="446" font-family="var(--font-mono)">15-20%</text>
+        <text class="node-label" x="250" y="376" text-anchor="middle" font-size="11" font-weight="600" font-family="var(--font-sans)">Evaluation</text>
+      </g>
+
+      <!-- Domain 5: Multi-Agent (bottom-left) -->
+      <g class="domain-node" data-domain="4" tabindex="0" role="button" aria-label="Domain 5: Multi-Agent Coordination, 15 to 20 percent">
+        <circle class="node-circle" cx="90" cy="340" r="40" fill="var(--bg-elevated)" stroke="var(--star-yellow)" stroke-width="2"/>
+        <text x="90" y="336" text-anchor="middle" dominant-baseline="central" font-size="20">&#x1F517;</text>
+        <text class="weight-badge" x="90" y="366" font-family="var(--font-mono)">15-20%</text>
+        <text class="node-label" x="90" y="296" text-anchor="middle" font-size="11" font-weight="600" font-family="var(--font-sans)">Multi-Agent</text>
+      </g>
+
+      <!-- Domain 6: Guardrails (top-left) -->
+      <g class="domain-node" data-domain="5" tabindex="0" role="button" aria-label="Domain 6: Guardrails and Accountability, 10 to 15 percent">
+        <circle class="node-circle" cx="90" cy="160" r="40" fill="var(--bg-elevated)" stroke="var(--deep-teal)" stroke-width="2"/>
+        <text x="90" y="156" text-anchor="middle" dominant-baseline="central" font-size="20">&#x1F6E1;</text>
+        <text class="weight-badge" x="90" y="186" font-family="var(--font-mono)">10-15%</text>
+        <text class="node-label" x="90" y="116" text-anchor="middle" font-size="11" font-weight="600" font-family="var(--font-sans)">Guardrails</text>
+      </g>
+    </svg>
+  </div>
+</div>
+
+<!-- Detail overlay -->
+<div class="detail-overlay" id="detail-overlay">
+  <div class="detail-panel" id="detail-panel" role="dialog" aria-modal="true" aria-labelledby="dp-title">
+    <button class="dp-close" id="dp-close" aria-label="Close panel">&times;</button>
+    <div class="dp-header">
+      <div class="dp-icon" id="dp-icon"></div>
+      <div class="dp-info">
+        <div class="dp-title" id="dp-title"></div>
+        <div class="dp-desc" id="dp-desc"></div>
+      </div>
+    </div>
+    <div class="dp-body" id="dp-body"></div>
+  </div>
+</div>
+
+<script>
+(function() {
+  'use strict';
+
+  var domains = [
+    {
+      id: 0, title: 'Agent Architecture & SDLC', weight: '15-20%',
+      icon: '\u{1F3D7}', color: 'var(--captain-red)',
+      desc: 'Planning vs. execution separation, inspectable artifacts, SDLC integration, and human intervention patterns.',
+      flow: [
+        { icon: '\u{1F4CB}', label: 'Agent reads issue / task definition' },
+        { icon: '\u{1F50D}', label: 'Agent inspects codebase & context' },
+        { icon: '\u{1F4DD}', label: 'Agent writes structured plan (inspectable artifact)' },
+        { icon: '\u{2705}', label: 'Human approves plan (label gate / PR comment)' },
+        { icon: '\u{1F528}', label: 'Agent executes: edit, commit, open PR' },
+        { icon: '\u{1F9EA}', label: 'CI checks run; reviewer approves; merge' }
+      ],
+      concepts: [
+        { name: 'Planning vs. Execution', body: 'Agents must produce a structured, reviewable plan <strong>before</strong> making state changes. Enforcement mechanisms include label gates (<code>plan-approved</code>), tool restrictions in planning agents, separate custom agents for planning vs. implementing, and branch rulesets requiring a plan artifact.' },
+        { name: 'Inspectable Artifacts', body: 'Every durable output must be reviewable: structured plans, PR diffs, test results, session logs, workflow artifacts, audit log events. These are the evidence trail that proves the agent did what it was supposed to do.' },
+        { name: 'Autonomy Levels', body: 'Not all tasks need the same level of autonomy. Low-risk formatting tasks can be auto-approved. Security-sensitive changes require human approval at the planning gate and again at the PR review gate.' },
+        { name: 'Customization Files', body: '<code>.github/copilot-instructions.md</code> (repo-wide), <code>.github/instructions/*.instructions.md</code> (path-specific), <code>AGENTS.md</code> (agent-oriented), <code>.github/agents/*.agent.md</code> (custom agents), <code>.github/prompts/*.prompt.md</code> (reusable prompts).' }
+      ],
+      tip: 'EXAM TRAP: "Tell the agent to be careful" is NOT a control. Instructions are guidance, not enforcement. Use tool restrictions, branch protection, hooks, and required reviews.',
+      demo: 'plan-sort'
+    },
+    {
+      id: 1, title: 'Tool Use & Environment', weight: '20-25%',
+      icon: '\u{1F527}', color: 'var(--corgi-orange)',
+      desc: 'MCP architecture, tool selection, permission scoping, CI invocation patterns, and security layers (allowlists, firewall, tokens).',
+      flow: [
+        { icon: '\u{1F4E6}', label: 'Agent receives task with scoped tool list' },
+        { icon: '\u{1F9F3}', label: 'MCP client connects to configured servers (local/remote)' },
+        { icon: '\u{1F50D}', label: 'Agent selects appropriate tool: read, search, edit, execute, agent' },
+        { icon: '\u{2699}', label: 'Hook intercepts via preToolUse (allow / deny)' },
+        { icon: '\u{1F4C4}', label: 'Tool executes and returns result' },
+        { icon: '\u{1F504}', label: 'Agent reasons over result; continues or retries' }
+      ],
+      concepts: [
+        { name: 'MCP Architecture', body: 'Model Context Protocol (MCP) connects agents to external tools/data. Transports: <code>local</code>/<code>stdio</code> (subprocess), <code>http</code> (modern remote), <code>sse</code> (legacy). A top-level <code>url</code> key means remote; <code>command</code>+<code>args</code> means local, even if args contain a URL.' },
+        { name: 'Tool Reference', body: '<code>read</code> (view files), <code>search</code> (grep/glob in repo), <code>edit</code> (modify/create), <code>execute</code> (bash/powershell), <code>agent</code> (invoke subagent), <code>web</code> (fetch URLs, CLI only), <code>todo</code> (task list, CLI only).' },
+        { name: 'Permission Scoping', body: 'Three levels: Repository (agent file location, <code>contents:read</code>), Branch (patterns, rulesets), Environment (deployment gates). Most restrictive wins. Use <code>tools: []</code> to disable all tools.' },
+        { name: 'Security Layers', body: 'MCP allowlists (approved servers), Firewall allowlists (network egress), Fine-grained tokens (repo/permission scope), Agent secrets (must start with <code>COPILOT_MCP_</code> prefix). These solve DIFFERENT problems.' }
+      ],
+      tip: 'EXAM TRAP: search = repository file search, NOT internet search. tools: ["*"] enables ALL tools and violates least privilege. tools: [] explicitly disables all tools.',
+      demo: 'tool-console'
+    },
+    {
+      id: 2, title: 'Memory & State', weight: '10-15%',
+      icon: '\u{1F9E0}', color: 'var(--sky-cyan)',
+      desc: 'Memory types, session state, drift detection, pruning strategies, and cross-surface state sharing.',
+      flow: [
+        { icon: '\u{1F4A1}', label: 'Short-term context loaded (current prompt/session, ephemeral)' },
+        { icon: '\u{1F4BE}', label: 'Session state restored (if resuming, from session-state/events.jsonl)' },
+        { icon: '\u{1F3E2}', label: 'Copilot Memory retrieved (repo conventions, user preferences)' },
+        { icon: '\u{1F510}', label: 'External durable state: PRs, artifacts, audit logs' },
+        { icon: '\u{26A0}', label: 'Drift check: verify stale memory against current HEAD' },
+        { icon: '\u{1F504}', label: 'Context window managed; outdated entries pruned' }
+      ],
+      concepts: [
+        { name: 'Memory Types', body: '<strong>Short-term context:</strong> ephemeral, lost when session ends. <strong>Copilot Memory:</strong> persistent, repo/user level, can go stale. <strong>Session state:</strong> per-session, persistent until deleted, enables --resume. <strong>External durable state:</strong> PRs, artifacts, commits, audit logs (auditable).' },
+        { name: 'Drift Detection', body: 'Drift = agent assumptions diverge from reality. Causes: stale Copilot Memory, old instructions, repo changed, multi-agent conflicts, wrong session resumed. Always re-read target files before editing.' },
+        { name: 'Session State', body: 'Stored in <code>~/.copilot/session-state/&lt;id&gt;/events.jsonl</code>. Identified by session.id. Can resume with <code>--resume</code> or <code>resumeSession()</code>. Environment override: <code>COPILOT_HOME</code>.' },
+        { name: 'State Storage Decisions', body: 'Continue same session -> session-state. Share between workflow jobs -> workflow artifact. Preserve review decision -> PR comment. Long-term convention -> instructions or Copilot Memory. Store secrets -> GitHub Secrets only.' }
+      ],
+      tip: 'EXAM TRAP: Copilot Memory is NOT secret storage. Session persistence (resume) is NOT the same as Copilot Memory (long-term facts). PR comments/artifacts are better handoff than hidden session context.',
+      demo: 'memory-scope'
+    },
+    {
+      id: 3, title: 'Evaluation & Tuning', weight: '15-20%',
+      icon: '\u{1F4CA}', color: 'var(--hub-green)',
+      desc: 'Quantitative signals, failure classification, tuning levers, automated scanning tools, and eval workflow design.',
+      flow: [
+        { icon: '\u{1F4E5}', label: 'Agent completes task and opens/updates PR' },
+        { icon: '\u{1F9EA}', label: 'Automated checks: tests, CodeQL, secret scan, lint, type check' },
+        { icon: '\u{1F4C1}', label: 'Artifacts collected: test results, session log, plan' },
+        { icon: '\u{1F44D}', label: 'Human review: diff, session log, artifacts, CODEOWNER' },
+        { icon: '\u{2705}', label: 'All checks pass + human approves -> merge' },
+        { icon: '\u{1F504}', label: 'Checks fail -> agent revises or human takes over' }
+      ],
+      concepts: [
+        { name: 'Quantitative Signals', body: 'Test pass/fail, lint/type error count, CodeQL alerts, secret scanning hits, dependency vulnerabilities, coverage percentage. These are objective, measurable, and automatable as required checks.' },
+        { name: 'Failure Classification', body: '<strong>Reasoning errors:</strong> agent misunderstood task, wrong logic, hallucinated APIs. <strong>Tool misuse:</strong> wrong tool, too broad access, destructive command. <strong>Context issues:</strong> missing dependencies, stale memory, wrong runner.' },
+        { name: 'Tuning Levers (Priority Order)', body: '1. Check prompt/task clarity. 2. Check instructions. 3. Check tool scope. 4. Check setup/environment. 5. Check repo state. 6. Check memory/session state. 7. Model choice (LAST resort).' },
+        { name: 'Automated Scanning Tools', body: 'CodeQL (code vulns), Secret scanning (leaked tokens), Push protection (real-time), Dependency review (vulnerable deps), Dependabot (auto PRs), Linting (style/quality), Type checking (type errors).' }
+      ],
+      tip: 'EXAM TRAP: Model is the LAST tuning lever. Always check instructions, tools, setup, and repo state before considering a model change.',
+      demo: 'eval-metrics'
+    },
+    {
+      id: 4, title: 'Multi-Agent Coordination', weight: '15-20%',
+      icon: '\u{1F517}', color: 'var(--star-yellow)',
+      desc: 'Orchestration patterns (sequential, parallel, coordinator/worker), isolation strategies, concurrency control, and conflict resolution.',
+      flow: [
+        { icon: '\u{1F3AF}', label: 'Task decomposed into sub-tasks for multiple agents' },
+        { icon: '\u{1F4CB}', label: 'Coordinator assigns work with isolation (branches, file ownership)' },
+        { icon: '\u{1F916}', label: 'Workers execute in parallel or sequentially based on pattern' },
+        { icon: '\u{1F4C4}', label: 'Each agent produces handoff artifacts (plan, review, output)' },
+        { icon: '\u{1F91D}', label: 'Consolidation job merges results with needs ordering' },
+        { icon: '\u{2705}', label: 'Conflict detection resolved; unified output produced' }
+      ],
+      concepts: [
+        { name: 'Orchestration Patterns', body: '<strong>Sequential:</strong> Plan -> Implement -> Review -> Consolidate. <strong>Parallel workers:</strong> independent areas simultaneously. <strong>Coordinator/worker:</strong> one orchestrates, workers execute. <strong>Reviewer/verifier:</strong> implementer + independent checker. <strong>Matrix:</strong> same job template across dimensions (up to 256).' },
+        { name: 'Isolation Strategies', body: '<strong>Branch isolation:</strong> each agent on own branch. <strong>Artifact isolation:</strong> unique artifact names. <strong>Concurrency groups:</strong> prevent overlapping runs. <strong>Disjoint file ownership:</strong> agents edit non-overlapping files. <strong>Needs ordering:</strong> jobs wait for dependencies.' },
+        { name: 'Concurrency Control', body: '<code>cancel-in-progress: true</code> (latest result matters). <code>queue: max</code> (every result matters). These are MUTUALLY EXCLUSIVE. Key: <code>github.workflow</code> avoids canceling other workflows.' },
+        { name: 'Conflict Resolution', body: 'Overlapping code changes -> merge conflicts -> disjoint file ownership. Duplicated effort -> clear assignment + needs ordering. Contradictory outputs -> coordinator resolves. Shared mutable state -> branch isolation + artifacts for handoff.' }
+      ],
+      tip: 'EXAM TRAP: Do NOT combine queue: max with cancel-in-progress: true. They are mutually exclusive. Matrix jobs max is 256.',
+      demo: 'topology'
+    },
+    {
+      id: 5, title: 'Guardrails & Accountability', weight: '10-15%',
+      icon: '\u{1F6E1}', color: 'var(--deep-teal)',
+      desc: 'Autonomy matrix, risk classification, hooks (preToolUse/postToolUse), least-privilege implementation, and control types.',
+      flow: [
+        { icon: '\u{1F4CB}', label: 'Agent attempts action (tool call, file edit, deploy)' },
+        { icon: '\u{1F6E1}', label: 'Preventive controls: least-privilege tools, branch protection, hooks' },
+        { icon: '\u{1F9F0}', label: 'Hook evaluates: preToolUse fires, returns allow / deny' },
+        { icon: '\u{1F5C3}', label: 'Detective controls: session logs, CodeQL, audit logs' },
+        { icon: '\u{1F504}', label: 'Corrective controls: revert PR, stop session, rotate secrets' },
+        { icon: '\u{1F4DD}', label: 'All actions produce auditable trail (co-author, audit log events)' }
+      ],
+      concepts: [
+        { name: 'Autonomy Matrix', body: 'Format markdown -> Auto. Open draft PR -> Auto with trace. Edit source code -> Auto + required checks. Deploy staging -> 1 reviewer. Deploy production -> 2 reviewers. Push to default branch / merge own PR -> Hard block. If ANY risk is High, use most restrictive gate.' },
+        { name: 'Hook Events', body: '<code>preToolUse</code>: before tool executes (can allow/deny/ask). <code>postToolUse</code>: after successful use. <code>postToolUseFailure</code>: after failure. <code>sessionStart</code>/<code>sessionEnd</code>. <code>agentStop</code>. <code>subagentStart</code>/<code>subagentStop</code>. Note: <code>permissionRequest</code> is CLI-only.' },
+        { name: 'Least Privilege (6 Layers)', body: '1. Tool restrictions (tools: [read, search]). 2. MCP tool scoping (specific tools, not "*"). 3. Branch protection (no direct main push). 4. Environment gates (staging 1 reviewer, production 2). 5. Workflow permissions (contents: read). 6. Fine-grained tokens.' },
+        { name: 'Control Types', body: '<strong>Preventive:</strong> block before action (tools, branch protection, hooks deny). <strong>Detective:</strong> identify after (CodeQL, secret scanning, audit logs). <strong>Corrective:</strong> fix after detection (revert, stop session, rotate secrets).' }
+      ],
+      tip: 'EXAM TRAP: Use preToolUse for cloud-agent permission decisions, NOT permissionRequest (CLI only). ask decision = deny in cloud agent. Hook toolName "view" = read file, NOT web browsing.',
+      demo: 'guardrails'
+    }
+  ];
+
+  var overlay = document.getElementById('detail-overlay');
+  var panel = document.getElementById('detail-panel');
+  var closeBtn = document.getElementById('dp-close');
+  var dpIcon = document.getElementById('dp-icon');
+  var dpTitle = document.getElementById('dp-title');
+  var dpDesc = document.getElementById('dp-desc');
+  var dpBody = document.getElementById('dp-body');
+  var graph = document.getElementById('agent-graph');
+  var activeDomain = -1;
+
+  function setConnActive(idx) {
+    var lines = graph.querySelectorAll('.conn-line');
+    lines.forEach(function(l) {
+      l.classList.toggle('active', parseInt(l.dataset.domain) === idx);
+    });
+  }
+
+  function openDomain(idx) {
+    var d = domains[idx];
+    activeDomain = idx;
+    setConnActive(idx);
+
+    dpIcon.style.background = d.color;
+    dpIcon.textContent = d.icon;
+    dpTitle.textContent = d.title;
+    dpDesc.textContent = d.weight + ' of exam \u2014 ' + d.desc;
+
+    var html = '';
+
+    // Flow diagram
+    html += '<div class="flow-diagram">';
+    html += '<div class="flow-title">Workflow Pipeline</div>';
+    html += '<div class="flow-steps">';
+    d.flow.forEach(function(step, i) {
+      html += '<div class="flow-step" data-step="' + i + '"><span class="flow-step-icon">' + step.icon + '</span><span class="flow-step-text">' + step.label + '</span></div>';
+      if (i < d.flow.length - 1) html += '<div class="flow-arrow">\u25BC</div>';
+    });
+    html += '</div></div>';
+
+    // Exam tip callout
+    html += '<div class="callout c-warn"><strong>Exam Tip:</strong> ' + d.tip + '</div>';
+
+    // Tabs
+    html += '<div class="tab-bar">';
+    html += '<button class="tab active" data-tab="concepts" aria-selected="true">Concepts</button>';
+    html += '<button class="tab" data-tab="demo" aria-selected="false">Interactive Demo</button>';
+    html += '</div>';
+
+    // Concepts tab content
+    html += '<div class="tab-content" data-tab="concepts">';
+    d.concepts.forEach(function(c) {
+      html += '<div class="topic-card">';
+      html += '<div class="tc-header"><span class="tc-icon">' + d.icon + '</span><span class="tc-name">' + c.name + '</span><span class="tc-arrow">\u25B6</span></div>';
+      html += '<div class="tc-body"><p>' + c.body + '</p></div>';
+      html += '</div>';
+    });
+    html += '</div>';
+
+    // Demo tab content
+    html += '<div class="tab-content" data-tab="demo" style="display:none">';
+    html += buildDemo(d.demo, d);
+    html += '</div>';
+
+    dpBody.innerHTML = html;
+
+    // Wire up tab switching
+    dpBody.querySelectorAll('.tab').forEach(function(tab) {
+      tab.addEventListener('click', function() {
+        dpBody.querySelectorAll('.tab').forEach(function(t) { t.classList.remove('active'); t.setAttribute('aria-selected', 'false'); });
+        tab.classList.add('active');
+        tab.setAttribute('aria-selected', 'true');
+        var target = tab.dataset.tab;
+        dpBody.querySelectorAll('.tab-content').forEach(function(tc) {
+          tc.style.display = tc.dataset.tab === target ? '' : 'none';
+        });
+      });
+    });
+
+    // Wire up topic card expand/collapse
+    dpBody.querySelectorAll('.tc-header').forEach(function(h) {
+      h.addEventListener('click', function() {
+        var body = h.nextElementSibling;
+        var arrow = h.querySelector('.tc-arrow');
+        body.classList.toggle('show');
+        arrow.classList.toggle('open');
+      });
+    });
+
+    // Wire up flow step highlighting animation
+    animateFlowSteps(d);
+
+    // Init the specific demo
+    initDemo(d.demo);
+
+    overlay.classList.add('open');
+    panel.focus();
+  }
+
+  function closeDomain() {
+    overlay.classList.remove('open');
+    activeDomain = -1;
+    setConnActive(-1);
+    closeBtn.focus();
+  }
+
+  // Node click handlers
+  graph.querySelectorAll('.domain-node').forEach(function(node) {
+    node.addEventListener('click', function() {
+      openDomain(parseInt(node.dataset.domain));
+    });
+    node.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        openDomain(parseInt(node.dataset.domain));
+      }
+    });
+  });
+
+  // Arrow key navigation between nodes
+  document.addEventListener('keydown', function(e) {
+    if (!overlay.classList.contains('open')) {
+      var nodes = Array.from(graph.querySelectorAll('.domain-node'));
+      var focused = document.activeElement;
+      var idx = nodes.indexOf(focused);
+      if (idx === -1) return;
+      if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+        e.preventDefault();
+        nodes[(idx + 1) % nodes.length].focus();
+      } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+        e.preventDefault();
+        nodes[(idx - 1 + nodes.length) % nodes.length].focus();
+      } else if (e.key === 'Escape') {
+        closeDomain();
+      }
+    } else if (e.key === 'Escape') {
+      closeDomain();
+    }
+  });
+
+  closeBtn.addEventListener('click', closeDomain);
+  overlay.addEventListener('click', function(e) {
+    if (e.target === overlay) closeDomain();
+  });
+
+  // Animate flow steps sequentially
+  function animateFlowSteps(d) {
+    var steps = dpBody.querySelectorAll('.flow-step');
+    var highlights = d.flowHighlight || [0, 2, 4];
+    function highlight() {
+      steps.forEach(function(s) { s.classList.remove('highlight'); });
+      highlights.forEach(function(h) {
+        if (steps[h]) steps[h].classList.add('highlight');
+      });
+    }
+    highlight();
+  }
+
+  // Build demo HTML based on type
+  function buildDemo(type, d) {
+    var html = '<div class="demo-area">';
+    html += '<div class="demo-title">Interactive Demo</div>';
+
+    switch(type) {
+      case 'plan-sort':
+        html += '<p style="font-size:var(--fs-small);color:var(--fg-2);margin-bottom:var(--space-4);">Drag each action into the correct phase: Planning or Execution.</p>';
+        html += '<div class="plan-drop-zone-label">Planning Phase</div>';
+        html += '<div class="plan-drop-zone" id="zone-plan" data-accept="plan"><div class="plan-drop-zone-label">Drop planning actions here</div></div>';
+        html += '<div class="plan-drop-zone-label">Execution Phase</div>';
+        html += '<div class="plan-drop-zone" id="zone-exec" data-accept="exec"><div class="plan-drop-zone-label">Drop execution actions here</div></div>';
+        html += '<div style="margin-top:var(--space-4)"><div class="plan-drop-zone-label">Available Actions</div><div id="plan-items">';
+        var items = [
+          { label: 'Read issue requirements', phase: 'plan' },
+          { label: 'Inspect codebase structure', phase: 'plan' },
+          { label: 'Write structured plan', phase: 'plan' },
+          { label: 'Edit source files', phase: 'exec' },
+          { label: 'Run tests', phase: 'exec' },
+          { label: 'Open pull request', phase: 'exec' }
+        ];
+        items.forEach(function(item, i) {
+          html += '<span class="plan-item" draggable="true" data-phase="' + item.phase + '" data-idx="' + i + '">' + item.label + '</span>';
+        });
+        html += '</div></div>';
+        html += '<div class="plan-result" id="plan-result"></div>';
+        break;
+
+      case 'tool-console':
+        html += '<p style="font-size:var(--fs-small);color:var(--fg-2);margin-bottom:var(--space-3);">Type a task and watch the agent reason about which tool to use.</p>';
+        html += '<textarea class="demo-input" id="tool-input" rows="2" placeholder="e.g. Fix the failing test in handler_test.go"></textarea>';
+        html += '<br><button class="demo-btn" id="tool-btn">Run Agent Reasoning</button>';
+        html += '<div class="demo-output" id="tool-output"><span class="log-info">Waiting for input...</span></div>';
+        break;
+
+      case 'memory-scope':
+        html += '<p style="font-size:var(--fs-small);color:var(--fg-2);margin-bottom:var(--space-3);">Toggle memory layers to see what context the agent has available.</p>';
+        html += '<div class="mem-toggles">';
+        html += '<button class="mem-btn active" data-mem="short">Short-term</button>';
+        html += '<button class="mem-btn" data-mem="session">Session State</button>';
+        html += '<button class="mem-btn" data-mem="copilot">Copilot Memory</button>';
+        html += '<button class="mem-btn" data-mem="durable">Durable State</button>';
+        html += '</div>';
+        html += '<div id="mem-blocks">';
+        html += buildMemBlocks(true, false, false, false);
+        html += '</div>';
+        break;
+
+      case 'eval-metrics':
+        html += '<p style="font-size:var(--fs-small);color:var(--fg-2);margin-bottom:var(--space-3);">Adjust precision and recall to see the F1 score update live.</p>';
+        html += '<div class="demo-slider-row"><span class="demo-slider-label">Precision</span><input class="demo-slider" id="slider-prec" type="range" min="0" max="100" value="80"><span class="demo-slider-val" id="val-prec">0.80</span></div>';
+        html += '<div class="demo-slider-row"><span class="demo-slider-label">Recall</span><input class="demo-slider" id="slider-rec" type="range" min="0" max="100" value="70"><span class="demo-slider-val" id="val-rec">0.70</span></div>';
+        html += '<div class="demo-metric"><div class="demo-metric-value" id="f1-value">0.75</div><div class="demo-metric-label">F1 Score</div></div>';
+        break;
+
+      case 'topology':
+        html += '<p style="font-size:var(--fs-small);color:var(--fg-2);margin-bottom:var(--space-3);">Select an orchestration pattern to see the agent topology.</p>';
+        html += '<div class="topo-options">';
+        html += '<button class="topo-btn active" data-topo="sequential">Sequential</button>';
+        html += '<button class="topo-btn" data-topo="parallel">Parallel</button>';
+        html += '<button class="topo-btn" data-topo="coordinator">Coordinator</button>';
+        html += '<button class="topo-btn" data-topo="reviewer">Reviewer</button>';
+        html += '</div>';
+        html += '<div class="topo-viz" id="topo-viz"></div>';
+        break;
+
+      case 'guardrails':
+        html += '<p style="font-size:var(--fs-small);color:var(--fg-2);margin-bottom:var(--space-3);">Test actions against the guardrail system to see if they pass or get blocked.</p>';
+        html += '<textarea class="demo-input" id="guard-input" rows="2" placeholder="e.g. Push to main, Deploy to staging, Format README, Delete database"></textarea>';
+        html += '<br><button class="demo-btn" id="guard-btn">Check Guardrails</button>';
+        html += '<div id="guard-results" style="margin-top:var(--space-4)"></div>';
+        break;
+    }
+
+    html += '</div>';
+    return html;
+  }
+
+  function buildMemBlocks(shortTerm, session, copilot, durable) {
+    var blocks = [
+      { label: 'Short-term Context', pct: 35, cap: 'Current prompt + tool outputs (ephemeral)', active: shortTerm },
+      { label: 'Session State', pct: 55, cap: 'events.jsonl -- persisted until deleted', active: session },
+      { label: 'Copilot Memory', pct: 70, cap: 'Repo conventions & user preferences (persistent)', active: copilot },
+      { label: 'Durable Artifacts', pct: 100, cap: 'PRs, artifacts, commits, audit logs (auditable)', active: durable }
+    ];
+    var html = '';
+    blocks.forEach(function(b) {
+      html += '<div class="mem-block' + (b.active ? ' active' : '') + '">';
+      html += '<div class="mem-block-title">' + b.label + (b.active ? '' : ' (inactive)') + '</div>';
+      html += '<div class="mem-block-bar"><div class="mem-block-fill" style="width:' + (b.active ? b.pct : 0) + '%"></div></div>';
+      html += '<div class="mem-block-cap">' + b.cap + '</div>';
+      html += '</div>';
+    });
+    return html;
+  }
+
+  function initDemo(type) {
+    switch(type) {
+      case 'plan-sort':
+        initPlanSort();
+        break;
+      case 'tool-console':
+        initToolConsole();
+        break;
+      case 'memory-scope':
+        initMemScope();
+        break;
+      case 'eval-metrics':
+        initEvalMetrics();
+        break;
+      case 'topology':
+        initTopology();
+        break;
+      case 'guardrails':
+        initGuardrails();
+        break;
+    }
+  }
+
+  function initPlanSort() {
+    var zones = dpBody.querySelectorAll('.plan-drop-zone');
+    var items = dpBody.querySelectorAll('.plan-item');
+
+    items.forEach(function(item) {
+      item.addEventListener('dragstart', function(e) {
+        e.dataTransfer.setData('text/plain', item.dataset.idx);
+        item.style.opacity = '0.5';
+      });
+      item.addEventListener('dragend', function() { item.style.opacity = ''; });
+    });
+
+    zones.forEach(function(zone) {
+      zone.addEventListener('dragover', function(e) { e.preventDefault(); zone.classList.add('over'); });
+      zone.addEventListener('dragleave', function() { zone.classList.remove('over'); });
+      zone.addEventListener('drop', function(e) {
+        e.preventDefault();
+        zone.classList.remove('over');
+        var idx = e.dataTransfer.getData('text/plain');
+        var item = dpBody.querySelector('.plan-item[data-idx="' + idx + '"]');
+        if (item) zone.appendChild(item);
+        checkPlanResult();
+      });
+    });
+  }
+
+  function checkPlanResult() {
+    var planZone = dpBody.getElementById('zone-plan') || dpBody.querySelector('#zone-plan');
+    var execZone = dpBody.getElementById('zone-exec') || dpBody.querySelector('#zone-exec');
+    var result = dpBody.getElementById('plan-result') || dpBody.querySelector('#plan-result');
+
+    if (!planZone || !execZone || !result) return;
+
+    var planItems = planZone.querySelectorAll('.plan-item');
+    var execItems = execZone.querySelectorAll('.plan-item');
+    var allItems = dpBody.querySelectorAll('.plan-item');
+
+    // Check all items are placed
+    if (planItems.length + execItems.length < 6) return;
+
+    var correct = true;
+    allItems.forEach(function(item) {
+      item.classList.remove('correct', 'incorrect');
+      var parent = item.parentElement;
+      var expectedZone = item.dataset.phase === 'plan' ? planZone : execZone;
+      if (parent === expectedZone) {
+        item.classList.add('correct');
+      } else {
+        item.classList.add('incorrect');
+        correct = false;
+      }
+    });
+
+    result.classList.add('show');
+    if (correct) {
+      result.className = 'plan-result show success';
+      result.textContent = 'All correct! Planning phase gathers context and produces artifacts; execution phase makes state changes.';
+    } else {
+      result.className = 'plan-result show fail';
+      result.textContent = 'Some actions are in the wrong phase. Remember: reading, inspecting, and planning = Planning. Editing, testing, PR = Execution.';
+    }
+  }
+
+  function initToolConsole() {
+    var input = dpBody.querySelector('#tool-input');
+    var btn = dpBody.querySelector('#tool-btn');
+    var output = dpBody.querySelector('#tool-output');
+
+    var toolMap = {
+      'read': { pattern: /read|view|inspect|check|look at|what is|show me|display|examine|open/i, tool: 'read', desc: 'Read file contents' },
+      'search': { pattern: /find|search|where|locate|grep|which files|glob/i, tool: 'search', desc: 'Search repo files/text (grep/glob)' },
+      'edit': { pattern: /fix|edit|modify|change|update|create|write|add|refactor|rename|implement|remove|delete file/i, tool: 'edit', desc: 'Modify or create files' },
+      'execute': { pattern: /run|test|build|install|execute|compile|deploy|start|npm|go |make|cargo/i, tool: 'execute', desc: 'Run shell commands' },
+      'agent': { pattern: /delegate|subagent|sub-agent|invoke agent|another agent|assign to/i, tool: 'agent', desc: 'Invoke another custom agent' },
+      'web': { pattern: /fetch|download|scrape|web page|url|http|browse website/i, tool: 'web', desc: 'Fetch web page (CLI only)' }
+    };
+
+    function processToolQuery() {
+      var query = input.value.trim();
+      if (!query) { output.innerHTML = '<span class="log-warn">Please enter a task description.</span>'; return; }
+
+      var lines = [];
+      lines.push('<span class="log-info">&gt; Task: "' + query + '"</span>');
+      lines.push('');
+      lines.push('<span class="log-info">Agent reasoning...</span>');
+
+      var matched = false;
+      for (var key in toolMap) {
+        if (toolMap[key].pattern.test(query)) {
+          lines.push('');
+          lines.push('<span class="log-success">Selected tool: ' + toolMap[key].tool.toUpperCase() + '</span>');
+          lines.push('<span class="log-info">Capability: ' + toolMap[key].desc + '</span>');
+          if (toolMap[key].tool === 'search') {
+            lines.push('<span class="log-warn">Note: search = repository search, NOT internet search.</span>');
+          }
+          if (toolMap[key].tool === 'web') {
+            lines.push('<span class="log-warn">Note: web tool is CLI-only, not available for cloud agent.</span>');
+          }
+          matched = true;
+          break;
+        }
+      }
+
+      if (!matched) {
+        lines.push('');
+        lines.push('<span class="log-warn">No specific tool matched. Agent may use read + search to gather context first.</span>');
+        lines.push('<span class="log-info">Fallback: default tools (read, search) based on task analysis.</span>');
+      }
+
+      lines.push('');
+      lines.push('<span class="log-info">preToolUse hook fired: ALLOW (no restrictions matched)</span>');
+
+      output.innerHTML = lines.join('\n');
+    }
+
+    btn.addEventListener('click', processToolQuery);
+    input.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); processToolQuery(); }
+    });
+  }
+
+  function initMemScope() {
+    var btns = dpBody.querySelectorAll('.mem-btn');
+    var state = { short: true, session: false, copilot: false, durable: false };
+
+    btns.forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var key = btn.dataset.mem;
+        state[key] = !state[key];
+        btn.classList.toggle('active', state[key]);
+        dpBody.querySelector('#mem-blocks').innerHTML = buildMemBlocks(state.short, state.session, state.copilot, state.durable);
+      });
+    });
+  }
+
+  function initEvalMetrics() {
+    var precSlider = dpBody.querySelector('#slider-prec');
+    var recSlider = dpBody.querySelector('#slider-rec');
+    var precVal = dpBody.querySelector('#val-prec');
+    var recVal = dpBody.querySelector('#val-rec');
+    var f1El = dpBody.querySelector('#f1-value');
+
+    function update() {
+      var p = parseInt(precSlider.value) / 100;
+      var r = parseInt(recSlider.value) / 100;
+      precVal.textContent = p.toFixed(2);
+      recVal.textContent = r.toFixed(2);
+      var f1 = (p + r > 0) ? (2 * p * r / (p + r)) : 0;
+      f1El.textContent = f1.toFixed(2);
+
+      var color = f1 >= 0.8 ? 'var(--success)' : f1 >= 0.6 ? 'var(--warning)' : 'var(--danger)';
+      f1El.style.color = color;
+    }
+
+    precSlider.addEventListener('input', update);
+    recSlider.addEventListener('input', update);
+    update();
+  }
+
+  function initTopology() {
+    var btns = dpBody.querySelectorAll('.topo-btn');
+    var vizEl = dpBody.querySelector('#topo-viz');
+
+    var topologies = {
+      sequential: {
+        svg: '<svg viewBox="0 0 400 60" height="60"><rect x="20" y="15" width="60" height="30" rx="6" fill="var(--corgi-orange)" opacity=".8"/><text x="50" y="35" text-anchor="middle" font-size="10" fill="var(--fg-on-brand)">Plan</text><line x1="80" y1="30" x2="120" y2="30" stroke="var(--fg-3)" stroke-width="1.5" marker-end="url(#arrowhead)"/><rect x="120" y="15" width="60" height="30" rx="6" fill="var(--corgi-orange)" opacity=".8"/><text x="150" y="35" text-anchor="middle" font-size="10" fill="var(--fg-on-brand)">Implement</text><line x1="180" y1="30" x2="220" y2="30" stroke="var(--fg-3)" stroke-width="1.5" marker-end="url(#arrowhead)"/><rect x="220" y="15" width="60" height="30" rx="6" fill="var(--corgi-orange)" opacity=".8"/><text x="250" y="35" text-anchor="middle" font-size="10" fill="var(--fg-on-brand)">Review</text><line x1="280" y1="30" x2="320" y2="30" stroke="var(--fg-3)" stroke-width="1.5" marker-end="url(#arrowhead)"/><rect x="320" y="15" width="60" height="30" rx="6" fill="var(--hub-green)" opacity=".8"/><text x="350" y="35" text-anchor="middle" font-size="10" fill="var(--fg-on-brand)">Merge</text><defs><marker id="arrowhead" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="var(--fg-3)"/></marker></defs></svg>',
+        desc: 'Tasks flow in order: Plan -> Implement -> Review -> Merge. Use when tasks have clear dependencies.'
+      },
+      parallel: {
+        svg: '<svg viewBox="0 0 400 100" height="100"><rect x="10" y="35" width="60" height="30" rx="6" fill="var(--corgi-orange)" opacity=".8"/><text x="40" y="55" text-anchor="middle" font-size="10" fill="var(--fg-on-brand)">Split</text><line x1="70" y1="42" x2="120" y2="20" stroke="var(--fg-3)" stroke-width="1.5" marker-end="url(#arrowhead2)"/><line x1="70" y1="50" x2="120" y2="50" stroke="var(--fg-3)" stroke-width="1.5" marker-end="url(#arrowhead2)"/><line x1="70" y1="58" x2="120" y2="80" stroke="var(--fg-3)" stroke-width="1.5" marker-end="url(#arrowhead2)"/><rect x="120" y="8" width="80" height="26" rx="6" fill="var(--sky-cyan)" opacity=".8"/><text x="160" y="26" text-anchor="middle" font-size="9" fill="var(--fg-on-brand)">Worker A</text><rect x="120" y="38" width="80" height="26" rx="6" fill="var(--sky-cyan)" opacity=".8"/><text x="160" y="56" text-anchor="middle" font-size="9" fill="var(--fg-on-brand)">Worker B</text><rect x="120" y="68" width="80" height="26" rx="6" fill="var(--sky-cyan)" opacity=".8"/><text x="160" y="86" text-anchor="middle" font-size="9" fill="var(--fg-on-brand)">Worker C</text><line x1="200" y1="21" x2="280" y2="50" stroke="var(--fg-3)" stroke-width="1.5" marker-end="url(#arrowhead2)"/><line x1="200" y1="51" x2="280" y2="50" stroke="var(--fg-3)" stroke-width="1.5" marker-end="url(#arrowhead2)"/><line x1="200" y1="81" x2="280" y2="50" stroke="var(--fg-3)" stroke-width="1.5" marker-end="url(#arrowhead2)"/><rect x="280" y="35" width="80" height="30" rx="6" fill="var(--hub-green)" opacity=".8"/><text x="320" y="55" text-anchor="middle" font-size="10" fill="var(--fg-on-brand)">Merge</text><defs><marker id="arrowhead2" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="var(--fg-3)"/></marker></defs></svg>',
+        desc: 'Workers execute simultaneously on disjoint areas. Faster but requires merge and conflict resolution.'
+      },
+      coordinator: {
+        svg: '<svg viewBox="0 0 400 120" height="120"><rect x="140" y="5" width="100" height="30" rx="6" fill="var(--star-yellow)" opacity=".8"/><text x="190" y="25" text-anchor="middle" font-size="10" fill="var(--fg-on-brand)">Coordinator</text><line x1="165" y1="35" x2="80" y2="65" stroke="var(--fg-3)" stroke-width="1.5" marker-end="url(#arrowhead3)"/><line x1="215" y1="35" x2="300" y2="65" stroke="var(--fg-3)" stroke-width="1.5" marker-end="url(#arrowhead3)"/><rect x="30" y="65" width="80" height="26" rx="6" fill="var(--sky-cyan)" opacity=".8"/><text x="70" y="83" text-anchor="middle" font-size="9" fill="var(--fg-on-brand)">Worker 1</text><rect x="270" y="65" width="80" height="26" rx="6" fill="var(--sky-cyan)" opacity=".8"/><text x="310" y="83" text-anchor="middle" font-size="9" fill="var(--fg-on-brand)">Worker 2</text><line x1="70" y1="91" x2="165" y2="105" stroke="var(--fg-3)" stroke-width="1.5" stroke-dasharray="4 2"/><line x1="310" y1="91" x2="215" y2="105" stroke="var(--fg-3)" stroke-width="1.5" stroke-dasharray="4 2"/><rect x="140" y="95" width="100" height="24" rx="6" fill="var(--hub-green)" opacity=".6"/><text x="190" y="112" text-anchor="middle" font-size="9" fill="var(--fg-on-brand)">Consolidate</text><defs><marker id="arrowhead3" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="var(--fg-3)"/></marker></defs></svg>',
+        desc: 'One orchestrator plans and delegates; workers execute bounded tasks. Good separation of concerns.'
+      },
+      reviewer: {
+        svg: '<svg viewBox="0 0 400 80" height="80"><rect x="60" y="25" width="100" height="30" rx="6" fill="var(--corgi-orange)" opacity=".8"/><text x="110" y="45" text-anchor="middle" font-size="10" fill="var(--fg-on-brand)">Implementer</text><line x1="160" y1="40" x2="230" y2="40" stroke="var(--fg-3)" stroke-width="1.5" marker-end="url(#arrowhead4)"/><rect x="230" y="25" width="100" height="30" rx="6" fill="var(--captain-red)" opacity=".8"/><text x="280" y="45" text-anchor="middle" font-size="10" fill="var(--fg-on-brand)">Verifier</text><line x1="280" y1="25" x2="110" y2="25" stroke="var(--danger)" stroke-width="1" stroke-dasharray="4 2"/><text x="195" y="18" text-anchor="middle" font-size="8" fill="var(--danger)">reject & retry</text><defs><marker id="arrowhead4" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="var(--fg-3)"/></marker></defs></svg>',
+        desc: 'One agent implements, another independently verifies. Catches more issues. Verifier can reject and trigger retry.'
+      }
+    };
+
+    function render(key) {
+      var t = topologies[key];
+      vizEl.innerHTML = t.svg + '<p style="margin-top:var(--space-3);font-size:var(--fs-small);color:var(--fg-2);line-height:var(--lh-relaxed)">' + t.desc + '</p>';
+    }
+
+    btns.forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        btns.forEach(function(b) { b.classList.remove('active'); });
+        btn.classList.add('active');
+        render(btn.dataset.topo);
+      });
+    });
+
+    render('sequential');
+  }
+
+  function initGuardrails() {
+    var input = dpBody.querySelector('#guard-input');
+    var btn = dpBody.querySelector('#guard-btn');
+    var results = dpBody.querySelector('#guard-results');
+
+    var rules = [
+      { pattern: /format|lint|spell|typo|whitespace|markdown/i, action: 'Format/lint markdown', gate: 'Auto', result: 'allowed', risk: 'Low' },
+      { pattern: /test|run test|execute test/i, action: 'Run tests', gate: 'Auto', result: 'allowed', risk: 'Low' },
+      { pattern: /open.*pr|draft.*pr|create.*pr/i, action: 'Open draft PR', gate: 'Auto with trace', result: 'allowed', risk: 'Medium' },
+      { pattern: /edit.*code|fix.*bug|change.*source|modify/i, action: 'Edit source code', gate: 'Auto + required checks', result: 'allowed', risk: 'Medium' },
+      { pattern: /deploy.*stag/i, action: 'Deploy to staging', gate: '1 reviewer required', result: 'blocked', risk: 'Medium' },
+      { pattern: /deploy.*prod/i, action: 'Deploy to production', gate: '2 reviewers required', result: 'blocked', risk: 'High' },
+      { pattern: /push.*main|push.*default|merge.*main/i, action: 'Push to default branch', gate: 'Hard block', result: 'blocked', risk: 'High' },
+      { pattern: /merge.*own.*pr|self.*merge|approve.*own/i, action: 'Merge own PR', gate: 'Hard block', result: 'blocked', risk: 'High' },
+      { pattern: /delete.*infra|delete.*database|drop.*table|rm -rf/i, action: 'Delete infrastructure', gate: 'Hard block', result: 'blocked', risk: 'High' },
+      { pattern: /access.*secret|read.*secret|expose.*key/i, action: 'Access secrets', gate: 'Controlled path only', result: 'blocked', risk: 'High' },
+      { pattern: /modify.*workflow|edit.*github.*action|change.*workflow/i, action: 'Modify workflows', gate: 'CODEOWNER review', result: 'blocked', risk: 'High' }
+    ];
+
+    function checkGuardrails() {
+      var query = input.value.trim();
+      if (!query) return;
+
+      var matched = [];
+      rules.forEach(function(r) {
+        if (r.pattern.test(query)) matched.push(r);
+      });
+
+      if (matched.length === 0) {
+        results.innerHTML = '<div class="callout c-fact">No specific guardrails matched. This action would use default controls (trace logging, branch protection).</div>';
+        return;
+      }
+
+      var html = '';
+      matched.forEach(function(m) {
+        html += '<div class="guardrule ' + m.result + '">';
+        html += '<div class="guardrule-dot"></div>';
+        html += '<div class="guardrule-label">' + m.action + '</div>';
+        html += '<div class="guardrule-result">' + m.result.toUpperCase() + '</div>';
+        html += '</div>';
+        html += '<div style="font-size:var(--fs-xs);color:var(--fg-3);padding-left:calc(8px + var(--space-3) + var(--space-3));margin-bottom:var(--space-2)">Gate: ' + m.gate + ' | Risk: ' + m.risk + '</div>';
+      });
+
+      results.innerHTML = html;
+    }
+
+    btn.addEventListener('click', checkGuardrails);
+    input.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); checkGuardrails(); }
+    });
+  }
+
+})();
+</script>
+</body>
+</html>
