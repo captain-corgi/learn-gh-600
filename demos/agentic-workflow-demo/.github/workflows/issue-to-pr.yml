@@ -1,0 +1,30 @@
+name: issue-to-pr
+
+on:
+  issues:
+    types: [labeled]
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+
+jobs:
+  assign-copilot:
+    # Only trigger when the "agent-task" label is added (manual trigger)
+    if: contains(github.event.label.name, 'agent-task')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Assign Copilot agent via REST API
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          # Assign the copilot-swe-agent bot to implement this issue.
+          # The Copilot agent reads the issue, plans, codes, tests, and opens a PR.
+          # Endpoint: POST /agents/repos/{owner}/{repo}/tasks (public preview)
+          gh api \
+            /agents/repos/${{ github.repository }}/tasks \
+            -X POST \
+            -f agent=feature-implementer \
+            -f issue=${{ github.event.issue.number }} \
+            --jq '.id'

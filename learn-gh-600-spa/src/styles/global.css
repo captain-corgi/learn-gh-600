@@ -1,0 +1,173 @@
+/* =========================================================================
+   Captain Corgi Hub — Global Styles (React SPA)
+   ========================================================================= */
+
+@import './tokens.css';
+@import './themes.css';
+
+/* Reset */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+html, body, #root {
+  height: 100%;
+  max-height: 100vh;
+  overflow: hidden;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--fs-16);
+  line-height: var(--lh-normal);
+  color: var(--fg);
+  background: var(--bg);
+  font-weight: var(--fw-regular);
+}
+
+/* Headings */
+h1, h2, h3, h4, h5 {
+  font-family: var(--font-display);
+  color: var(--fg);
+}
+
+h1 {
+  font-size: var(--fs-48);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--tr-tight);
+  font-weight: var(--fw-bold);
+  font-variation-settings: "opsz" 48;
+  margin: 0 0 var(--space-4);
+}
+
+h2 {
+  font-size: var(--fs-38);
+  line-height: var(--lh-snug);
+  letter-spacing: var(--tr-tight);
+  font-weight: var(--fw-bold);
+  font-variation-settings: "opsz" 36;
+  margin: 0 0 var(--space-4);
+}
+
+h3 {
+  font-size: var(--fs-30);
+  line-height: var(--lh-snug);
+  font-weight: var(--fw-semi);
+  font-variation-settings: "opsz" 30;
+  margin: 0 0 var(--space-3);
+}
+
+h4 {
+  font-size: var(--fs-24);
+  line-height: var(--lh-snug);
+  font-weight: var(--fw-semi);
+  margin: 0 0 var(--space-3);
+}
+
+h5 {
+  font-size: var(--fs-20);
+  line-height: var(--lh-snug);
+  font-weight: var(--fw-bold);
+  margin: 0 0 var(--space-2);
+}
+
+/* Paragraph */
+p {
+  font-size: var(--fs-16);
+  line-height: var(--lh-normal);
+  color: var(--fg);
+  margin: 0 0 var(--space-4);
+  text-wrap: pretty;
+}
+
+/* Links */
+a {
+  color: var(--link);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  transition: text-decoration-thickness var(--dur-fast) var(--ease-out), color var(--dur-fast) var(--ease-out);
+}
+
+a:hover {
+  text-decoration-thickness: 2px;
+  color: var(--link-hover);
+}
+
+/* Code */
+code, kbd, samp {
+  font-family: var(--font-mono);
+  font-size: 0.92em;
+  font-weight: var(--fw-medium);
+  background: var(--code-inline-bg);
+  padding: 0.1em 0.35em;
+  border-radius: var(--r-xs);
+  color: var(--code-inline-fg);
+  font-feature-settings: "calt" 1, "liga" 1;
+}
+
+pre {
+  font-family: var(--font-mono);
+  font-size: var(--fs-14);
+  line-height: var(--lh-relaxed);
+  background: var(--code-bg);
+  color: var(--code-fg);
+  padding: var(--space-5);
+  border-radius: var(--r-md);
+  overflow-x: auto;
+}
+
+pre code {
+  background: transparent;
+  color: inherit;
+  padding: 0;
+}
+
+/* Focus ring */
+:focus-visible {
+  outline: none;
+  box-shadow: var(--ring-focus);
+  border-radius: var(--r-sm);
+}
+
+/* Buttons reset */
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-strong);
+  border-radius: var(--r-full);
+}
+
+/* Visually hidden (screen reader only) */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}

@@ -1,0 +1,102 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.hero {
+  padding: var(--space-6);
+  background: var(--bg-elevated);
+  border: var(--bw, 1.5px) solid var(--border);
+  border-radius: var(--r-xl);
+  box-shadow: var(--shadow-2);
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: var(--fs-38);
+  margin: 0 0 var(--space-3);
+}
+
+.description {
+  font-size: var(--fs-18);
+  color: var(--fg-2);
+  margin: 0;
+}
+
+.domainGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  gap: var(--space-4);
+}
+
+.domainCard {
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-5);
+  border: var(--bw, 1.5px) solid var(--border);
+  border-radius: var(--r-lg);
+  background: var(--bg-elevated);
+  box-shadow: var(--shadow-1);
+  text-decoration: none;
+  transition: transform var(--dur-fast) var(--ease-out), box-shadow var(--dur-fast) var(--ease-out);
+}
+
+.domainCard:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-2);
+}
+
+.domainHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-3);
+}
+
+.domainIcon {
+  font-size: 1.5rem;
+}
+
+.domainWeight {
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--r-full);
+  background: var(--bg-sunken);
+  color: var(--fg-2);
+  font-size: var(--fs-12);
+  font-weight: var(--fw-bold);
+}
+
+.domainName {
+  font-family: var(--font-display);
+  font-size: var(--fs-18);
+  color: var(--fg);
+  margin: 0 0 var(--space-2);
+}
+
+.domainDescription {
+  color: var(--fg-2);
+  font-size: var(--fs-14);
+  line-height: var(--lh-relaxed);
+  margin: 0 0 var(--space-4);
+  flex: 1;
+}
+
+.domainFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: var(--space-3);
+  border-top: var(--bw, 1.5px) solid var(--border);
+}
+
+.questionCount {
+  font-size: var(--fs-12);
+  color: var(--fg-3);
+  font-family: var(--font-mono);
+}
+
+.arrow {
+  font-size: var(--fs-14);
+  color: var(--accent);
+}

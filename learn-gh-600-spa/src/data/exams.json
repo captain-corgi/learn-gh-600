@@ -1,0 +1,171 @@
+[
+  {
+    "id": "mock-1",
+    "type": "mock",
+    "title": "Mock Exam 1",
+    "description": "Original question bank",
+    "timeLimit": 120,
+    "questionCount": 60,
+    "metadata": {
+      "source": "gh600-mock-exam-captain-corgi.html",
+      "created": "2026-06-15",
+      "version": 1
+    }
+  },
+  {
+    "id": "mock-2",
+    "type": "mock",
+    "title": "Mock Exam 2",
+    "description": "Shuffled full exam",
+    "timeLimit": 120,
+    "questionCount": 60,
+    "metadata": {
+      "source": "gh600-mock-exam-captain-corgi-1.html",
+      "created": "2026-06-15",
+      "version": 1
+    }
+  },
+  {
+    "id": "mock-3",
+    "type": "mock",
+    "title": "Mock Exam 3",
+    "description": "Shuffled full exam",
+    "timeLimit": 120,
+    "questionCount": 60,
+    "metadata": {
+      "source": "gh600-mock-exam-captain-corgi-2.html",
+      "created": "2026-06-15",
+      "version": 1
+    }
+  },
+  {
+    "id": "mock-4",
+    "type": "mock",
+    "title": "Mock Exam 4",
+    "description": "Shuffled full exam",
+    "timeLimit": 120,
+    "questionCount": 60,
+    "metadata": {
+      "source": "gh600-mock-exam-captain-corgi-3.html",
+      "created": "2026-06-15",
+      "version": 1
+    }
+  },
+  {
+    "id": "mock-5",
+    "type": "mock",
+    "title": "Mock Exam 5",
+    "description": "Shuffled full exam",
+    "timeLimit": 120,
+    "questionCount": 60,
+    "metadata": {
+      "source": "gh600-mock-exam-captain-corgi-4.html",
+      "created": "2026-06-15",
+      "version": 1
+    }
+  },
+  {
+    "id": "mock-6",
+    "type": "mock",
+    "title": "Mock Exam 6",
+    "description": "Shuffled full exam",
+    "timeLimit": 120,
+    "questionCount": 60,
+    "metadata": {
+      "source": "gh600-mock-exam-captain-corgi-5.html",
+      "created": "2026-06-15",
+      "version": 1
+    }
+  },
+  {
+    "id": "practice-1",
+    "type": "practice",
+    "title": "Practice Exam 1",
+    "description": "From practice-example-1.md",
+    "timeLimit": 90,
+    "questionCount": 50,
+    "metadata": {
+      "source": "gh600-practice-exam-captain-corgi-1.html",
+      "created": "2026-06-15",
+      "version": 1
+    }
+  },
+  {
+    "id": "practice-2",
+    "type": "practice",
+    "title": "Practice Exam 2",
+    "description": "From practice-example-2.md",
+    "timeLimit": 90,
+    "questionCount": 50,
+    "metadata": {
+      "source": "gh600-practice-exam-captain-corgi-2.html",
+      "created": "2026-06-15",
+      "version": 1
+    }
+  },
+  {
+    "id": "practice-3",
+    "type": "practice",
+    "title": "Practice Exam 3",
+    "description": "From practice-example-3.md",
+    "timeLimit": 90,
+    "questionCount": 50,
+    "metadata": {
+      "source": "gh600-practice-exam-captain-corgi-3.html",
+      "created": "2026-06-15",
+      "version": 1
+    }
+  },
+  {
+    "id": "practice-4",
+    "type": "practice",
+    "title": "Practice Exam 4",
+    "description": "From practice-example-4.md",
+    "timeLimit": 90,
+    "questionCount": 50,
+    "metadata": {
+      "source": "gh600-practice-exam-captain-corgi-4.html",
+      "created": "2026-06-15",
+      "version": 1
+    }
+  },
+  {
+    "id": "practice-5",
+    "type": "practice",
+    "title": "Practice Exam 5",
+    "description": "From practice-example-5.md",
+    "timeLimit": 90,
+    "questionCount": 50,
+    "metadata": {
+      "source": "gh600-practice-exam-captain-corgi-5.html",
+      "created": "2026-06-15",
+      "version": 1
+    }
+  },
+  {
+    "id": "practice-6",
+    "type": "practice",
+    "title": "Practice Exam 6",
+    "description": "From practice-example-6.md",
+    "timeLimit": 90,
+    "questionCount": 50,
+    "metadata": {
+      "source": "gh600-practice-exam-captain-corgi-6.html",
+      "created": "2026-06-15",
+      "version": 1
+    }
+  },
+  {
+    "id": "practice-7",
+    "type": "practice",
+    "title": "Practice Exam 7",
+    "description": "From practice-example-7.md",
+    "timeLimit": 90,
+    "questionCount": 50,
+    "metadata": {
+      "source": "gh600-practice-exam-captain-corgi-7.html",
+      "created": "2026-06-15",
+      "version": 1
+    }
+  }
+]

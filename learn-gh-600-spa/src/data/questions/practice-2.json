@@ -1,0 +1,915 @@
+{
+  "id": "practice-2",
+  "type": "practice",
+  "title": "Practice Exam 2",
+  "description": "From practice-example-2.md",
+  "timeLimit": 90,
+  "questionCount": 50,
+  "questions": [
+    {
+      "id": "practice-2-q1",
+      "domain": 0,
+      "domainName": "Architecture & SDLC",
+      "question": "You are onboarding an AI agent into your team's CI/CD pipeline. Which of the following is the BEST first step?",
+      "options": [
+        "Configure the agent with full repository write access immediately",
+        "Identify the specific SDLC steps the agent will perform and define clear success criteria",
+        "Allow the agent to reason freely across all pipeline stages without constraints",
+        "Deploy the agent to production before testing in staging"
+      ],
+      "correctIndex": 1,
+      "explanation": "Correct answer: B) Identify the specific SDLC steps the agent will perform and define clear success criteria",
+      "tags": [
+        "architecture-sdlc"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "practice-2-q2",
+      "domain": 0,
+      "domainName": "Architecture & SDLC",
+      "question": "Which of the following is a common **anti-pattern** when integrating agents into the SDLC?",
+      "options": [
+        "Scoping agent actions to a specific branch",
+        "Defining explicit inputs and outputs for each agent task",
+        "Allowing an agent to perform planning and execution in a single undifferentiated step",
+        "Requiring agent plans to be validated before execution"
+      ],
+      "correctIndex": 2,
+      "explanation": "Correct answer: C) Allowing an agent to perform planning and execution in a single undifferentiated step",
+      "tags": [
+        "architecture-sdlc"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "practice-2-q3",
+      "domain": 0,
+      "domainName": "Architecture & SDLC",
+      "question": "An agent is configured to plan a refactoring task and then immediately execute it without review. What is the PRIMARY risk of this configuration?",
+      "options": [
+        "The agent may produce logs that are too verbose",
+        "Planning errors propagate directly into code changes before they can be caught",
+        "The agent will be unable to create pull requests",
+        "The agent's memory will expire during execution"
+      ],
+      "correctIndex": 1,
+      "explanation": "Correct answer: B) Planning errors propagate directly into code changes before they can be caught",
+      "tags": [
+        "architecture-sdlc"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "practice-2-q4",
+      "domain": 0,
+      "domainName": "Architecture & SDLC",
+      "question": "Your organization wants agents to operate autonomously but with human oversight for high-risk actions. Which configuration approach best achieves this?",
+      "options": [
+        "Disable all human intervention to maximize delivery speed",
+        "Require human approval for every single agent action",
+        "Plan and implement graduated autonomy levels with guardrails based on risk",
+        "Allow agents to self-determine when human approval is needed"
+      ],
+      "correctIndex": 2,
+      "explanation": "Correct answer: C) Plan and implement graduated autonomy levels with guardrails based on risk",
+      "tags": [
+        "architecture-sdlc"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "practice-2-q5",
+      "domain": 0,
+      "domainName": "Architecture & SDLC",
+      "question": "An agent is producing outputs that are difficult to audit after the fact. What should you configure to address this?",
+      "options": [
+        "Increase the agent's memory allocation",
+        "Configure the agent to produce inspectable artifacts within standard development tooling",
+        "Switch the agent to a different LLM model",
+        "Reduce the number of tools available to the agent"
+      ],
+      "correctIndex": 1,
+      "explanation": "Correct answer: B) Configure the agent to produce inspectable artifacts within standard development tooling",
+      "tags": [
+        "architecture-sdlc"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "practice-2-q6",
+      "domain": 0,
+      "domainName": "Architecture & SDLC",
+      "question": "You want to prevent an agent from taking any action until a structured plan has been reviewed and approved. Which approach is MOST appropriate?",
+      "options": [
+        "Set the agent's output format to plain text",
+        "Configure the agent to output a structured plan and implement a validation gate before execution",
+        "Reduce the agent's context window size",
+        "Allow the agent to proceed if no feedback is received within 5 minutes"
+      ],
+      "correctIndex": 1,
+      "explanation": "Correct answer: B) Configure the agent to output a structured plan and implement a validation gate before execution",
+      "tags": [
+        "architecture-sdlc"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "practice-2-q7",
+      "domain": 1,
+      "domainName": "Tool Use & MCP",
+      "question": "When selecting tools for an AI agent, what is the primary consideration?",
+      "options": [
+        "Use as many tools as possible to maximize agent capability",
+        "Only use tools that were released in the last 12 months",
+        "Identify which tools are specifically required for the agent's defined tasks",
+        "Avoid any tools that require network access"
+      ],
+      "correctIndex": 2,
+      "explanation": "Correct answer: C) Identify which tools are specifically required for the agent's defined tasks",
+      "tags": [
+        "tool-use-mcp"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "practice-2-q8",
+      "domain": 1,
+      "domainName": "Tool Use & MCP",
+      "question": "You need to add an external data source capability to a GitHub Copilot agent. What is the recommended approach using the Model Context Protocol (MCP)?",
+      "options": [
+        "Hard-code the data source credentials directly into the agent's prompt",
+        "Add an MCP server as a tool to the agent",
+        "Create a separate agent for each data source",
+        "Use environment variables to pass data directly to the LLM"
+      ],
+      "correctIndex": 1,
+      "explanation": "Correct answer: B) Add an MCP server as a tool to the agent",
+      "tags": [
+        "tool-use-mcp"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "practice-2-q9",
+      "domain": 1,
+      "domainName": "Tool Use & MCP",
+      "question": "When configuring an MCP server for a GitHub agent, which security configuration is MOST important to implement?",
+      "options": [
+        "Enable all available MCP tools by default to improve agent flexibility",
+        "Configure MCP allow lists to restrict which tools and servers the agent can access",
+        "Set the MCP server to public access to allow cross-organization use",
+        "Disable MCP logging to improve performance"
+      ],
+      "correctIndex": 1,
+      "explanation": "Correct answer: B) Configure MCP allow lists to restrict which tools and servers the agent can access",
+      "tags": [
+        "tool-use-mcp"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "practice-2-q10",
+      "domain": 1,
+      "domainName": "Tool Use & MCP",
+      "question": "An agent needs to be restricted so it can only read and write to a single repository. Which configuration achieves this?",
+      "options": [
+        "Configure the agent's scope to a specific repository and apply least-privilege permissions",
+        "Deploy the agent on a separate virtual machine",
+        "Limit the agent's context window to 2,000 tokens",
+        "Use a separate GitHub account for the agent"
+      ],
+      "correctIndex": 0,
+      "explanation": "Correct answer: A) Configure the agent's scope to a specific repository and apply least-privilege permissions",
+      "tags": [
+        "tool-use-mcp"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "practice-2-q11",
+      "domain": 1,
+      "domainName": "Tool Use & MCP",
+      "question": "You want an agent to automatically trigger on pull requests in a CI workflow. What should you configure?",
+      "options": [
+        "A scheduled cron job that checks for open PRs every hour",
+        "Configure the agent to be invoked in a CI workflow triggered by pull request events",
+        "Manually run the agent each time a PR is opened",
+        "Use a webhook that emails the agent"
+      ],
+      "correctIndex": 1,
+      "explanation": "Correct answer: B) Configure the agent to be invoked in a CI workflow triggered by pull request events",
+      "tags": [
+        "tool-use-mcp"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "practice-2-q12",
+      "domain": 1,
+      "domainName": "Tool Use & MCP",
+      "question": "An agent attempting a file change fails due to a permissions error. What is the BEST response strategy?",
+      "options": [
+        "Retry the action indefinitely until it succeeds",
+        "Log the error and silently skip the action",
+        "Implement error handling with a defined escalation path and rollback capability",
+        "Increase the agent's permission scope automatically"
+      ],
+      "correctIndex": 2,
+      "explanation": "Correct answer: C) Implement error handling with a defined escalation path and rollback capability",
+      "tags": [
+        "tool-use-mcp"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "practice-2-q13",
+      "domain": 1,
+      "domainName": "Tool Use & MCP",
+      "question": "You are configuring an agent to work across multiple branches in a repository. Which configuration is MOST appropriate?",
+      "options": [
+        "Give the agent global write access to all branches",
+        "Configure branch-based scope to limit the agent's actions to relevant branches",
+        "Disable branch protection rules while the agent is running",
+        "Force all agent changes directly to the main branch"
+      ],
+      "correctIndex": 1,
+      "explanation": "Correct answer: B) Configure branch-based scope to limit the agent's actions to relevant branches",
+      "tags": [
+        "tool-use-mcp"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "practice-2-q14",
+      "domain": 1,
+      "domainName": "Tool Use & MCP",
+      "question": "An agent successfully creates a branch and makes code changes but then fails while opening a pull request. What should your implementation include to handle this?",
+      "options": [
+        "No special handling — the user should manually create the PR",
+        "Retry logic and rollback procedures, with an escalation path if recovery fails",
+        "Delete the branch and restart the entire task",
+        "Increase the timeout value for the PR creation step"
+      ],
+      "correctIndex": 1,
+      "explanation": "Correct answer: B) Retry logic and rollback procedures, with an escalation path if recovery fails",
+      "tags": [
+        "tool-use-mcp"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "practice-2-q15",
+      "domain": 2,
+      "domainName": "Memory, State & Execution",
+      "question": "An agent is tasked with a multi-step code migration that may take several hours. Midway through, the execution is interrupted. What memory strategy should be implemented?",
+      "options": [
+        "Restart the agent from the beginning each time it is interrupted",
+        "Use only in-context (short-term) memory",
+        "Capture task progress and decisions as durable artifacts to enable resumption",
+        "Require a human to manually record the agent's progress"
+      ],
+      "correctIndex": 2,
+      "explanation": "Correct answer: C) Capture task progress and decisions as durable artifacts to enable resumption",
+      "tags": [
+        "memory-state-execution"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "practice-2-q16",
+      "domain": 2,
+      "domainName": "Memory, State & Execution",
+      "question": "Which of the following BEST describes \"context drift\" in agentic AI systems?",
+      "options": [
+        "When an agent uses too many tools simultaneously",
+        "When an agent's execution diverges from its prior decisions or task intent over time",
+        "When an agent's memory is stored in an external database",
+        "When two agents share the same context window"
+      ],
+      "correctIndex": 1,
+      "explanation": "Correct answer: B) When an agent's execution diverges from its prior decisions or task intent over time",
+      "tags": [
+        "memory-state-execution"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "practice-2-q17",
+      "domain": 2,
+      "domainName": "Memory, State & Execution",
+      "question": "You need an agent to remember user preferences across multiple sessions. Which memory type is MOST appropriate?",
+      "options": [
+        "Short-term in-context memory",
+        "Long-term or external memory that persists across sessions",
+        "No memory — agents should start fresh each session",
+        "Branch-scoped memory that resets on merge"
+      ],
+      "correctIndex": 1,
+      "explanation": "Correct answer: B) Long-term or external memory that persists across sessions",
+      "tags": [
+        "memory-state-execution"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "practice-2-q18",
+      "domain": 2,
+      "domainName": "Memory, State & Execution",
+      "question": "An agent is sharing state with another agent in a multi-agent workflow. What is the PRIMARY risk to manage?",
+      "options": [
+        "The agents may generate too many log entries",
+        "Conflicting or stale context leading to inconsistent decisions",
+        "The agents may use the same tool twice",
+        "The shared state may consume too much CPU"
+      ],
+      "correctIndex": 1,
+      "explanation": "Correct answer: B) Conflicting or stale context leading to inconsistent decisions",
+      "tags": [
+        "memory-state-execution"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "practice-2-q19",
+      "domain": 2,
+      "domainName": "Memory, State & Execution",
+      "question": "When should memory pruning rules be applied in an agent's memory strategy?",
+      "options": [
+        "Only when the agent encounters an error",
+        "Never — all memory should be preserved indefinitely",
+        "According to defined expiration policies to prevent stale information from influencing decisions",
+        "Only when an agent is retired"
+      ],
+      "correctIndex": 2,
+      "explanation": "Correct answer: C) According to defined expiration policies to prevent stale information from influencing decisions",
+      "tags": [
+        "memory-state-execution"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "practice-2-q20",
+      "domain": 2,
+      "domainName": "Memory, State & Execution",
+      "question": "An agent resumes a long-running task but begins making decisions that contradict its earlier work. What mechanism should be in place to prevent this?",
+      "options": [
+        "Longer context windows",
+        "Drift detection logic and correction mechanisms that compare current state to prior decisions",
+        "Switching to a more powerful LLM",
+        "Resetting all memory before each step"
+      ],
+      "correctIndex": 1,
+      "explanation": "Correct answer: B) Drift detection logic and correction mechanisms that compare current state to prior decisions",
+      "tags": [
+        "memory-state-execution"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "practice-2-q21",
+      "domain": 3,
+      "domainName": "Evaluation & Tuning",
+      "question": "Which of the following is an example of a **quantitative** evaluation signal for an agent?",
+      "options": [
+        "A developer's subjective rating of code quality",
+        "The percentage of agent-generated PRs that pass CI checks without modification",
+        "Whether the agent's output \"feels right\" to the reviewer",
+        "Team satisfaction surveys"
+      ],
+      "correctIndex": 1,
+      "explanation": "Correct answer: B) The percentage of agent-generated PRs that pass CI checks without modification",
+      "tags": [
+        "evaluation-tuning"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "practice-2-q22",
+      "domain": 3,
+      "domainName": "Evaluation & Tuning",
+      "question": "An agent is consistently selecting the wrong tool for a given task. What is the MOST likely root cause?",
+      "options": [
+        "Memory expiration policy is too aggressive",
+        "The agent's instructions do not clearly define when each tool should be used",
+        "The agent is missing long-term memory",
+        "The CI workflow trigger is misconfigured"
+      ],
+      "correctIndex": 1,
+      "explanation": "Correct answer: B) The agent's instructions do not clearly define when each tool should be used",
+      "tags": [
+        "evaluation-tuning"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "practice-2-q23",
+      "domain": 3,
+      "domainName": "Evaluation & Tuning",
+      "question": "After reviewing agent logs, you discover that an agent failed because it acted on outdated context. How should this failure be classified?",
+      "options": [
+        "Reasoning error",
+        "Tool misconfiguration",
+        "Context or environment issue",
+        "Network failure"
+      ],
+      "correctIndex": 2,
+      "explanation": "Correct answer: C) Context or environment issue",
+      "tags": [
+        "evaluation-tuning"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "practice-2-q24",
+      "domain": 3,
+      "domainName": "Evaluation & Tuning",
+      "question": "You want to generate evaluation signals for your agent automatically during CI runs. Which approach is MOST aligned with the GH-600 exam objectives?",
+      "options": [
+        "Have developers manually review every agent output",
+        "Use automated scanning tools to generate evaluation signals during pipeline execution",
+        "Compare agent outputs to competitors' agents",
+        "Run the agent on production traffic and gather feedback after the fact"
+      ],
+      "correctIndex": 1,
+      "explanation": "Correct answer: B) Use automated scanning tools to generate evaluation signals during pipeline execution",
+      "tags": [
+        "evaluation-tuning"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "practice-2-q25",
+      "domain": 3,
+      "domainName": "Evaluation & Tuning",
+      "question": "An agent produces correct outputs in testing but consistently fails in production. After analysis, you determine the agent is receiving different inputs in each environment. How should you tune the agent?",
+      "options": [
+        "Deploy the same test inputs to production",
+        "Disable the agent in production until inputs are identical to test",
+        "Revise the agent's instructions and constraints to handle environment-specific input variability",
+        "Increase the agent's memory allocation"
+      ],
+      "correctIndex": 2,
+      "explanation": "Correct answer: C) Revise the agent's instructions and constraints to handle environment-specific input variability",
+      "tags": [
+        "evaluation-tuning"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "practice-2-q26",
+      "domain": 3,
+      "domainName": "Evaluation & Tuning",
+      "question": "When tuning an agent based on evaluation results, which combination of levers is MOST comprehensive?",
+      "options": [
+        "Only modify the LLM model used",
+        "Revise instructions, refine memory usage, and adjust tool access as needed",
+        "Delete and rebuild the agent from scratch",
+        "Only modify the CI pipeline triggers"
+      ],
+      "correctIndex": 1,
+      "explanation": "Correct answer: B) Revise instructions, refine memory usage, and adjust tool access as needed",
+      "tags": [
+        "evaluation-tuning"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "practice-2-q27",
+      "domain": 3,
+      "domainName": "Evaluation & Tuning",
+      "question": "An agent is performing well on most tasks but fails on edge cases involving complex reasoning chains. What is the BEST first tuning action?",
+      "options": [
+        "Add more tools to the agent",
+        "Extend the agent's token limit",
+        "Analyze traces and plans from failed runs to identify where reasoning breaks down, then revise instructions",
+        "Switch to a different agent orchestration pattern"
+      ],
+      "correctIndex": 2,
+      "explanation": "Correct answer: C) Analyze traces and plans from failed runs to identify where reasoning breaks down, then revise instructions",
+      "tags": [
+        "evaluation-tuning"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "practice-2-q28",
+      "domain": 4,
+      "domainName": "Multi-Agent Coordination",
+      "question": "You are designing a workflow where three specialized agents must work in parallel on independent subtasks and then merge their results. Which orchestration pattern should you apply?",
+      "options": [
+        "Sequential chaining — agents run one after another",
+        "Parallel execution with agent isolation and a merge/aggregation step",
+        "Single-agent execution with multiple tool calls",
+        "Human-in-the-loop for all three agents simultaneously"
+      ],
+      "correctIndex": 1,
+      "explanation": "Correct answer: B) Parallel execution with agent isolation and a merge/aggregation step",
+      "tags": [
+        "multi-agent-coordination"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "practice-2-q29",
+      "domain": 4,
+      "domainName": "Multi-Agent Coordination",
+      "question": "Two agents are both attempting to modify the same file in a repository. What is this type of conflict called, and how should it be resolved?",
+      "options": [
+        "A memory collision — resolved by clearing agent memory",
+        "An overlapping code change conflict — resolved by configuring agent isolation and conflict detection",
+        "A tool misuse error — resolved by disabling file write tools",
+        "A context drift — resolved by resetting both agents"
+      ],
+      "correctIndex": 1,
+      "explanation": "Correct answer: B) An overlapping code change conflict — resolved by configuring agent isolation and conflict detection",
+      "tags": [
+        "multi-agent-coordination"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "practice-2-q30",
+      "domain": 4,
+      "domainName": "Multi-Agent Coordination",
+      "question": "You need to audit what decisions were made across a multi-agent workflow that ran last week. What should have been configured in advance to support this?",
+      "options": [
+        "Each agent should have had verbose console logging only",
+        "The workflow should have been configured to produce artifacts documenting key decisions, handoffs, and outcomes",
+        "A developer should have watched the workflow run in real time",
+        "The agents should have emailed status updates"
+      ],
+      "correctIndex": 1,
+      "explanation": "Correct answer: B) The workflow should have been configured to produce artifacts documenting key decisions, handoffs, and outcomes",
+      "tags": [
+        "multi-agent-coordination"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "practice-2-q31",
+      "domain": 4,
+      "domainName": "Multi-Agent Coordination",
+      "question": "An agent in a multi-agent workflow produces no output and stops responding. How should the system respond?",
+      "options": [
+        "Continue the workflow and skip the failed agent's contribution",
+        "Detect the stalled execution, trigger a recovery pattern (such as rollback or human-in-the-loop), and alert operators",
+        "Restart all agents in the workflow from the beginning",
+        "Increase the timeout for the stalled agent indefinitely"
+      ],
+      "correctIndex": 1,
+      "explanation": "Correct answer: B) Detect the stalled execution, trigger a recovery pattern (such as rollback or human-in-the-loop), and alert operators",
+      "tags": [
+        "multi-agent-coordination"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "practice-2-q32",
+      "domain": 4,
+      "domainName": "Multi-Agent Coordination",
+      "question": "You want to add a new specialized agent to an existing multi-agent workflow without disrupting currently running executions. What is the BEST approach?",
+      "options": [
+        "Shut down the entire workflow, add the agent, and restart",
+        "Add the new agent to the workflow definition using a non-breaking update pattern, ensuring it does not interfere with active executions",
+        "Deploy the new agent to a completely separate workflow",
+        "Require all active executions to complete before making any changes"
+      ],
+      "correctIndex": 1,
+      "explanation": "Correct answer: B) Add the new agent to the workflow definition using a non-breaking update pattern, ensuring it does not interfere with active executions",
+      "tags": [
+        "multi-agent-coordination"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "practice-2-q33",
+      "domain": 4,
+      "domainName": "Multi-Agent Coordination",
+      "question": "An agent that was part of a multi-agent workflow is being retired. What must be preserved to maintain workflow integrity?",
+      "options": [
+        "The agent's in-context memory only",
+        "Nothing — retiring an agent removes all associated data",
+        "Auditability records and workflow continuity for downstream agents",
+        "The agent's tool configuration only"
+      ],
+      "correctIndex": 2,
+      "explanation": "Correct answer: C) Auditability records and workflow continuity for downstream agents",
+      "tags": [
+        "multi-agent-coordination"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "practice-2-q34",
+      "domain": 4,
+      "domainName": "Multi-Agent Coordination",
+      "question": "Which of the following BEST describes the purpose of post-hoc analysis in multi-agent workflows?",
+      "options": [
+        "Previewing agent behavior before deployment",
+        "Reviewing logs, artifacts, and operational signals after execution to understand and improve multi-agent behavior",
+        "Testing agents in a sandbox environment",
+        "Monitoring agents in real time during execution"
+      ],
+      "correctIndex": 1,
+      "explanation": "Correct answer: B) Reviewing logs, artifacts, and operational signals after execution to understand and improve multi-agent behavior",
+      "tags": [
+        "multi-agent-coordination"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "practice-2-q35",
+      "domain": 5,
+      "domainName": "Guardrails & Accountability",
+      "question": "Your organization has a compliance policy requiring that production database schema changes never be made without a DBA review. How should this be enforced for agents?",
+      "options": [
+        "Train developers to remind the agent not to make schema changes",
+        "Block schema change actions that violate the compliance policy and require explicit authorization before proceeding",
+        "Allow agents to make schema changes and review them afterward",
+        "Limit agents to read-only database access for all operations"
+      ],
+      "correctIndex": 1,
+      "explanation": "Correct answer: B) Block schema change actions that violate the compliance policy and require explicit authorization before proceeding",
+      "tags": [
+        "guardrails-accountability"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "practice-2-q36",
+      "domain": 5,
+      "domainName": "Guardrails & Accountability",
+      "question": "An agent is tasked with deleting test data as part of a cleanup workflow. This action is irreversible. What guardrail should be applied?",
+      "options": [
+        "Allow the deletion automatically since it is only test data",
+        "Require explicit human authorization before executing any irreversible action",
+        "Log the deletion after it occurs",
+        "Retry the deletion if it fails the first time"
+      ],
+      "correctIndex": 1,
+      "explanation": "Correct answer: B) Require explicit human authorization before executing any irreversible action",
+      "tags": [
+        "guardrails-accountability"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "practice-2-q37",
+      "domain": 5,
+      "domainName": "Guardrails & Accountability",
+      "question": "Which principle should guide how permissions are assigned to agents?",
+      "options": [
+        "Maximum privilege — agents should be able to do anything a senior engineer can do",
+        "Least-privilege — scope permissions to only what is required for the agent's defined tasks",
+        "Role inheritance — agents automatically inherit the permissions of the user who created them",
+        "Dynamic escalation — agents request elevated permissions when needed"
+      ],
+      "correctIndex": 1,
+      "explanation": "Correct answer: B) Least-privilege — scope permissions to only what is required for the agent's defined tasks",
+      "tags": [
+        "guardrails-accountability"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "practice-2-q38",
+      "domain": 5,
+      "domainName": "Guardrails & Accountability",
+      "question": "You are classifying agent actions to determine which require human intervention. An agent wants to merge a PR to the main branch of a production repository. How should this action be classified?",
+      "options": [
+        "Low risk — no human intervention required",
+        "Medium risk — log it but allow automatic execution",
+        "High risk — require explicit human authorization due to production impact",
+        "No risk — merging is always safe in agentic workflows"
+      ],
+      "correctIndex": 2,
+      "explanation": "Correct answer: C) High risk — require explicit human authorization due to production impact",
+      "tags": [
+        "guardrails-accountability"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "practice-2-q39",
+      "domain": 5,
+      "domainName": "Guardrails & Accountability",
+      "question": "Your team wants agents to operate as autonomously as possible without compromising security. What is the BEST approach to balancing speed and safety?",
+      "options": [
+        "Remove all guardrails to maximize delivery speed",
+        "Assign autonomy levels based on risk classification, minimizing approvals that do not materially reduce risk",
+        "Require human approval for every agent action regardless of risk",
+        "Allow agents to self-elevate their autonomy level based on task complexity"
+      ],
+      "correctIndex": 1,
+      "explanation": "Correct answer: B) Assign autonomy levels based on risk classification, minimizing approvals that do not materially reduce risk",
+      "tags": [
+        "guardrails-accountability"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "practice-2-q40",
+      "domain": 5,
+      "domainName": "Guardrails & Accountability",
+      "question": "An agent attempts to push directly to a protected branch, violating your organization's security policy. What should happen?",
+      "options": [
+        "The agent should succeed and log the policy violation for later review",
+        "The action should be blocked immediately with an appropriate error returned to the agent",
+        "A developer should be paged to manually approve the push",
+        "The branch protection rule should be temporarily suspended for the agent"
+      ],
+      "correctIndex": 1,
+      "explanation": "Correct answer: B) The action should be blocked immediately with an appropriate error returned to the agent",
+      "tags": [
+        "guardrails-accountability"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "practice-2-q41",
+      "domain": 5,
+      "domainName": "Guardrails & Accountability",
+      "question": "A developer reports that an agent \"went off-track\" and began performing actions unrelated to its assigned task. Which combination of controls would BEST prevent this?",
+      "options": [
+        "Increase the agent's token limit and add more tools",
+        "Define clear inputs, outputs, and success criteria; validate agent plans before execution; and implement scope constraints",
+        "Use a more powerful LLM",
+        "Add long-term memory to the agent"
+      ],
+      "correctIndex": 1,
+      "explanation": "Correct answer: B) Define clear inputs, outputs, and success criteria; validate agent plans before execution; and implement scope constraints",
+      "tags": [
+        "guardrails-accountability"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "practice-2-q42",
+      "domain": 5,
+      "domainName": "Guardrails & Accountability",
+      "question": "Which of the following scenarios represents a valid use of **human-in-the-loop** in an agentic workflow?",
+      "options": [
+        "Requiring human approval before an agent formats a comment",
+        "Requiring human approval before an agent deploys to a production environment",
+        "Requiring human approval before an agent reads a file",
+        "Requiring human approval before the agent queries a search tool"
+      ],
+      "correctIndex": 1,
+      "explanation": "Correct answer: B) Requiring human approval before an agent deploys to a production environment",
+      "tags": [
+        "guardrails-accountability"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "practice-2-q43",
+      "domain": 5,
+      "domainName": "Guardrails & Accountability",
+      "question": "An agent is generating code changes across 10 repositories simultaneously in a multi-agent workflow. After deployment, a critical bug is traced to one of the agent-generated changes. What capability must have been implemented in advance to support rapid diagnosis?",
+      "options": [
+        "Agent memory pruning",
+        "Traceability and accountability — inspectable artifacts and logs linking each action to a specific agent and task",
+        "MCP allow lists",
+        "Branch-based scope"
+      ],
+      "correctIndex": 1,
+      "explanation": "Correct answer: B) Traceability and accountability — inspectable artifacts and logs linking each action to a specific agent and task",
+      "tags": [
+        "guardrails-accountability"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "practice-2-q44",
+      "domain": 5,
+      "domainName": "Guardrails & Accountability",
+      "question": "You are evaluating a new agent before promoting it to production. The agent performs well on average but occasionally takes destructive actions. What is the MOST appropriate next step?",
+      "options": [
+        "Promote to production immediately since average performance is good",
+        "Classify the destructive actions by risk, implement guardrails to block them, and retest before promotion",
+        "Remove all tools from the agent and re-add them one by one",
+        "Reduce the agent's memory to prevent unexpected behavior"
+      ],
+      "correctIndex": 1,
+      "explanation": "Correct answer: B) Classify the destructive actions by risk, implement guardrails to block them, and retest before promotion",
+      "tags": [
+        "guardrails-accountability"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "practice-2-q45",
+      "domain": 5,
+      "domainName": "Guardrails & Accountability",
+      "question": "An agent is configured to run autonomously in a CI pipeline. A deployment step begins to behave unexpectedly mid-execution. Which capability allows the system to recover without full manual intervention?",
+      "options": [
+        "Increasing the CI runner's compute resources",
+        "Rollback procedures and escalation paths configured as part of the agent's error handling strategy",
+        "Switching to a different CI platform",
+        "Disabling the agent permanently"
+      ],
+      "correctIndex": 1,
+      "explanation": "Correct answer: B) Rollback procedures and escalation paths configured as part of the agent's error handling strategy",
+      "tags": [
+        "guardrails-accountability"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "practice-2-q46",
+      "domain": 5,
+      "domainName": "Guardrails & Accountability",
+      "question": "A GitHub Copilot agent needs access to a third-party issue tracking system. Using MCP, what is the correct configuration approach?",
+      "options": [
+        "Embed the API credentials in the agent's system prompt",
+        "Configure a remote MCP server for the issue tracking system and add it to the agent's tool registry with appropriate allow list entries",
+        "Give the agent browser access to navigate to the tracking system manually",
+        "Use a GitHub Action to sync data to a local file the agent can read"
+      ],
+      "correctIndex": 1,
+      "explanation": "Correct answer: B) Configure a remote MCP server for the issue tracking system and add it to the agent's tool registry with appropriate allow list entries",
+      "tags": [
+        "guardrails-accountability"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "practice-2-q47",
+      "domain": 5,
+      "domainName": "Guardrails & Accountability",
+      "question": "Which of the following statements about agent evaluation signals is TRUE?",
+      "options": [
+        "Only qualitative signals (like human ratings) are useful for evaluating agents",
+        "Evaluation signals should be aligned with development intent, not just general quality metrics",
+        "Evaluation signals are only relevant after an agent fails",
+        "Automated scanning tools cannot generate evaluation signals"
+      ],
+      "correctIndex": 1,
+      "explanation": "Correct answer: B) Evaluation signals should be aligned with development intent, not just general quality metrics",
+      "tags": [
+        "guardrails-accountability"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "practice-2-q48",
+      "domain": 5,
+      "domainName": "Guardrails & Accountability",
+      "question": "In the context of GH-600, what is the primary purpose of configuring an agent to use **branch-based scope**?",
+      "options": [
+        "To increase the agent's processing speed",
+        "To ensure the agent only operates within designated branches, reducing risk of unintended changes to protected code",
+        "To allow the agent to merge branches automatically",
+        "To give the agent read access to all branches in the organization"
+      ],
+      "correctIndex": 1,
+      "explanation": "Correct answer: B) To ensure the agent only operates within designated branches, reducing risk of unintended changes to protected code",
+      "tags": [
+        "guardrails-accountability"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "practice-2-q49",
+      "domain": 5,
+      "domainName": "Guardrails & Accountability",
+      "question": "An organization is deploying multiple agents that each handle different parts of the SDLC. A new compliance requirement mandates that all agent actions be attributable to a specific workflow and timestamp. Which capability directly addresses this requirement?",
+      "options": [
+        "Agent memory pruning policies",
+        "Traceability and auditability through inspectable artifacts and structured logging",
+        "MCP registry configuration",
+        "Autonomy level classification"
+      ],
+      "correctIndex": 1,
+      "explanation": "Correct answer: B) Traceability and auditability through inspectable artifacts and structured logging",
+      "tags": [
+        "guardrails-accountability"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "practice-2-q50",
+      "domain": 5,
+      "domainName": "Guardrails & Accountability",
+      "question": "Which of the following BEST summarizes the key principle behind responsible agentic AI development as reflected throughout the GH-600 exam objectives?",
+      "options": [
+        "Agents should operate with maximum autonomy to deliver the fastest results possible",
+        "Agents should be designed with clear boundaries, observability, human oversight where appropriate, and accountability for all actions",
+        "Human oversight should be minimized to reduce workflow friction",
+        "Agent behavior should be opaque to developers to protect IP"
+      ],
+      "correctIndex": 1,
+      "explanation": "Correct answer: B) Agents should be designed with clear boundaries, observability, human oversight where appropriate, and accountability for all actions",
+      "tags": [
+        "guardrails-accountability"
+      ],
+      "difficulty": "medium"
+    }
+  ],
+  "metadata": {
+    "source": "gh600-practice-exam-captain-corgi-2.html",
+    "created": "2026-06-15",
+    "version": 1
+  }
+}

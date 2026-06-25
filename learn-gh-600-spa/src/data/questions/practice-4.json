@@ -1,0 +1,915 @@
+{
+  "id": "practice-4",
+  "type": "practice",
+  "title": "Practice Exam 4",
+  "description": "From practice-example-4.md",
+  "timeLimit": 90,
+  "questionCount": 50,
+  "questions": [
+    {
+      "id": "practice-4-q1",
+      "domain": 0,
+      "domainName": "Architecture & SDLC",
+      "question": "What document defines what an agent should accomplish?",
+      "options": [
+        "The MCP allow list",
+        "The agent's success criteria, inputs, and outputs",
+        "The branch protection rules",
+        "The CI workflow file"
+      ],
+      "correctIndex": 1,
+      "explanation": "Correct answer: B) The agent's success criteria, inputs, and outputs",
+      "tags": [
+        "architecture-sdlc"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "practice-4-q2",
+      "domain": 0,
+      "domainName": "Architecture & SDLC",
+      "question": "An agent that overrides developer guidance is exhibiting:",
+      "options": [
+        "Proper autonomy",
+        "An anti-pattern of unbounded agent behavior",
+        "Healthy planning",
+        "Effective tool use"
+      ],
+      "correctIndex": 1,
+      "explanation": "Correct answer: B) An anti-pattern of unbounded agent behavior",
+      "tags": [
+        "architecture-sdlc"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "practice-4-q3",
+      "domain": 0,
+      "domainName": "Architecture & SDLC",
+      "question": "Why should an agent produce a structured plan?",
+      "options": [
+        "For aesthetics",
+        "So humans and systems can validate the plan before execution",
+        "To increase token usage",
+        "To bypass evaluation"
+      ],
+      "correctIndex": 1,
+      "explanation": "Correct answer: B) So humans and systems can validate the plan before execution",
+      "tags": [
+        "architecture-sdlc"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "practice-4-q4",
+      "domain": 0,
+      "domainName": "Architecture & SDLC",
+      "question": "Which describes \"configure agent autonomy\"?",
+      "options": [
+        "Choosing the LLM",
+        "Defining how much the agent can do without human approval",
+        "Setting memory size",
+        "Setting log verbosity"
+      ],
+      "correctIndex": 1,
+      "explanation": "Correct answer: B) Defining how much the agent can do without human approval",
+      "tags": [
+        "architecture-sdlc"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "practice-4-q5",
+      "domain": 0,
+      "domainName": "Architecture & SDLC",
+      "question": "Observability for autonomous agents primarily means:",
+      "options": [
+        "Watching token spend",
+        "Producing logs, artifacts, and traces in standard tooling",
+        "Reducing latency",
+        "Encrypting communications"
+      ],
+      "correctIndex": 1,
+      "explanation": "Correct answer: B) Producing logs, artifacts, and traces in standard tooling",
+      "tags": [
+        "architecture-sdlc"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "practice-4-q6",
+      "domain": 0,
+      "domainName": "Architecture & SDLC",
+      "question": "Why distinguish planning from action?",
+      "options": [
+        "To reduce LLM calls",
+        "To allow inspection, validation, and approval before changes occur",
+        "To improve agent UI",
+        "To reduce memory use"
+      ],
+      "correctIndex": 1,
+      "explanation": "Correct answer: B) To allow inspection, validation, and approval before changes occur",
+      "tags": [
+        "architecture-sdlc"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "practice-4-q7",
+      "domain": 0,
+      "domainName": "Architecture & SDLC",
+      "question": "When defining boundaries for reasoning vs. action, the goal is:",
+      "options": [
+        "Maximize autonomy",
+        "Ensure reasoning is reviewable and actions are gated appropriately",
+        "Eliminate reasoning altogether",
+        "Use the same step for both"
+      ],
+      "correctIndex": 1,
+      "explanation": "Correct answer: B) Ensure reasoning is reviewable and actions are gated appropriately",
+      "tags": [
+        "architecture-sdlc"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "practice-4-q8",
+      "domain": 1,
+      "domainName": "Tool Use & MCP",
+      "question": "Tool permissions for an agent should follow:",
+      "options": [
+        "Maximum privilege",
+        "Least-privilege scoping",
+        "The repository owner's privileges",
+        "The CI runner's privileges"
+      ],
+      "correctIndex": 1,
+      "explanation": "Correct answer: B) Least-privilege scoping",
+      "tags": [
+        "tool-use-mcp"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "practice-4-q9",
+      "domain": 1,
+      "domainName": "Tool Use & MCP",
+      "question": "MCP allow lists are used to:",
+      "options": [
+        "Speed up tool selection",
+        "Restrict the MCP servers/tools an agent can use",
+        "Replace GitHub Actions",
+        "Manage memory"
+      ],
+      "correctIndex": 1,
+      "explanation": "Correct answer: B) Restrict the MCP servers/tools an agent can use",
+      "tags": [
+        "tool-use-mcp"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "practice-4-q10",
+      "domain": 1,
+      "domainName": "Tool Use & MCP",
+      "question": "When integrating an agent into CI, you must:",
+      "options": [
+        "Configure the agent invocation as part of the workflow",
+        "Run the agent on a developer's laptop",
+        "Use only synchronous tools",
+        "Disable logging"
+      ],
+      "correctIndex": 0,
+      "explanation": "Correct answer: A) Configure the agent invocation as part of the workflow",
+      "tags": [
+        "tool-use-mcp"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "practice-4-q11",
+      "domain": 1,
+      "domainName": "Tool Use & MCP",
+      "question": "Branch-based scope helps:",
+      "options": [
+        "Limit agent action to designated branches",
+        "Improve LLM performance",
+        "Configure MCP registries",
+        "Increase memory"
+      ],
+      "correctIndex": 0,
+      "explanation": "Correct answer: A) Limit agent action to designated branches",
+      "tags": [
+        "tool-use-mcp"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "practice-4-q12",
+      "domain": 1,
+      "domainName": "Tool Use & MCP",
+      "question": "Robust error handling for agents requires:",
+      "options": [
+        "Only retries",
+        "Retries, rollbacks, escalation, and traceability",
+        "Silent suppression",
+        "Manual intervention only"
+      ],
+      "correctIndex": 1,
+      "explanation": "Correct answer: B) Retries, rollbacks, escalation, and traceability",
+      "tags": [
+        "tool-use-mcp"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "practice-4-q13",
+      "domain": 1,
+      "domainName": "Tool Use & MCP",
+      "question": "Agent traceability means:",
+      "options": [
+        "Visibility into which agent did what, when, and why",
+        "Real-time UI updates only",
+        "Encrypting outputs",
+        "Reducing logs"
+      ],
+      "correctIndex": 0,
+      "explanation": "Correct answer: A) Visibility into which agent did what, when, and why",
+      "tags": [
+        "tool-use-mcp"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "practice-4-q14",
+      "domain": 1,
+      "domainName": "Tool Use & MCP",
+      "question": "Configuring an agent for environment-specific constraints means:",
+      "options": [
+        "Using one config for all environments",
+        "Adjusting the agent's behavior or limits based on the target environment",
+        "Removing environment dependencies",
+        "Hardcoding production values"
+      ],
+      "correctIndex": 1,
+      "explanation": "Correct answer: B) Adjusting the agent's behavior or limits based on the target environment",
+      "tags": [
+        "tool-use-mcp"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "practice-4-q15",
+      "domain": 1,
+      "domainName": "Tool Use & MCP",
+      "question": "An MCP server provides:",
+      "options": [
+        "A standardized interface for tools and resources",
+        "A replacement for the LLM",
+        "A storage layer",
+        "A CI runner"
+      ],
+      "correctIndex": 0,
+      "explanation": "Correct answer: A) A standardized interface for tools and resources",
+      "tags": [
+        "tool-use-mcp"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "practice-4-q16",
+      "domain": 2,
+      "domainName": "Memory, State & Execution",
+      "question": "Short-term memory in agents is BEST suited for:",
+      "options": [
+        "Cross-session preferences",
+        "The current task's working context",
+        "Long historical records",
+        "Audit trails"
+      ],
+      "correctIndex": 1,
+      "explanation": "Correct answer: B) The current task's working context",
+      "tags": [
+        "memory-state-execution"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "practice-4-q17",
+      "domain": 2,
+      "domainName": "Memory, State & Execution",
+      "question": "Memory pruning prevents:",
+      "options": [
+        "Token cost explosions and stale context",
+        "Tool misuse",
+        "MCP violations",
+        "Branch conflicts"
+      ],
+      "correctIndex": 0,
+      "explanation": "Correct answer: A) Token cost explosions and stale context",
+      "tags": [
+        "memory-state-execution"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "practice-4-q18",
+      "domain": 2,
+      "domainName": "Memory, State & Execution",
+      "question": "Detecting drift requires:",
+      "options": [
+        "Comparing current execution state against prior decisions or intent",
+        "Disabling logging",
+        "Removing memory",
+        "Increasing autonomy"
+      ],
+      "correctIndex": 0,
+      "explanation": "Correct answer: A) Comparing current execution state against prior decisions or intent",
+      "tags": [
+        "memory-state-execution"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "practice-4-q19",
+      "domain": 2,
+      "domainName": "Memory, State & Execution",
+      "question": "Sharing agent state across tools/environments requires:",
+      "options": [
+        "A common, well-defined state representation",
+        "Disabling tools",
+        "Single-agent execution",
+        "Branch scoping only"
+      ],
+      "correctIndex": 0,
+      "explanation": "Correct answer: A) A common, well-defined state representation",
+      "tags": [
+        "memory-state-execution"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "practice-4-q20",
+      "domain": 2,
+      "domainName": "Memory, State & Execution",
+      "question": "Preventing stale context means:",
+      "options": [
+        "Letting memory grow indefinitely",
+        "Refreshing or invalidating context when underlying data changes",
+        "Removing all memory",
+        "Using only short-term memory"
+      ],
+      "correctIndex": 1,
+      "explanation": "Correct answer: B) Refreshing or invalidating context when underlying data changes",
+      "tags": [
+        "memory-state-execution"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "practice-4-q21",
+      "domain": 3,
+      "domainName": "Evaluation & Tuning",
+      "question": "\"Operational constraints\" for an agent task are:",
+      "options": [
+        "Limits on time, resources, or scope the agent must respect",
+        "Optional preferences",
+        "The agent's tool list",
+        "The CI pipeline runtime"
+      ],
+      "correctIndex": 0,
+      "explanation": "Correct answer: A) Limits on time, resources, or scope the agent must respect",
+      "tags": [
+        "evaluation-tuning"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "practice-4-q22",
+      "domain": 3,
+      "domainName": "Evaluation & Tuning",
+      "question": "Qualitative signals include:",
+      "options": [
+        "Pass rates",
+        "Developer reviews and feedback on output usefulness",
+        "Tool call counts",
+        "Branch counts"
+      ],
+      "correctIndex": 1,
+      "explanation": "Correct answer: B) Developer reviews and feedback on output usefulness",
+      "tags": [
+        "evaluation-tuning"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "practice-4-q23",
+      "domain": 3,
+      "domainName": "Evaluation & Tuning",
+      "question": "Identifying failures uses:",
+      "options": [
+        "Logs, plans, traces, outputs, and workflow artifacts",
+        "Only LLM logs",
+        "Only developer feedback",
+        "Token counts"
+      ],
+      "correctIndex": 0,
+      "explanation": "Correct answer: A) Logs, plans, traces, outputs, and workflow artifacts",
+      "tags": [
+        "evaluation-tuning"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "practice-4-q24",
+      "domain": 3,
+      "domainName": "Evaluation & Tuning",
+      "question": "Classifying a failure as a \"tool misuse\" implies:",
+      "options": [
+        "The agent had the wrong reasoning",
+        "The agent used a tool incorrectly or chose the wrong tool",
+        "The environment was misconfigured",
+        "Memory was stale"
+      ],
+      "correctIndex": 1,
+      "explanation": "Correct answer: B) The agent used a tool incorrectly or chose the wrong tool",
+      "tags": [
+        "evaluation-tuning"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "practice-4-q25",
+      "domain": 3,
+      "domainName": "Evaluation & Tuning",
+      "question": "Tuning instructions, workflows, and constraints addresses:",
+      "options": [
+        "Network speed",
+        "Behavioral problems revealed in evaluation",
+        "MCP registry size",
+        "Branch protection"
+      ],
+      "correctIndex": 1,
+      "explanation": "Correct answer: B) Behavioral problems revealed in evaluation",
+      "tags": [
+        "evaluation-tuning"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "practice-4-q26",
+      "domain": 3,
+      "domainName": "Evaluation & Tuning",
+      "question": "Aligning evaluation criteria with development intent means:",
+      "options": [
+        "Using only generic AI benchmarks",
+        "Measuring whether the agent delivers what the team actually needs",
+        "Skipping evaluation",
+        "Using random metrics"
+      ],
+      "correctIndex": 1,
+      "explanation": "Correct answer: B) Measuring whether the agent delivers what the team actually needs",
+      "tags": [
+        "evaluation-tuning"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "practice-4-q27",
+      "domain": 3,
+      "domainName": "Evaluation & Tuning",
+      "question": "Automated scanning enables:",
+      "options": [
+        "Continuous, repeatable evaluation signals in CI",
+        "Manual review only",
+        "Disabling guardrails",
+        "Eliminating tests"
+      ],
+      "correctIndex": 0,
+      "explanation": "Correct answer: A) Continuous, repeatable evaluation signals in CI",
+      "tags": [
+        "evaluation-tuning"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "practice-4-q28",
+      "domain": 4,
+      "domainName": "Multi-Agent Coordination",
+      "question": "A common multi-agent orchestration pattern is:",
+      "options": [
+        "Orchestrator-worker",
+        "Single-prompt",
+        "Read-only",
+        "Branch-only"
+      ],
+      "correctIndex": 0,
+      "explanation": "Correct answer: A) Orchestrator-worker",
+      "tags": [
+        "multi-agent-coordination"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "practice-4-q29",
+      "domain": 4,
+      "domainName": "Multi-Agent Coordination",
+      "question": "Agent isolation supports:",
+      "options": [
+        "Memory growth",
+        "Safe parallel execution without cross-interference",
+        "Tool sharing",
+        "MCP caching"
+      ],
+      "correctIndex": 1,
+      "explanation": "Correct answer: B) Safe parallel execution without cross-interference",
+      "tags": [
+        "multi-agent-coordination"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "practice-4-q30",
+      "domain": 4,
+      "domainName": "Multi-Agent Coordination",
+      "question": "Duplicated effort across agents should be:",
+      "options": [
+        "Encouraged",
+        "Detected and resolved through coordination",
+        "Logged but ignored",
+        "Used to validate outputs"
+      ],
+      "correctIndex": 1,
+      "explanation": "Correct answer: B) Detected and resolved through coordination",
+      "tags": [
+        "multi-agent-coordination"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "practice-4-q31",
+      "domain": 4,
+      "domainName": "Multi-Agent Coordination",
+      "question": "Multi-agent observability needs:",
+      "options": [
+        "Logs, artifacts, and operational signals",
+        "Only the orchestrator's logs",
+        "UI dashboards only",
+        "None — agents are autonomous"
+      ],
+      "correctIndex": 0,
+      "explanation": "Correct answer: A) Logs, artifacts, and operational signals",
+      "tags": [
+        "multi-agent-coordination"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "practice-4-q32",
+      "domain": 4,
+      "domainName": "Multi-Agent Coordination",
+      "question": "Documenting outcomes across agents helps with:",
+      "options": [
+        "Audit, review, and learning",
+        "Speeding up execution",
+        "Disabling guardrails",
+        "Reducing memory"
+      ],
+      "correctIndex": 0,
+      "explanation": "Correct answer: A) Audit, review, and learning",
+      "tags": [
+        "multi-agent-coordination"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "practice-4-q33",
+      "domain": 4,
+      "domainName": "Multi-Agent Coordination",
+      "question": "A stalled agent should trigger:",
+      "options": [
+        "Indefinite waiting",
+        "Detection and recovery (rollback, escalation, or human intervention)",
+        "Silent removal",
+        "Memory expansion"
+      ],
+      "correctIndex": 1,
+      "explanation": "Correct answer: B) Detection and recovery (rollback, escalation, or human intervention)",
+      "tags": [
+        "multi-agent-coordination"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "practice-4-q34",
+      "domain": 4,
+      "domainName": "Multi-Agent Coordination",
+      "question": "Replacing an agent without disrupting active workflows requires:",
+      "options": [
+        "Stopping all workflows",
+        "Compatible interfaces and non-breaking updates",
+        "Removing all observability",
+        "Deleting the previous agent's artifacts"
+      ],
+      "correctIndex": 1,
+      "explanation": "Correct answer: B) Compatible interfaces and non-breaking updates",
+      "tags": [
+        "multi-agent-coordination"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "practice-4-q35",
+      "domain": 4,
+      "domainName": "Multi-Agent Coordination",
+      "question": "Retiring an agent while preserving auditability requires:",
+      "options": [
+        "Deleting logs",
+        "Retaining historical artifacts and transferring responsibilities",
+        "Disabling all related workflows",
+        "Removing the MCP allow list"
+      ],
+      "correctIndex": 1,
+      "explanation": "Correct answer: B) Retaining historical artifacts and transferring responsibilities",
+      "tags": [
+        "multi-agent-coordination"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "practice-4-q36",
+      "domain": 5,
+      "domainName": "Guardrails & Accountability",
+      "question": "Autonomy levels should map to:",
+      "options": [
+        "Risk level of agent actions",
+        "Number of tools available",
+        "Branch count",
+        "LLM size"
+      ],
+      "correctIndex": 0,
+      "explanation": "Correct answer: A) Risk level of agent actions",
+      "tags": [
+        "guardrails-accountability"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "practice-4-q37",
+      "domain": 5,
+      "domainName": "Guardrails & Accountability",
+      "question": "Actions requiring human judgment include:",
+      "options": [
+        "All file reads",
+        "Compliance-sensitive or irreversible changes",
+        "Posting comments",
+        "Running tests"
+      ],
+      "correctIndex": 1,
+      "explanation": "Correct answer: B) Compliance-sensitive or irreversible changes",
+      "tags": [
+        "guardrails-accountability"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "practice-4-q38",
+      "domain": 5,
+      "domainName": "Guardrails & Accountability",
+      "question": "Scoping permissions to enforce least-privilege:",
+      "options": [
+        "Limits the blast radius if the agent misbehaves",
+        "Increases agent capability",
+        "Eliminates audit needs",
+        "Removes the need for guardrails"
+      ],
+      "correctIndex": 0,
+      "explanation": "Correct answer: A) Limits the blast radius if the agent misbehaves",
+      "tags": [
+        "guardrails-accountability"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "practice-4-q39",
+      "domain": 5,
+      "domainName": "Guardrails & Accountability",
+      "question": "Controlled paths for irreversible changes mean:",
+      "options": [
+        "Allow the agent to act freely",
+        "Require defined authorization workflows for high-impact actions",
+        "Skip review",
+        "Use random approvers"
+      ],
+      "correctIndex": 1,
+      "explanation": "Correct answer: B) Require defined authorization workflows for high-impact actions",
+      "tags": [
+        "guardrails-accountability"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "practice-4-q40",
+      "domain": 5,
+      "domainName": "Guardrails & Accountability",
+      "question": "A balanced guardrail strategy:",
+      "options": [
+        "Adds approvals for every action",
+        "Targets oversight where risk is meaningful, preserving velocity elsewhere",
+        "Removes all guardrails",
+        "Limits the agent to read-only"
+      ],
+      "correctIndex": 1,
+      "explanation": "Correct answer: B) Targets oversight where risk is meaningful, preserving velocity elsewhere",
+      "tags": [
+        "guardrails-accountability"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "practice-4-q41",
+      "domain": 5,
+      "domainName": "Guardrails & Accountability",
+      "question": "Blocking violations of Responsible AI policies:",
+      "options": [
+        "Is optional",
+        "Must occur before the action is executed",
+        "Is only for production",
+        "Is handled by the LLM provider"
+      ],
+      "correctIndex": 1,
+      "explanation": "Correct answer: B) Must occur before the action is executed",
+      "tags": [
+        "guardrails-accountability"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "practice-4-q42",
+      "domain": 5,
+      "domainName": "Guardrails & Accountability",
+      "question": "An agent that creates a PR but then makes destructive force-pushes is exhibiting:",
+      "options": [
+        "Effective autonomy",
+        "Missing guardrails on high-risk actions",
+        "Healthy planning",
+        "Effective evaluation"
+      ],
+      "correctIndex": 1,
+      "explanation": "Correct answer: B) Missing guardrails on high-risk actions",
+      "tags": [
+        "guardrails-accountability"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "practice-4-q43",
+      "domain": 5,
+      "domainName": "Guardrails & Accountability",
+      "question": "Audit logs are MOST useful for:",
+      "options": [
+        "Increasing autonomy",
+        "Demonstrating accountability and traceability after the fact",
+        "Reducing tool use",
+        "Skipping evaluation"
+      ],
+      "correctIndex": 1,
+      "explanation": "Correct answer: B) Demonstrating accountability and traceability after the fact",
+      "tags": [
+        "guardrails-accountability"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "practice-4-q44",
+      "domain": 5,
+      "domainName": "Guardrails & Accountability",
+      "question": "Drift correction in extended execution often involves:",
+      "options": [
+        "Re-anchoring to original goals/decisions",
+        "Removing memory",
+        "Increasing autonomy",
+        "Adding more tools"
+      ],
+      "correctIndex": 0,
+      "explanation": "Correct answer: A) Re-anchoring to original goals/decisions",
+      "tags": [
+        "guardrails-accountability"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "practice-4-q45",
+      "domain": 5,
+      "domainName": "Guardrails & Accountability",
+      "question": "A multi-agent workflow that lacks shared state representation is likely to:",
+      "options": [
+        "Work flawlessly",
+        "Produce conflicting or stale decisions",
+        "Reduce token use",
+        "Improve evaluation"
+      ],
+      "correctIndex": 1,
+      "explanation": "Correct answer: B) Produce conflicting or stale decisions",
+      "tags": [
+        "guardrails-accountability"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "practice-4-q46",
+      "domain": 5,
+      "domainName": "Guardrails & Accountability",
+      "question": "An agent attempts to modify a critical file outside its scope. Best response:",
+      "options": [
+        "Allow it with a warning",
+        "Block the action and escalate",
+        "Log it after the fact",
+        "Increase the agent's permissions"
+      ],
+      "correctIndex": 1,
+      "explanation": "Correct answer: B) Block the action and escalate",
+      "tags": [
+        "guardrails-accountability"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "practice-4-q47",
+      "domain": 5,
+      "domainName": "Guardrails & Accountability",
+      "question": "The PRIMARY goal of agent guardrails is to:",
+      "options": [
+        "Slow the agent",
+        "Enforce safe, compliant behavior aligned with policy",
+        "Maximize autonomy",
+        "Disable tools"
+      ],
+      "correctIndex": 1,
+      "explanation": "Correct answer: B) Enforce safe, compliant behavior aligned with policy",
+      "tags": [
+        "guardrails-accountability"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "practice-4-q48",
+      "domain": 5,
+      "domainName": "Guardrails & Accountability",
+      "question": "Branch-based scope limits:",
+      "options": [
+        "The scope of changes an agent can make",
+        "LLM inference speed",
+        "MCP servers",
+        "Memory growth"
+      ],
+      "correctIndex": 0,
+      "explanation": "Correct answer: A) The scope of changes an agent can make",
+      "tags": [
+        "guardrails-accountability"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "practice-4-q49",
+      "domain": 5,
+      "domainName": "Guardrails & Accountability",
+      "question": "Refining tool access during tuning means:",
+      "options": [
+        "Adding/removing tools based on observed agent needs and risks",
+        "Always adding more tools",
+        "Disabling MCP",
+        "Random changes"
+      ],
+      "correctIndex": 0,
+      "explanation": "Correct answer: A) Adding/removing tools based on observed agent needs and risks",
+      "tags": [
+        "guardrails-accountability"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "practice-4-q50",
+      "domain": 5,
+      "domainName": "Guardrails & Accountability",
+      "question": "What is the END goal of the GH-600 curriculum?",
+      "options": [
+        "Maximum agent autonomy at all costs",
+        "Safe, observable, accountable, and effective use of agents in the SDLC",
+        "Eliminating human reviewers",
+        "Replacing all developers"
+      ],
+      "correctIndex": 1,
+      "explanation": "Correct answer: B) Safe, observable, accountable, and effective use of agents in the SDLC",
+      "tags": [
+        "guardrails-accountability"
+      ],
+      "difficulty": "medium"
+    }
+  ],
+  "metadata": {
+    "source": "gh600-practice-exam-captain-corgi-4.html",
+    "created": "2026-06-15",
+    "version": 1
+  }
+}

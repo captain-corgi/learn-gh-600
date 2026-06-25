@@ -1,0 +1,177 @@
+/* =========================================================================
+   Captain Corgi Hub — Theme Definitions
+   Three themes: Light (default), Dark, Night
+   ========================================================================= */
+
+/* ============================================================
+   THEME — LIGHT (default)
+   Warm clay paper. Default. ============================================ */
+[data-theme="light"], :root {
+  color-scheme: light;
+  --bg: #F6F2EA;
+  --bg-elevated: #FFFFFF;
+  --bg-sunken: #EFE9DC;
+  --bg-inverse: #1F2A33;
+
+  --fg: #1F2A33;
+  --fg-2: #38454F;
+  --fg-3: #6B7780;
+  --fg-4: #A0A9B0;
+  --fg-on-brand: #F6F2EA;
+  --fg-on-yellow: #1F2A33;
+
+  --border: rgba(31, 42, 51, 0.10);
+  --border-soft: rgba(31, 42, 51, 0.06);
+  --border-strong: rgba(31, 42, 51, 0.18);
+
+  --accent: #FC8903;
+  --accent-fg: #FFFFFF;
+  --info: #51BBD7;
+  --info-fg: #1F2A33;
+  --success: #3BB283;
+  --success-fg: #FFFFFF;
+  --warning: #FBC00A;
+  --warning-fg: #1F2A33;
+  --danger: #E13429;
+  --danger-fg: #FFFFFF;
+
+  --link: #2E9CBA;
+  --link-hover: #E13429;
+
+  /* Code surfaces — terminal vibe in light mode */
+  --code-bg: #1F2A33;
+  --code-fg: #F6F2EA;
+  --code-inline-bg: #EFE9DC;
+  --code-inline-fg: #B82A21;
+
+  /* Shadows — warm, red-tinted */
+  --shadow-1: 0 1px 2px rgba(31,42,51,.06), 0 1px 1px rgba(31,42,51,.04);
+  --shadow-2: 0 6px 14px rgba(225,52,41,.08), 0 2px 4px rgba(31,42,51,.06);
+  --shadow-3: 0 16px 32px rgba(225,52,41,.10), 0 4px 8px rgba(31,42,51,.08);
+  --shadow-4: 0 28px 56px rgba(225,52,41,.14), 0 8px 16px rgba(31,42,51,.10);
+  --ring-focus: 0 0 0 3px rgba(251,192,10,.45);
+}
+
+/* ============================================================
+   THEME — DARK
+   A warm, clay-tinted dark — not slate, not pure black. */
+[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #0E1318;
+  --bg-elevated: #1F2A33;
+  --bg-sunken: #060A0E;
+  --bg-inverse: #F6F2EA;
+
+  --fg: #F8EFDB;
+  --fg-2: #D8CCB5;
+  --fg-3: #A39988;
+  --fg-4: #6E665A;
+  --fg-on-brand: #F6F2EA;
+  --fg-on-yellow: #1F2A33;
+
+  --border: rgba(236, 226, 208, 0.12);
+  --border-soft: rgba(236, 226, 208, 0.06);
+  --border-strong: rgba(236, 226, 208, 0.22);
+
+  --accent: #FC8903;
+  --accent-fg: #FFF3DD;
+  --info: #51BBD7;
+  --info-fg: #1F2A33;
+  --success: #3BB283;
+  --success-fg: #1F2A33;
+  --warning: #FBC00A;
+  --warning-fg: #1F2A33;
+  --danger: #FF7A6F;
+  --danger-fg: #1F2A33;
+
+  --link: #7FD0E6;
+  --link-hover: #FBC00A;
+
+  --code-bg: #0F151A;
+  --code-fg: #ECE2D0;
+  --code-inline-bg: #2A3640;
+  --code-inline-fg: #FBC00A;
+
+  /* Shadows — pure black, not red-tinted */
+  --shadow-1: 0 1px 2px rgba(0,0,0,.40), 0 1px 1px rgba(0,0,0,.25);
+  --shadow-2: 0 6px 14px rgba(0,0,0,.45), 0 2px 4px rgba(0,0,0,.30);
+  --shadow-3: 0 16px 32px rgba(0,0,0,.50), 0 4px 8px rgba(0,0,0,.35);
+  --shadow-4: 0 28px 56px rgba(0,0,0,.55), 0 8px 16px rgba(0,0,0,.40);
+  --ring-focus: 0 0 0 3px rgba(251,192,10,.55);
+}
+
+/* ============================================================
+   THEME — DEEP NIGHT
+   For low-light reading at 2am. Amber-on-near-black. */
+[data-theme="night"] {
+  color-scheme: dark;
+  --bg: #0A0704;
+  --bg-elevated: #211710;
+  --bg-sunken: #050301;
+  --bg-inverse: #C9A878;
+
+  --fg: #E8C58E;
+  --fg-2: #BFA070;
+  --fg-3: #8A7654;
+  --fg-4: #5C4E36;
+  --fg-on-brand: #F6F2EA;
+  --fg-on-yellow: #1A130C;
+
+  --border: rgba(201, 168, 120, 0.14);
+  --border-soft: rgba(201, 168, 120, 0.07);
+  --border-strong: rgba(201, 168, 120, 0.24);
+
+  --accent: #B86E1A;
+  --accent-fg: #FFE0B2;
+  --info: #A88654;
+  --info-fg: #1A130C;
+  --success: #8B7440;
+  --success-fg: #1A130C;
+  --warning: #D9A209;
+  --warning-fg: #1A130C;
+  --danger: #C97A2B;
+  --danger-fg: #1A130C;
+
+  --link: #D9A209;
+  --link-hover: #C97A2B;
+
+  --code-bg: #0A0703;
+  --code-fg: #C9A878;
+  --code-inline-bg: #241A10;
+  --code-inline-fg: #D9A209;
+
+  /* Shadows — nearly invisible. Low contrast in the dark is the point. */
+  --shadow-1: 0 1px 2px rgba(0,0,0,.55);
+  --shadow-2: 0 4px 10px rgba(0,0,0,.55);
+  --shadow-3: 0 12px 24px rgba(0,0,0,.60);
+  --shadow-4: 0 20px 40px rgba(0,0,0,.65);
+  --ring-focus: 0 0 0 3px rgba(217,162,9,.50);
+}
+
+/* System preference fallback */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    color-scheme: dark;
+    --bg: #0E1318;
+    --bg-elevated: #1F2A33;
+    --bg-sunken: #060A0E;
+    --bg-inverse: #F6F2EA;
+    --fg: #F8EFDB;
+    --fg-2: #D8CCB5;
+    --fg-3: #A39988;
+    --fg-4: #6E665A;
+    --border: rgba(236, 226, 208, 0.12);
+    --border-soft: rgba(236, 226, 208, 0.06);
+    --border-strong: rgba(236, 226, 208, 0.22);
+    --link: #7FD0E6;
+    --link-hover: #FBC00A;
+    --code-bg: #0F151A;
+    --code-fg: #ECE2D0;
+    --code-inline-bg: #2A3640;
+    --code-inline-fg: #FBC00A;
+    --shadow-1: 0 1px 2px rgba(0,0,0,.40), 0 1px 1px rgba(0,0,0,.25);
+    --shadow-2: 0 6px 14px rgba(0,0,0,.45), 0 2px 4px rgba(0,0,0,.30);
+    --shadow-3: 0 16px 32px rgba(0,0,0,.50), 0 4px 8px rgba(0,0,0,.35);
+    --shadow-4: 0 28px 56px rgba(0,0,0,.55), 0 8px 16px rgba(0,0,0,.40);
+  }
+}

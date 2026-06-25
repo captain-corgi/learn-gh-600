@@ -1,0 +1,110 @@
+{
+  "app": {
+    "title": "Captain Corgi Hub",
+    "subtitle": "GH-600 Exam Prep"
+  },
+  "nav": {
+    "home": "Home",
+    "studyPlan": "Study Plan",
+    "exams": "Exams",
+    "labs": "Labs",
+    "search": "Search",
+    "viewOnGitHub": "View on GitHub"
+  },
+  "home": {
+    "eyebrow": "GH-600 Exam Prep",
+    "title": "Captain Corgi Hub",
+    "description": "Your comprehensive guide to the GH-600 \"Developing in Agentic AI Systems\" certification. {{totalQuestions}}+ practice questions across {{examCount}} exam sets, 8 hands-on labs, and a structured study plan covering all 6 domains.",
+    "startLearning": "Start Learning",
+    "practiceExams": "Practice Exams",
+    "domains": "Domains",
+    "questions": "Questions",
+    "examSets": "Exam Sets",
+    "labs": "Labs"
+  },
+  "features": {
+    "studyPlan": {
+      "title": "Study Plan",
+      "description": "{{count}} domain-weighted modules aligned with the GH-600 exam blueprint. Each domain covers key topics with interactive quizzes."
+    },
+    "questions": {
+      "title": "{{totalQuestions}}+ Questions",
+      "description": "{{mockCount}} mock exams and {{practiceCount}} practice exams with detailed explanations for every answer."
+    },
+    "labs": {
+      "title": "Hands-on Labs",
+      "description": "8 progressive labs building a real agentic AI system with Go, Docker, and GitHub Actions."
+    }
+  },
+  "studyPlan": {
+    "title": "GH-600 Study Plan",
+    "description": "Domain-weighted curriculum covering all 6 GH-600 exam domains. Work through each domain, learn the key concepts, then test your knowledge with quizzes.",
+    "questions": "{{count}} questions",
+    "startQuiz": "Start Quiz"
+  },
+  "domain": {
+    "ofExam": "of exam",
+    "learn": "Learn",
+    "quizCheck": "Quiz Check",
+    "resources": "Resources",
+    "topicContentComingSoon": "Topic content will be loaded from study plan data in a future stream. For now, explore the quiz to test your knowledge of {{domainName}}.",
+    "domainNotFound": "Domain not found",
+    "backToStudyPlan": "← Back to Study Plan",
+    "noQuestions": "No quiz questions available for this domain.",
+    "officialResources": "Official Resources"
+  },
+  "quiz": {
+    "question": "Question {{current}} of {{total}}",
+    "score": "Score: {{score}}",
+    "explanation": "Explanation:",
+    "next": "Next",
+    "submit": "Submit",
+    "previous": "Previous",
+    "continue": "Continue",
+    "back": "Back",
+    "passed": "Domain passed!",
+    "notPassed": "Not passed yet",
+    "passRequirement": "You need {{needed}}/{{total}} correct to pass.",
+    "retryQuiz": "Retry Quiz",
+    "backToStudyPlan": "Back to Study Plan",
+    "passMark": "Pass mark: 75%",
+    "correct": "Correct",
+    "wrong": "Wrong",
+    "skipped": "Skipped",
+    "scoreByDomain": "Score by domain",
+    "reviewAnswers": "Review answers"
+  },
+  "exams": {
+    "title": "Practice Exams",
+    "description": "{{count}} exam sets with {{totalQuestions}}+ questions covering all GH-600 domains. Timed exams with instant feedback.",
+    "mockExams": "Mock Exams",
+    "mockDescription": "Full-length exams simulating the real GH-600 test experience.",
+    "practiceExams": "Practice Exams",
+    "practiceDescription": "Shorter practice sets for focused study sessions.",
+    "minutes": "min",
+    "questions": "{{count}} questions"
+  },
+  "labs": {
+    "title": "Hands-on Labs",
+    "description": "Practice every GH-600 domain by building a real agentic AI system.",
+    "prereq": "Prereq",
+    "all": "All"
+  },
+  "search": {
+    "placeholder": "Search questions, topics, labs...",
+    "noResults": "No results found for \"{{query}}\"",
+    "question": "question",
+    "topic": "topic",
+    "lab": "lab"
+  },
+  "theme": {
+    "light": "Light",
+    "dark": "Dark",
+    "night": "Night",
+    "auto": "Auto"
+  },
+  "language": {
+    "en": "English",
+    "vi": "Vietnamese"
+  }
+}

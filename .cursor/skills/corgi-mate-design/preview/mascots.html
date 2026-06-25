@@ -1,0 +1,44 @@
+<!doctype html>
+<html><head><meta charset="utf-8"/>
+<link rel="stylesheet" href="../colors_and_type.css"/>
+<style>
+  html, body { margin: 0; padding: 0; background: var(--warm-cream); }
+  .wrap { padding: 20px 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 16px; align-items: stretch; }
+  .panel { border-radius: var(--r-lg); padding: 18px; display: flex; gap: 16px; align-items: center; border: var(--bw) solid var(--border-soft); }
+  .panel.blue { background: #5B8FB9; color: #F6F2EA; }
+  .panel.sage { background: #9CB898; color: #2A2E33; }
+  .av { width: 92px; height: 92px; border-radius: 999px; flex-shrink: 0; object-fit: cover; box-shadow: 0 8px 16px rgba(0,0,0,0.2); }
+  .label { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; opacity: 0.78; margin-bottom: 4px; }
+  .name { font-family: var(--font-display); font-weight: 800; font-size: 22px; letter-spacing: -0.02em; line-height: 1.05; }
+  .desc { font-family: var(--font-body); font-size: 13px; opacity: 0.9; margin-top: 6px; line-height: 1.4; }
+  .strip { grid-column: 1 / -1; display: flex; gap: 10px; overflow-x: auto; padding: 8px 0; }
+  .pose { width: 72px; height: 72px; border-radius: var(--r-md); object-fit: cover; border: var(--bw) solid var(--border-soft); flex-shrink: 0; }
+</style></head>
+<body>
+<div class="wrap">
+  <div class="panel blue">
+    <img class="av" src="../assets/corgi-mate-avatar.png" alt="Corgi Mate"/>
+    <div>
+      <div class="label">Primary mascot</div>
+      <div class="name">Corgi Mate</div>
+      <div class="desc">Family assistant. Pink beanie, sage scarf, teal coat, soft-blue bg.</div>
+    </div>
+  </div>
+  <div class="panel sage">
+    <img class="av" src="../assets/corgi-mate/corgi-mate-pose-11-breakfast.png" alt="Breakfast pose"/>
+    <div>
+      <div class="label">Activity pose</div>
+      <div class="name">Morning routine</div>
+      <div class="desc">Match pose to task — groceries, laundry, calendar, storytime, and more.</div>
+    </div>
+  </div>
+  <div class="strip">
+    <img class="pose" src="../assets/corgi-mate/corgi-mate-pose-1-waving.png" alt=""/>
+    <img class="pose" src="../assets/corgi-mate/corgi-mate-pose-2-grocery.png" alt=""/>
+    <img class="pose" src="../assets/corgi-mate/corgi-mate-pose-3-laundry.png" alt=""/>
+    <img class="pose" src="../assets/corgi-mate/corgi-mate-pose-4-calendar.png" alt=""/>
+    <img class="pose" src="../assets/corgi-mate/corgi-mate-pose-5-storytime.png" alt=""/>
+    <img class="pose" src="../assets/corgi-mate/corgi-mate-pose-15-lunch-prep.png" alt=""/>
+    <img class="pose" src="../assets/corgi-mate/corgi-mate-pose-20-evening-winddown.png" alt=""/>
+  </div>
+</div></body></html>

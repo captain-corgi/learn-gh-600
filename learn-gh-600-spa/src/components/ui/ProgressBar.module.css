@@ -1,0 +1,36 @@
+.container {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.track {
+  flex: 1;
+  background: var(--border-soft);
+  border-radius: var(--r-full);
+  overflow: hidden;
+}
+
+.container.sm .track { height: 4px; }
+.container.md .track { height: 8px; }
+.container.lg .track { height: 12px; }
+
+.fill {
+  height: 100%;
+  border-radius: var(--r-full);
+  transition: width var(--dur-base) var(--ease-out);
+}
+
+.fill.accent { background: var(--accent); }
+.fill.success { background: var(--success); }
+.fill.warning { background: var(--warning); }
+.fill.danger { background: var(--danger); }
+
+.label {
+  font-size: var(--fs-12);
+  font-weight: var(--fw-semi);
+  color: var(--fg-3);
+  white-space: nowrap;
+  min-width: 2.5rem;
+  text-align: right;
+}

@@ -1,0 +1,409 @@
+/* =========================================================================
+   Corgi Mate — Design Tokens
+   Colors + Type + Spacing + Radii + Shadows + Motion
+   Sampled from the clay-mascot avatars; semantic vars at the bottom.
+   ========================================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Nunito:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+:root {
+  /* ---------- Color — Brand (sampled from Corgi Mate mascot) ------------ */
+  --mate-orange:      #E8952E;  /* fur, primary brand */
+  --mate-orange-deep: #C97A1F;
+  --beanie-pink:      #E8568A;  /* knitted beanie */
+  --beanie-pink-deep: #C94572;
+  --heart-tan:        #D4A574;  /* beanie heart patch */
+  --heart-tan-deep:   #B8894F;
+  --coat-teal:        #4A8B8B;  /* coat */
+  --coat-teal-deep:   #356868;
+  --sage-green:       #9CB898;  /* scarf */
+  --sage-green-deep:  #7A9E76;
+  --blush-pink:       #F2A8BC;  /* heart badge / soft accent */
+  --blush-pink-deep:  #D17A93;
+  --blush-pink-soft:  #FBD9E2;
+  --soft-blue:        #5B8FB9;  /* mascot studio background */
+  --soft-blue-deep:   #4578A3;
+
+  /* ---------- Color — Neutrals (clay-tinted) ----------------------------- */
+  --warm-cream:       #F6F2EA;
+  --warm-cream-2:     #EFE9DC;
+  --warm-cream-3:     #E6DECB;
+  --ink:              #2A2E33;
+  --ink-2:            #454A50;
+  --ink-3:            #6E7378;
+  --ink-4:            #A0A5AA;
+
+  /* ============================================================
+     THEME — LIGHT (default) ============================================ */
+  color-scheme: light;
+  --bg:             #F6F2EA;
+  --bg-elevated:    #FFFFFF;
+  --bg-sunken:      #EFE9DC;
+  --bg-inverse:     #2A2E33;
+
+  --fg:             #2A2E33;
+  --fg-2:           #454A50;
+  --fg-3:           #6E7378;
+  --fg-4:           #A0A5AA;
+  --fg-on-brand:    #F6F2EA;
+  --fg-on-warm-accent: #2A2E33;
+
+  --border:         rgba(42, 46, 51, 0.10);
+  --border-soft:    rgba(42, 46, 51, 0.06);
+  --border-strong:  rgba(42, 46, 51, 0.18);
+
+  --accent:         #E8952E;
+  --accent-fg:      #FFFFFF;
+  --info:           #4A8B8B;
+  --info-fg:        #2A2E33;
+  --success:        #9CB898;
+  --success-fg:     #2A2E33;
+  --warning:        #D4A574;
+  --warning-fg:     #2A2E33;
+  --danger:         #E8568A;
+  --danger-fg:      #FFFFFF;
+
+  --link:           #356868;
+  --link-hover:     #E8568A;
+
+  --code-bg:        #2A2E33;
+  --code-fg:        #F6F2EA;
+  --code-inline-bg: #EFE9DC;
+  --code-inline-fg: #C94572;
+
+  /* Shadows — warm, pink-tinted */
+  --shadow-1: 0 1px 2px rgba(42,46,51,.06), 0 1px 1px rgba(42,46,51,.04);
+  --shadow-2: 0 6px 14px rgba(232,86,138,.08), 0 2px 4px rgba(42,46,51,.06);
+  --shadow-3: 0 16px 32px rgba(232,86,138,.10), 0 4px 8px rgba(42,46,51,.08);
+  --shadow-4: 0 28px 56px rgba(232,86,138,.14), 0 8px 16px rgba(42,46,51,.10);
+  --ring-focus: 0 0 0 3px rgba(212,165,116,.45);
+}
+
+[data-theme="dark"] {
+  color-scheme: dark;
+  --bg:             #101418;
+  --bg-elevated:    #2A2E33;
+  --bg-sunken:      #060A0E;
+  --bg-inverse:     #F6F2EA;
+
+  --fg:             #F8EFDB;
+  --fg-2:           #D8CCB5;
+  --fg-3:           #A39988;
+  --fg-4:           #6E665A;
+  --fg-on-brand:    #F6F2EA;
+  --fg-on-warm-accent: #2A2E33;
+
+  --border:         rgba(236, 226, 208, 0.12);
+  --border-soft:    rgba(236, 226, 208, 0.06);
+  --border-strong:  rgba(236, 226, 208, 0.22);
+
+  --accent:         #E8952E;
+  --accent-fg:      #FFF3DD;
+  --info:           #6BA8A8;
+  --info-fg:        #2A2E33;
+  --success:        #9CB898;
+  --success-fg:     #2A2E33;
+  --warning:        #D4A574;
+  --warning-fg:     #2A2E33;
+  --danger:         #F07AA5;
+  --danger-fg:      #2A2E33;
+
+  --link:           #8FC4C4;
+  --link-hover:     #D4A574;
+
+  --code-bg:        #0F151A;
+  --code-fg:        #ECE2D0;
+  --code-inline-bg: #353A40;
+  --code-inline-fg: #D4A574;
+
+  --shadow-1: 0 1px 2px rgba(0,0,0,.40), 0 1px 1px rgba(0,0,0,.25);
+  --shadow-2: 0 6px 14px rgba(0,0,0,.45), 0 2px 4px rgba(0,0,0,.30);
+  --shadow-3: 0 16px 32px rgba(0,0,0,.50), 0 4px 8px rgba(0,0,0,.35);
+  --shadow-4: 0 28px 56px rgba(0,0,0,.55), 0 8px 16px rgba(0,0,0,.40);
+  --ring-focus: 0 0 0 3px rgba(212,165,116,.55);
+}
+
+[data-theme="night"] {
+  color-scheme: dark;
+  --bg:             #0A0704;
+  --bg-elevated:    #211710;
+  --bg-sunken:      #050301;
+  --bg-inverse:     #C9A878;
+
+  --fg:             #E8C58E;
+  --fg-2:           #BFA070;
+  --fg-3:           #8A7654;
+  --fg-4:           #5C4E36;
+  --fg-on-brand:    #F6F2EA;
+  --fg-on-warm-accent: #1A130C;
+
+  --border:         rgba(201, 168, 120, 0.14);
+  --border-soft:    rgba(201, 168, 120, 0.07);
+  --border-strong:  rgba(201, 168, 120, 0.24);
+
+  --accent:         #B86E1A;
+  --accent-fg:      #FFE0B2;
+  --info:           #A88654;
+  --info-fg:        #1A130C;
+  --success:        #8B7440;
+  --success-fg:     #1A130C;
+  --warning:        #B8894F;
+  --warning-fg:     #1A130C;
+  --danger:         #C97A6B;
+  --danger-fg:      #1A130C;
+
+  --link:           #B8894F;
+  --link-hover:     #C97A6B;
+
+  --code-bg:        #0A0703;
+  --code-fg:        #C9A878;
+  --code-inline-bg: #241A10;
+  --code-inline-fg: #B8894F;
+
+  --shadow-1: 0 1px 2px rgba(0,0,0,.55);
+  --shadow-2: 0 4px 10px rgba(0,0,0,.55);
+  --shadow-3: 0 12px 24px rgba(0,0,0,.60);
+  --shadow-4: 0 20px 40px rgba(0,0,0,.65);
+  --ring-focus: 0 0 0 3px rgba(184,137,79,.50);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    color-scheme: dark;
+    --bg:             #101418;
+    --bg-elevated:    #2A2E33;
+    --bg-sunken:      #060A0E;
+    --bg-inverse:     #F6F2EA;
+    --fg:             #F8EFDB;
+    --fg-2:           #D8CCB5;
+    --fg-3:           #A39988;
+    --fg-4:           #6E665A;
+    --border:         rgba(236, 226, 208, 0.12);
+    --border-soft:    rgba(236, 226, 208, 0.06);
+    --border-strong:  rgba(236, 226, 208, 0.22);
+    --link:           #8FC4C4;
+    --link-hover:     #D4A574;
+    --code-bg:        #0F151A;
+    --code-fg:        #ECE2D0;
+    --code-inline-bg: #353A40;
+    --code-inline-fg: #D4A574;
+    --shadow-1: 0 1px 2px rgba(0,0,0,.40), 0 1px 1px rgba(0,0,0,.25);
+    --shadow-2: 0 6px 14px rgba(0,0,0,.45), 0 2px 4px rgba(0,0,0,.30);
+    --shadow-3: 0 16px 32px rgba(0,0,0,.50), 0 4px 8px rgba(0,0,0,.35);
+    --shadow-4: 0 28px 56px rgba(0,0,0,.55), 0 8px 16px rgba(0,0,0,.40);
+  }
+}
+
+:root {
+  --font-display:   'Bricolage Grotesque', 'Nunito', ui-sans-serif, system-ui, sans-serif;
+  --font-body:      'Nunito', ui-sans-serif, system-ui, sans-serif;
+  --font-mono:      'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+
+  --fs-12:  0.75rem;
+  --fs-14:  0.875rem;
+  --fs-16:  1rem;
+  --fs-18:  1.125rem;
+  --fs-20:  1.25rem;
+  --fs-24:  1.5rem;
+  --fs-30:  1.875rem;
+  --fs-38:  2.375rem;
+  --fs-48:  3rem;
+  --fs-60:  3.75rem;
+  --fs-76:  4.75rem;
+
+  --lh-tight:   1.05;
+  --lh-snug:    1.2;
+  --lh-normal:  1.45;
+  --lh-relaxed: 1.6;
+
+  --tr-tight:   -0.02em;
+  --tr-normal:  0em;
+  --tr-loose:   0.04em;
+  --tr-caps:    0.08em;
+
+  --fw-regular: 400;
+  --fw-medium:  500;
+  --fw-semi:    600;
+  --fw-bold:    700;
+  --fw-black:   800;
+
+  --space-1:  4px;
+  --space-2:  8px;
+  --space-3:  12px;
+  --space-4:  16px;
+  --space-5:  24px;
+  --space-6:  32px;
+  --space-7:  48px;
+  --space-8:  64px;
+  --space-9:  96px;
+  --space-10: 128px;
+
+  --r-xs:   6px;
+  --r-sm:   8px;
+  --r-md:   12px;
+  --r-lg:   20px;
+  --r-xl:   28px;
+  --r-2xl:  40px;
+  --r-full: 999px;
+
+  --shadow-1: 0 1px 2px rgba(42,46,51,.06), 0 1px 1px rgba(42,46,51,.04);
+  --shadow-2: 0 6px 14px rgba(232,86,138,.08), 0 2px 4px rgba(42,46,51,.06);
+  --shadow-3: 0 16px 32px rgba(232,86,138,.10), 0 4px 8px rgba(42,46,51,.08);
+  --shadow-4: 0 28px 56px rgba(232,86,138,.14), 0 8px 16px rgba(42,46,51,.10);
+  --shadow-inset-focus: inset 0 0 0 2px rgba(212,165,116,.45);
+  --ring-focus: 0 0 0 3px rgba(212,165,116,.45);
+
+  --bw: 1.5px;
+
+  --ease-clay:  cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-out:   cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in:    cubic-bezier(0.4, 0, 1, 1);
+  --dur-fast:    180ms;
+  --dur-base:    240ms;
+  --dur-slow:    380ms;
+
+  --content-max: 1280px;
+  --gutter:      24px;
+}
+
+.cm-body, body.cm-body {
+  font-family: var(--font-body);
+  font-size: var(--fs-16);
+  line-height: var(--lh-normal);
+  color: var(--fg);
+  background: var(--bg);
+  font-weight: var(--fw-regular);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+.display, .cm-body .display {
+  font-family: var(--font-display);
+  font-size: var(--fs-76);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--tr-tight);
+  font-weight: var(--fw-bold);
+  font-variation-settings: "opsz" 96;
+}
+
+.h1, .cm-body h1 {
+  font-family: var(--font-display);
+  font-size: var(--fs-48);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--tr-tight);
+  font-weight: var(--fw-bold);
+  font-variation-settings: "opsz" 48;
+  margin: 0 0 var(--space-4);
+}
+
+.h2, .cm-body h2 {
+  font-family: var(--font-display);
+  font-size: var(--fs-38);
+  line-height: var(--lh-snug);
+  letter-spacing: var(--tr-tight);
+  font-weight: var(--fw-bold);
+  font-variation-settings: "opsz" 36;
+  margin: 0 0 var(--space-4);
+}
+
+.h3, .cm-body h3 {
+  font-family: var(--font-display);
+  font-size: var(--fs-30);
+  line-height: var(--lh-snug);
+  font-weight: var(--fw-semi);
+  font-variation-settings: "opsz" 30;
+  margin: 0 0 var(--space-3);
+}
+
+.h4, .cm-body h4 {
+  font-family: var(--font-display);
+  font-size: var(--fs-24);
+  line-height: var(--lh-snug);
+  font-weight: var(--fw-semi);
+  margin: 0 0 var(--space-3);
+}
+
+.h5, .cm-body h5 {
+  font-family: var(--font-body);
+  font-size: var(--fs-20);
+  line-height: var(--lh-snug);
+  font-weight: var(--fw-bold);
+  margin: 0 0 var(--space-2);
+}
+
+.lead, .cm-body .lead {
+  font-family: var(--font-body);
+  font-size: var(--fs-20);
+  line-height: var(--lh-relaxed);
+  color: var(--fg-2);
+  font-weight: var(--fw-regular);
+}
+
+.p, .cm-body p {
+  font-family: var(--font-body);
+  font-size: var(--fs-16);
+  line-height: var(--lh-normal);
+  color: var(--fg);
+  margin: 0 0 var(--space-4);
+  text-wrap: pretty;
+}
+
+.small, .cm-body small {
+  font-size: var(--fs-14);
+  color: var(--fg-3);
+}
+
+.caption {
+  font-family: var(--font-body);
+  font-size: var(--fs-12);
+  letter-spacing: var(--tr-caps);
+  text-transform: uppercase;
+  font-weight: var(--fw-bold);
+  color: var(--fg-3);
+}
+
+.code, .cm-body code, .cm-body kbd, .cm-body samp {
+  font-family: var(--font-mono);
+  font-size: 0.92em;
+  font-weight: var(--fw-medium);
+  background: var(--code-inline-bg);
+  padding: 0.1em 0.35em;
+  border-radius: var(--r-xs);
+  color: var(--code-inline-fg);
+  font-feature-settings: "calt" 1, "liga" 1;
+}
+
+.cm-body pre {
+  font-family: var(--font-mono);
+  font-size: var(--fs-14);
+  line-height: var(--lh-relaxed);
+  background: var(--code-bg);
+  color: var(--code-fg);
+  padding: var(--space-5);
+  border-radius: var(--r-md);
+  overflow-x: auto;
+}
+
+.cm-body pre code {
+  background: transparent;
+  color: inherit;
+  padding: 0;
+}
+
+.cm-body a {
+  color: var(--link);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  transition: text-decoration-thickness var(--dur-fast) var(--ease-out);
+}
+.cm-body a:hover {
+  text-decoration-thickness: 2px;
+  color: var(--link-hover);
+}
+
+.cm-body :focus-visible {
+  outline: none;
+  box-shadow: var(--ring-focus);
+  border-radius: var(--r-sm);
+}

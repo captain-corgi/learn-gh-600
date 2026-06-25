@@ -1,0 +1,54 @@
+<!doctype html>
+<html><head><meta charset="utf-8"/>
+<title>End card — Corgi Mate</title>
+<link rel="stylesheet" href="../colors_and_type.css"/>
+<style>
+  html, body { margin: 0; padding: 0; background: var(--ink); overflow: hidden; }
+  .slide { width: 1280px; height: 720px; background: var(--soft-blue); padding: 80px 96px; box-sizing: border-box; position: relative; font-family: var(--font-body); color: var(--warm-cream); }
+  .gleam { position: absolute; inset: 0; background: radial-gradient(circle at 50% 20%, rgba(156,184,152,0.22), transparent 55%); pointer-events: none; }
+  .top { display: flex; flex-direction: column; align-items: center; gap: 18px; text-align: center; position: relative; z-index: 1; }
+  .kicker { font-family: var(--font-mono); font-size: 16px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--heart-tan); }
+  h1 { font-family: var(--font-display); font-weight: 800; font-size: 72px; line-height: 1.0; letter-spacing: -0.025em; margin: 0; }
+  .row { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-top: 56px; align-items: stretch; position: relative; z-index: 1; }
+  .card { background: rgba(246,242,234,0.06); border: 1.5px solid rgba(246,242,234,0.15); border-radius: var(--r-xl); padding: 28px; backdrop-filter: blur(8px); display: flex; gap: 18px; }
+  .thumb { width: 192px; aspect-ratio: 16/9; border-radius: var(--r-md); background: linear-gradient(135deg, #F2A8BC, #E8568A); flex-shrink: 0; position: relative; }
+  .thumb.sage { background: linear-gradient(135deg, #7A9E76, #9CB898); }
+  .lbl { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.10em; text-transform: uppercase; color: var(--heart-tan); margin-bottom: 6px; font-weight: 700; }
+  .ti { font-family: var(--font-display); font-weight: 700; font-size: 24px; line-height: 1.15; letter-spacing: -0.01em; margin: 0; }
+  .meta { font-family: var(--font-body); font-size: 13px; opacity: 0.7; margin-top: 6px; }
+  .cta { display: flex; align-items: center; justify-content: center; gap: 18px; margin-top: 48px; position: relative; z-index: 1; }
+  .sub { display: inline-flex; align-items: center; gap: 10px; padding: 18px 30px; background: var(--mate-orange); color: white; font-family: var(--font-body); font-weight: 700; font-size: 20px; border-radius: var(--r-lg); box-shadow: 0 12px 28px rgba(0,0,0,0.25); }
+  .handle { font-family: var(--font-mono); font-size: 15px; opacity: 0.85; letter-spacing: 0.04em; }
+  .wm { position: absolute; bottom: 36px; left: 0; right: 0; text-align: center; font-family: var(--font-display); font-weight: 800; font-size: 14px; letter-spacing: -0.01em; opacity: 0.6; }
+</style></head>
+<body>
+<div class="slide">
+  <div class="gleam"></div>
+  <div class="top">
+    <span class="kicker">Thanks for planning with us</span>
+    <h1>One more task, then rest easy.</h1>
+  </div>
+  <div class="row">
+    <div class="card">
+      <div class="thumb"></div>
+      <div>
+        <div class="lbl">Up next</div>
+        <h3 class="ti">Weekly meal plan — quick dinners.</h3>
+        <div class="meta">5 recipes · 20 min avg</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="thumb sage"></div>
+      <div>
+        <div class="lbl">Family pick</div>
+        <h3 class="ti">Morning routine checklist.</h3>
+        <div class="meta">Updated today</div>
+      </div>
+    </div>
+  </div>
+  <div class="cta">
+    <span class="sub">Open family app</span>
+    <span class="handle">corgimate.app · 4 family members</span>
+  </div>
+  <div class="wm">Corgi Mate · household planner</div>
+</div></body></html>

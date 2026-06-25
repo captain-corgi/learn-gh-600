@@ -1,0 +1,127 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: var(--fs-18);
+  margin: 0;
+}
+
+.tableWrap {
+  overflow-x: auto;
+  border: var(--bw, 1.5px) solid var(--border);
+  border-radius: var(--r-lg);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--fs-14);
+}
+
+.table th {
+  padding: var(--space-3) var(--space-4);
+  text-align: left;
+  font-weight: var(--fw-semi);
+  color: var(--fg-3);
+  font-size: var(--fs-12);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  background: var(--bg-sunken);
+  border-bottom: var(--bw, 1.5px) solid var(--border);
+}
+
+.table td {
+  padding: var(--space-3) var(--space-4);
+  border-bottom: var(--bw, 1.5px) solid var(--border);
+}
+
+.row:last-child td {
+  border-bottom: none;
+}
+
+.row:hover {
+  background: color-mix(in srgb, var(--accent) 4%, transparent);
+}
+
+.examCell {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.examType {
+  font-size: var(--fs-11);
+  text-transform: uppercase;
+  color: var(--fg-3);
+  font-weight: var(--fw-bold);
+  letter-spacing: 0.03em;
+}
+
+.examName {
+  font-weight: var(--fw-semi);
+  color: var(--fg);
+}
+
+.scoreCell {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.scoreValue {
+  font-family: var(--font-mono);
+  font-weight: var(--fw-semi);
+  color: var(--fg);
+}
+
+.scorePercent {
+  font-size: var(--fs-12);
+  color: var(--fg-3);
+}
+
+.resultBadge {
+  display: inline-flex;
+  padding: 2px var(--space-2);
+  border-radius: var(--r-full);
+  font-size: var(--fs-12);
+  font-weight: var(--fw-bold);
+}
+
+.passed {
+  background: color-mix(in srgb, var(--success) 18%, transparent);
+  color: var(--success);
+}
+
+.failed {
+  background: color-mix(in srgb, var(--danger) 18%, transparent);
+  color: var(--danger);
+}
+
+.timeCell {
+  font-family: var(--font-mono);
+  color: var(--fg-2);
+  white-space: nowrap;
+}
+
+.dateCell {
+  color: var(--fg-3);
+  white-space: nowrap;
+}
+
+.empty {
+  padding: var(--space-6);
+  text-align: center;
+  color: var(--fg-3);
+  font-size: var(--fs-14);
+}
+
+@media (max-width: 640px) {
+  .table th:nth-child(5),
+  .table td:nth-child(5) {
+    display: none;
+  }
+}

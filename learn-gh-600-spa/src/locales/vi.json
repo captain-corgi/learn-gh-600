@@ -1,0 +1,110 @@
+{
+  "app": {
+    "title": "Captain Corgi Hub",
+    "subtitle": "Ôn thi GH-600"
+  },
+  "nav": {
+    "home": "Trang chủ",
+    "studyPlan": "Kế hoạch học tập",
+    "exams": "Kỳ thi",
+    "labs": "Thực hành",
+    "search": "Tìm kiếm",
+    "viewOnGitHub": "Xem trên GitHub"
+  },
+  "home": {
+    "eyebrow": "Ôn thi GH-600",
+    "title": "Captain Corgi Hub",
+    "description": "Hướng dẫn toàn diện cho chứng chỉ GH-600 \"Developing in Agentic AI Systems\". Hơn {{totalQuestions}} câu hỏi thực hành trong {{examCount}} bộ đề thi, 8 bài thực hành, và kế hoạch học tập có cấu trúc bao gồm tất cả 6 lĩnh vực.",
+    "startLearning": "Bắt đầu học",
+    "practiceExams": "Đề thi thực hành",
+    "domains": "Lĩnh vực",
+    "questions": "Câu hỏi",
+    "examSets": "Bộ đề thi",
+    "labs": "Bài thực hành"
+  },
+  "features": {
+    "studyPlan": {
+      "title": "Kế hoạch học tập",
+      "description": "{{count}} mô-đun theo trọng tâm lĩnh vực phù hợp với đề cương thi GH-600. Mỗi lĩnh vực bao gồm các chủ đề chính với bài kiểm tra tương tác."
+    },
+    "questions": {
+      "title": "Hơn {{totalQuestions}} câu hỏi",
+      "description": "{{mockCount}} đề thi mô phỏng và {{practiceCount}} đề thi thực hành với giải thích chi tiết cho mọi câu trả lời."
+    },
+    "labs": {
+      "title": "Bài thực hành",
+      "description": "8 bài thực hành từng bước xây dựng hệ thống agent AI thực tế với Go, Docker và GitHub Actions."
+    }
+  },
+  "studyPlan": {
+    "title": "Kế hoạch học tập GH-600",
+    "description": "Chương trình học theo trọng tâm lĩnh vực bao gồm tất cả 6 lĩnh vực thi GH-600. Hoàn thành từng lĩnh vực, học các khái niệm chính, sau đó kiểm tra kiến thức với bài quiz.",
+    "questions": "{{count}} câu hỏi",
+    "startQuiz": "Bắt đầu quiz"
+  },
+  "domain": {
+    "ofExam": "của kỳ thi",
+    "learn": "Học",
+    "quizCheck": "Kiểm tra quiz",
+    "resources": "Tài liệu",
+    "topicContentComingSoon": "Nội dung chủ đề sẽ được tải từ dữ liệu kế hoạch học tập trong tương lai. Hiện tại, hãy khám phá quiz để kiểm tra kiến thức của bạn về {{domainName}}.",
+    "domainNotFound": "Không tìm thấy lĩnh vực",
+    "backToStudyPlan": "← Quay lại kế hoạch học tập",
+    "noQuestions": "Không có câu hỏi quiz cho lĩnh vực này.",
+    "officialResources": "Tài liệu chính thức"
+  },
+  "quiz": {
+    "question": "Câu {{current}} / {{total}}",
+    "score": "Điểm: {{score}}",
+    "explanation": "Giải thích:",
+    "next": "Tiếp theo",
+    "submit": "Nộp bài",
+    "previous": "Trước đó",
+    "continue": "Tiếp tục",
+    "back": "Quay lại",
+    "passed": "Đạt lĩnh vực!",
+    "notPassed": "Chưa đạt",
+    "passRequirement": "Bạn cần {{needed}}/{{total}} câu đúng để đạt.",
+    "retryQuiz": "Làm lại quiz",
+    "backToStudyPlan": "Quay lại kế hoạch học tập",
+    "passMark": "Điểm đạt: 75%",
+    "correct": "Đúng",
+    "wrong": "Sai",
+    "skipped": "Bỏ qua",
+    "scoreByDomain": "Điểm theo lĩnh vực",
+    "reviewAnswers": "Xem lại câu trả lời"
+  },
+  "exams": {
+    "title": "Đề thi thực hành",
+    "description": "{{count}} bộ đề thi với hơn {{totalQuestions}} câu hỏi bao gồm tất cả lĩnh vực GH-600. Đề thi có tính giờ và phản hồi tức thì.",
+    "mockExams": "Đề thi mô phỏng",
+    "mockDescription": "Đề thi đầy đủ mô phỏng trải nghiệm thi thực tế GH-600.",
+    "practiceExams": "Đề thi thực hành",
+    "practiceDescription": "Bộ đề ngắn hơn cho các buổi học tập trung.",
+    "minutes": "phút",
+    "questions": "{{count}} câu hỏi"
+  },
+  "labs": {
+    "title": "Bài thực hành",
+    "description": "Thực hành mọi lĩnh vực GH-600 bằng cách xây dựng hệ thống agent AI thực tế.",
+    "prereq": "Điều kiện tiên quyết",
+    "all": "Tất cả"
+  },
+  "search": {
+    "placeholder": "Tìm kiếm câu hỏi, chủ đề, bài thực hành...",
+    "noResults": "Không tìm thấy kết quả cho \"{{query}}\"",
+    "question": "câu hỏi",
+    "topic": "chủ đề",
+    "lab": "bài thực hành"
+  },
+  "theme": {
+    "light": "Sáng",
+    "dark": "Tối",
+    "night": "Đêm",
+    "auto": "Tự động"
+  },
+  "language": {
+    "en": "Tiếng Anh",
+    "vi": "Tiếng Việt"
+  }
+}
