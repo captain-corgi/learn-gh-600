@@ -1,0 +1,1095 @@
+{
+  "id": "mock-4",
+  "type": "mock",
+  "title": "Mock Exam 4",
+  "description": "Shuffled full exam",
+  "timeLimit": 120,
+  "questionCount": 60,
+  "questions": [
+    {
+      "id": "mock-4-q1",
+      "domain": 0,
+      "domainName": "Architecture & SDLC",
+      "question": "Which statement best describes GitHub as the \"control plane\" in an agentic AI system?",
+      "options": [
+        "GitHub stores LLM model weights for Copilot",
+        "GitHub is the system of record and orchestration point where workflows, permissions, and approvals govern all agent activity",
+        "GitHub only provides a UI for viewing code",
+        "GitHub manages LLM API billing"
+      ],
+      "correctIndex": 1,
+      "explanation": "The exam defines GitHub as both the system of record (branches, PRs, commits) and control plane (workflows, permissions, approvals) for all agent activity.",
+      "tags": [
+        "architecture-sdlc"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "mock-4-q2",
+      "domain": 0,
+      "domainName": "Architecture & SDLC",
+      "question": "An agent takes actions while it is still planning. Which anti-pattern does this represent?",
+      "options": [
+        "Context drift",
+        "Insufficient tool permissions",
+        "Mixing planning and execution in the same step — no validation window",
+        "Long-running state loss"
+      ],
+      "correctIndex": 2,
+      "explanation": "Planning and execution must be separated. The agent produces a validated plan artifact before acting — mixing them is the #1 documented SDLC anti-pattern.",
+      "tags": [
+        "architecture-sdlc"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "mock-4-q3",
+      "domain": 0,
+      "domainName": "Architecture & SDLC",
+      "question": "What is the purpose of producing a structured plan artifact before agent execution?",
+      "options": [
+        "To reduce API costs",
+        "To allow validation by a human or automated check before any irreversible action is taken",
+        "To speed up the CI pipeline",
+        "To store agent memory between sessions"
+      ],
+      "correctIndex": 1,
+      "explanation": "A plan artifact makes the agent's intent inspectable and validatable. No action should proceed until the plan is approved — by a human or an automated gate.",
+      "tags": [
+        "architecture-sdlc"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "mock-4-q4",
+      "domain": 0,
+      "domainName": "Architecture & SDLC",
+      "question": "What mechanism correctly prevents agent action until its plan is approved?",
+      "options": [
+        "Setting model temperature to 0",
+        "A required status check or approval gate in GitHub Actions before execution proceeds",
+        "Reducing the agent's tool count",
+        "Using only short-term memory"
+      ],
+      "correctIndex": 1,
+      "explanation": "Required status checks and branch protection approval gates in GitHub Actions are the correct mechanism to halt execution pending plan validation.",
+      "tags": [
+        "architecture-sdlc"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "mock-4-q5",
+      "domain": 0,
+      "domainName": "Architecture & SDLC",
+      "question": "An agent autonomously pushes to the main branch without opening a PR. Which principle is violated?",
+      "options": [
+        "Memory scoping",
+        "Least-privilege and human oversight — agents must use branches and PRs, not direct pushes to protected branches",
+        "Context pruning",
+        "MCP registry configuration"
+      ],
+      "correctIndex": 1,
+      "explanation": "Direct pushes to main bypass all review controls. Agents must operate on branches and surface changes via PRs — the core least-privilege and oversight design for SDLC integration.",
+      "tags": [
+        "architecture-sdlc"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "mock-4-q6",
+      "domain": 0,
+      "domainName": "Architecture & SDLC",
+      "question": "Copilot cloud agent marks the developer as co-author on its commits. What benefit does this provide?",
+      "options": [
+        "Reduces CI run time",
+        "Creates traceability linking AI-generated code to the human who initiated the task, supporting accountability and audit",
+        "Grants the developer merge permissions",
+        "Increases commit signing key strength"
+      ],
+      "correctIndex": 1,
+      "explanation": "Co-authorship links every AI-generated change to the person who initiated it — a core accountability mechanism in GitHub's agentic SDLC design.",
+      "tags": [
+        "architecture-sdlc"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "mock-4-q7",
+      "domain": 0,
+      "domainName": "Architecture & SDLC",
+      "question": "What does \"configure human intervention without slowing delivery\" mean in practice?",
+      "options": [
+        "Require human approval for every single tool call",
+        "Place approval gates only where human judgment materially reduces risk; let routine low-risk actions proceed autonomously",
+        "Disable all automation",
+        "Add a 24-hour delay before any agent action"
+      ],
+      "correctIndex": 1,
+      "explanation": "Right-sized oversight: gates only where they genuinely reduce risk. Gating everything kills delivery velocity without improving safety.",
+      "tags": [
+        "architecture-sdlc"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "mock-4-q8",
+      "domain": 0,
+      "domainName": "Architecture & SDLC",
+      "question": "Why must inputs, outputs, and success criteria be defined before deploying an agent?",
+      "options": [
+        "To reduce token costs",
+        "To establish a contract enabling automated and human evaluation against a clear baseline",
+        "To prevent the agent from creating branches",
+        "To satisfy GitHub billing requirements"
+      ],
+      "correctIndex": 1,
+      "explanation": "Without defined inputs, outputs, and success criteria, neither automated scans nor human reviewers have a baseline to judge correctness. This contract is foundational to evaluation.",
+      "tags": [
+        "architecture-sdlc"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "mock-4-q9",
+      "domain": 0,
+      "domainName": "Architecture & SDLC",
+      "question": "A team adds an approval gate to every single agent action including reading README files. What problem results?",
+      "options": [
+        "Improved security posture",
+        "Approval theater — gates without risk reduction that kill delivery velocity for no safety benefit",
+        "Correct observability configuration",
+        "Better compliance audit trail"
+      ],
+      "correctIndex": 1,
+      "explanation": "Gating every action regardless of risk is approval theater. Every gate imposes a delivery cost justified only by the risk it mitigates. Routine, reversible actions should be ungated.",
+      "tags": [
+        "architecture-sdlc"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "mock-4-q10",
+      "domain": 0,
+      "domainName": "Architecture & SDLC",
+      "question": "Which GitHub control automatically assigns reviewers to agent changes in specific critical file paths?",
+      "options": [
+        "MCP allow list",
+        "Required status checks",
+        "CODEOWNERS file",
+        "GitHub Actions job timeout"
+      ],
+      "correctIndex": 2,
+      "explanation": "CODEOWNERS automatically assigns required reviewers for specific file paths. When an agent modifies code in a CODEOWNERS-protected path, the defined owners must review before merging.",
+      "tags": [
+        "architecture-sdlc"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "mock-4-q11",
+      "domain": 1,
+      "domainName": "Tool Use & MCP",
+      "question": "What is the correct sequence for adding a remote MCP server to a GitHub Copilot agent?",
+      "options": [
+        "Write server code → set max_tokens → deploy",
+        "Register the MCP server → add to MCP registry → configure allow list → assign to agent tool config",
+        "Ask Copilot to auto-detect available servers",
+        "Create a GitHub App and link it to Copilot"
+      ],
+      "correctIndex": 1,
+      "explanation": "Official process: register → registry → allow list → agent config. Each step is distinct and required for the server to be usable by the agent.",
+      "tags": [
+        "tool-use-mcp"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "mock-4-q12",
+      "domain": 1,
+      "domainName": "Tool Use & MCP",
+      "question": "What does the MCP allow list specifically control?",
+      "options": [
+        "Which GitHub repos the agent can read",
+        "Which MCP servers the agent is permitted to call — enforcing access control at the tool invocation layer",
+        "The agent's memory budget",
+        "The model temperature"
+      ],
+      "correctIndex": 1,
+      "explanation": "MCP allow lists restrict which servers an agent can invoke. Tool permissions then control what each permitted server can do. Both layers are required for least-privilege.",
+      "tags": [
+        "tool-use-mcp"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "mock-4-q13",
+      "domain": 1,
+      "domainName": "Tool Use & MCP",
+      "question": "Copilot cloud agent's internet access is restricted by a built-in firewall. What risk does this primarily mitigate?",
+      "options": [
+        "Prompt injection from user messages",
+        "Accidental or malicious leakage of sensitive code and secrets to external endpoints",
+        "Context drift during long sessions",
+        "Memory expiration"
+      ],
+      "correctIndex": 1,
+      "explanation": "Per GitHub Docs, restricting internet access mitigates data exfiltration — sensitive code, tokens, or secrets leaking to external services via tool calls or prompt injection.",
+      "tags": [
+        "tool-use-mcp"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "mock-4-q14",
+      "domain": 1,
+      "domainName": "Tool Use & MCP",
+      "question": "By default, GitHub Actions workflows are NOT triggered after Copilot creates a PR. Why?",
+      "options": [
+        "To save Actions minutes",
+        "To require a user with write access to review code and explicitly approve workflow runs before execution — preventing untrusted agent code from running privileged CI jobs",
+        "Because agents cannot trigger workflows",
+        "To prevent branch creation"
+      ],
+      "correctIndex": 1,
+      "explanation": "Per GitHub Docs, workflows are withheld until a write-access user clicks \"Approve and run workflows.\" This prevents untrusted agent-generated code from automatically running privileged CI.",
+      "tags": [
+        "tool-use-mcp"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "mock-4-q15",
+      "domain": 1,
+      "domainName": "Tool Use & MCP",
+      "question": "What does \"idempotency\" mean for agent tool retries?",
+      "options": [
+        "The tool runs faster on retry",
+        "Calling the tool multiple times with the same inputs produces the same result without duplicating side-effects",
+        "The tool always returns a cached response",
+        "The tool ignores errors on retry"
+      ],
+      "correctIndex": 1,
+      "explanation": "Idempotent retries ensure a second call after a transient failure doesn't duplicate side-effects (no duplicate records, no double commits). Critical for safe retry implementations.",
+      "tags": [
+        "tool-use-mcp"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "mock-4-q16",
+      "domain": 1,
+      "domainName": "Tool Use & MCP",
+      "question": "Which security checks does Copilot cloud agent run on generated code BEFORE completing a pull request?",
+      "options": [
+        "Only Copilot chat review",
+        "CodeQL (code security), GitHub Advisory Database (dependency vulnerabilities), and secret scanning (credentials)",
+        "A third-party DAST tool",
+        "Manual review only"
+      ],
+      "correctIndex": 1,
+      "explanation": "Per GitHub Docs: CodeQL for code security, Advisory DB for CVSS High/Critical deps and malware, secret scanning for exposed credentials — all without requiring Advanced Security licenses.",
+      "tags": [
+        "tool-use-mcp"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "mock-4-q17",
+      "domain": 1,
+      "domainName": "Tool Use & MCP",
+      "question": "A user without write access to a repo comments @copilot. What happens?",
+      "options": [
+        "Copilot processes the comment normally",
+        "The comment is never presented to the agent — only users with write access can trigger Copilot cloud agent",
+        "Copilot asks the user to request access",
+        "The comment is queued for admin review"
+      ],
+      "correctIndex": 1,
+      "explanation": "Per GitHub Docs, only users with write access can trigger Copilot cloud agent. This prevents privilege escalation — unauthorized users cannot use the agent to make changes.",
+      "tags": [
+        "tool-use-mcp"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "mock-4-q18",
+      "domain": 1,
+      "domainName": "Tool Use & MCP",
+      "question": "What is prompt injection and how does Copilot cloud agent mitigate it?",
+      "options": [
+        "A syntax error in a prompt; mitigated by spellchecking",
+        "Hidden malicious instructions in issues or comments; mitigated by filtering hidden characters (HTML comment content) before the input reaches the agent",
+        "A too-long system prompt; mitigated by truncation",
+        "A typo in the MCP server URL; mitigated by DNS validation"
+      ],
+      "correctIndex": 1,
+      "explanation": "Per GitHub Docs, prompt injection embeds hidden instructions in issues or PR comments. GitHub filters hidden characters before passing input to the agent.",
+      "tags": [
+        "tool-use-mcp"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "mock-4-q19",
+      "domain": 1,
+      "domainName": "Tool Use & MCP",
+      "question": "An agent in CI only needs to comment on a PR and push to the PR's branch. What is the minimum correct scope?",
+      "options": [
+        "Full organisation-wide admin access",
+        "Write access to the PR branch and PR comment permission in the triggering repository only",
+        "Read access to all repositories",
+        "Global write access to all branches"
+      ],
+      "correctIndex": 1,
+      "explanation": "Least-privilege for a CI-triggered agent: write access limited to the specific PR branch plus PR comment permission in the triggering repo. Nothing broader is needed.",
+      "tags": [
+        "tool-use-mcp"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "mock-4-q20",
+      "domain": 1,
+      "domainName": "Tool Use & MCP",
+      "question": "Copilot cloud agent commits are cryptographically signed. What operational benefit does this provide?",
+      "options": [
+        "Reduces commit size",
+        "Commits appear as \"Verified\" — confirming they were made by the agent and have not been altered, supporting audit and accountability",
+        "Speeds up CI",
+        "Lets the agent bypass branch protection"
+      ],
+      "correctIndex": 1,
+      "explanation": "Per GitHub Docs, signed commits appear as Verified, providing confidence that AI-generated changes are authentic and untampered — critical for audit and accountability in multi-agent pipelines.",
+      "tags": [
+        "tool-use-mcp"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "mock-4-q21",
+      "domain": 1,
+      "domainName": "Tool Use & MCP",
+      "question": "Traceability for agent actions requires which of the following at minimum?",
+      "options": [
+        "A Slack notification per action",
+        "Linking each action to the instruction that caused it, the tool call that executed it, and the output it produced",
+        "A weekly CSV report",
+        "Disabling async tool calls"
+      ],
+      "correctIndex": 1,
+      "explanation": "Traceability = every action traceable: why (instruction/plan), how (tool call + params), what resulted (output). Copilot's commit messages even link to session logs for this purpose.",
+      "tags": [
+        "tool-use-mcp"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "mock-4-q22",
+      "domain": 1,
+      "domainName": "Tool Use & MCP",
+      "question": "When Copilot cloud agent is triggered outside an existing PR, which branch does it push to?",
+      "options": [
+        "Directly to main",
+        "A new branch prefixed with \"copilot/\" created specifically for that agent session",
+        "The default branch",
+        "A branch named after the requesting user"
+      ],
+      "correctIndex": 1,
+      "explanation": "Per GitHub Docs, Copilot cloud agent creates a \"copilot/\" prefixed branch and can only push to it — never directly to main or other protected branches.",
+      "tags": [
+        "tool-use-mcp"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "mock-4-q23",
+      "domain": 1,
+      "domainName": "Tool Use & MCP",
+      "question": "Which of the following is NOT a built-in Copilot cloud agent security mitigation?",
+      "options": [
+        "Filtering hidden characters to prevent prompt injection",
+        "Restricting internet access via built-in firewall",
+        "Automatically approving and merging its own pull requests",
+        "Requiring human review before merging draft PRs"
+      ],
+      "correctIndex": 2,
+      "explanation": "Per GitHub Docs, Copilot cloud agent CANNOT approve or merge its own PRs. Human review is a required control — auto-merging is a risk, not a mitigation.",
+      "tags": [
+        "tool-use-mcp"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "mock-4-q24",
+      "domain": 1,
+      "domainName": "Tool Use & MCP",
+      "question": "An agent needs to interact with Jira to update tickets. What is the correct integration approach?",
+      "options": [
+        "Hard-code Jira credentials in the agent's instruction file",
+        "Configure Jira as an MCP server, register it in the MCP registry, add it to the agent's allow list, and scope permissions to required operations",
+        "Give the agent a browser tool to manually log into Jira",
+        "Use email notifications instead"
+      ],
+      "correctIndex": 1,
+      "explanation": "External service integrations follow the MCP pattern: register the service as an MCP server, control access via the registry and allow list, configure minimum permissions.",
+      "tags": [
+        "tool-use-mcp"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "mock-4-q25",
+      "domain": 2,
+      "domainName": "Memory, State & Execution",
+      "question": "What is the exact retention period for Copilot Memory entries before automatic deletion?",
+      "options": [
+        "7 days",
+        "14 days",
+        "28 days",
+        "90 days"
+      ],
+      "correctIndex": 2,
+      "explanation": "Per GitHub Docs, Copilot memories are automatically deleted after 28 days to prevent stale information from degrading decision quality.",
+      "tags": [
+        "memory-state-execution"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "mock-4-q26",
+      "domain": 2,
+      "domainName": "Memory, State & Execution",
+      "question": "For Copilot Pro and Pro+ individual users, what is the default state of Copilot Memory?",
+      "options": [
+        "Disabled; must be manually enabled",
+        "Enabled by default; users can opt out in personal settings",
+        "Enabled only in public repos",
+        "Disabled; only org admins can enable it"
+      ],
+      "correctIndex": 1,
+      "explanation": "Per GitHub Docs, Copilot Memory is ON by default for Pro/Pro+ individual users — the opposite of enterprise/org-managed accounts where it is off by default.",
+      "tags": [
+        "memory-state-execution"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "mock-4-q27",
+      "domain": 2,
+      "domainName": "Memory, State & Execution",
+      "question": "A memory created by Developer A in Repository X — can Developer B access it in Repository X?",
+      "options": [
+        "No — memories are strictly user-scoped",
+        "Yes — memories are repository-scoped; all permitted Copilot users in that repo benefit from memories created there",
+        "Yes — memories are org-scoped across all repos",
+        "No — memories expire at the end of the creating user's session"
+      ],
+      "correctIndex": 1,
+      "explanation": "Per GitHub Docs, Copilot Memory is repository-scoped. All permitted users in a repo share its memories. Memories cannot cross repository boundaries.",
+      "tags": [
+        "memory-state-execution"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "mock-4-q28",
+      "domain": 2,
+      "domainName": "Memory, State & Execution",
+      "question": "How does Copilot validate a stored memory before applying it to a new task?",
+      "options": [
+        "It re-runs the prior session in full",
+        "It validates the memory's citations against the current codebase; if citations no longer match, the memory is discarded",
+        "It asks the user to confirm the memory",
+        "It sends the memory to an external validation API"
+      ],
+      "correctIndex": 1,
+      "explanation": "Per GitHub Docs, each memory includes citations (code location references). Before use, Copilot checks them against the current branch. Invalid citations = memory is not used.",
+      "tags": [
+        "memory-state-execution"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "mock-4-q29",
+      "domain": 2,
+      "domainName": "Memory, State & Execution",
+      "question": "An agent working on a 4-hour refactor pauses overnight. What allows correct resumption without repeating steps?",
+      "options": [
+        "Increasing context window indefinitely",
+        "Capturing task progress as durable artifacts (committed state files) the agent reads on resumption",
+        "Restarting with a fresh context and redoing all work",
+        "Asking the user to re-describe the task"
+      ],
+      "correctIndex": 1,
+      "explanation": "Durable artifacts — structured state files committed to the branch — serve as checkpoints. The agent reads them on restart to understand what's done and what remains.",
+      "tags": [
+        "memory-state-execution"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "mock-4-q30",
+      "domain": 2,
+      "domainName": "Memory, State & Execution",
+      "question": "What is \"context drift\" in a long-running agent execution?",
+      "options": [
+        "The agent runs out of RAM",
+        "Accumulated stale or irrelevant context causes the agent's decisions to diverge from its original plan",
+        "The MCP server goes offline",
+        "The CI pipeline times out"
+      ],
+      "correctIndex": 1,
+      "explanation": "Context drift: stale or irrelevant memory pollutes the agent's reasoning, causing it to stray from its original intent. Pruning rules and durable checkpoints prevent this.",
+      "tags": [
+        "memory-state-execution"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "mock-4-q31",
+      "domain": 2,
+      "domainName": "Memory, State & Execution",
+      "question": "In which Copilot surfaces is agentic memory currently active per GitHub Docs?",
+      "options": [
+        "All Copilot features everywhere",
+        "Copilot cloud agent, Copilot code review on GitHub.com PRs, and Copilot CLI",
+        "IDE completions and mobile only",
+        "GitHub Mobile only"
+      ],
+      "correctIndex": 1,
+      "explanation": "Per GitHub Docs, Copilot Memory is currently active in: Copilot cloud agent, Copilot code review (PRs on GitHub.com), and Copilot CLI.",
+      "tags": [
+        "memory-state-execution"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "mock-4-q32",
+      "domain": 3,
+      "domainName": "Evaluation & Tuning",
+      "question": "A team deployed an agent but cannot tell if it is succeeding. What is the root cause?",
+      "options": [
+        "The agent runs too slowly",
+        "No explicit success criteria or evaluation signals were defined before deployment",
+        "The model is too small",
+        "The CI pipeline is misconfigured"
+      ],
+      "correctIndex": 1,
+      "explanation": "Without pre-defined success criteria and evaluation signals, there is no baseline. This is why the exam mandates defining expected outcomes, constraints, and signals before deployment.",
+      "tags": [
+        "evaluation-tuning"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "mock-4-q33",
+      "domain": 3,
+      "domainName": "Evaluation & Tuning",
+      "question": "An agent introduces a hardcoded API key into generated code. Which tool catches this?",
+      "options": [
+        "CodeQL",
+        "GitHub Secret scanning",
+        "Dependency vulnerability scanning",
+        "A lint checker"
+      ],
+      "correctIndex": 1,
+      "explanation": "Secret scanning specifically detects hardcoded credentials and API keys. CodeQL covers code security vulnerabilities; dependency scanning covers third-party library vulnerabilities.",
+      "tags": [
+        "evaluation-tuning"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "mock-4-q34",
+      "domain": 3,
+      "domainName": "Evaluation & Tuning",
+      "question": "What distinguishes a \"reasoning error\" from \"tool misuse\" in agent failure classification?",
+      "options": [
+        "They are synonymous",
+        "Reasoning error = flawed planning or inference; tool misuse = calling a tool with wrong parameters, timing, or purpose",
+        "Reasoning error = network timeout; tool misuse = memory overflow",
+        "Reasoning error = user mistake; tool misuse = admin mistake"
+      ],
+      "correctIndex": 1,
+      "explanation": "Reasoning errors = wrong logic or inference (bad plan, wrong conclusion). Tool misuse = correct logic but tool called incorrectly (wrong params, wrong tool for task, wrong timing).",
+      "tags": [
+        "evaluation-tuning"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "mock-4-q35",
+      "domain": 3,
+      "domainName": "Evaluation & Tuning",
+      "question": "After tuning for code quality, the agent stops writing unit tests. What was missed?",
+      "options": [
+        "Increasing model size",
+        "Re-evaluating against ALL success criteria after tuning — optimising one metric can degrade others",
+        "Deploying to production immediately",
+        "Reducing memory budget"
+      ],
+      "correctIndex": 1,
+      "explanation": "Tuning has side effects. Every modification must be re-evaluated against the full criteria set. The agent improved on the targeted metric but regressed on an untested criterion.",
+      "tags": [
+        "evaluation-tuning"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "mock-4-q36",
+      "domain": 3,
+      "domainName": "Evaluation & Tuning",
+      "question": "Which evaluation signal is qualitative rather than quantitative?",
+      "options": [
+        "Number of lint errors introduced",
+        "Test pass rate",
+        "Percentage of PRs merged without revision",
+        "Developer assessment of code readability and adherence to team conventions"
+      ],
+      "correctIndex": 3,
+      "explanation": "Qualitative signals require human judgment — readability, logical correctness, architectural fit. They complement quantitative signals but cannot be fully automated.",
+      "tags": [
+        "evaluation-tuning"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "mock-4-q37",
+      "domain": 3,
+      "domainName": "Evaluation & Tuning",
+      "question": "An agent consistently calls a dependency tool with wrong version format strings. Root cause and fix?",
+      "options": [
+        "Context drift; increase memory budget",
+        "Tool misuse; revise instructions to specify the correct format and add input validation at the tool layer",
+        "Reasoning error; replace the model",
+        "Environment issue; restart the CI runner"
+      ],
+      "correctIndex": 1,
+      "explanation": "Systematic wrong parameters = tool misuse. Fix = update instructions with exact format + optionally enforce validation at tool layer to prevent recurrence.",
+      "tags": [
+        "evaluation-tuning"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "mock-4-q38",
+      "domain": 3,
+      "domainName": "Evaluation & Tuning",
+      "question": "What does \"aligning evaluation criteria with development intent\" prevent?",
+      "options": [
+        "Too many PRs being created",
+        "Metric gaming — agents optimising what's measured at the expense of actual quality (e.g. trivial tests to inflate test count)",
+        "CI pipeline timeouts",
+        "Memory expiration"
+      ],
+      "correctIndex": 1,
+      "explanation": "Without alignment, agents can game metrics while delivering poor real-world quality. Criteria must reflect what \"good\" genuinely means to the team, not just what's auto-measurable.",
+      "tags": [
+        "evaluation-tuning"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "mock-4-q39",
+      "domain": 3,
+      "domainName": "Evaluation & Tuning",
+      "question": "To diagnose a silent agent failure with no output and no error, first examine:",
+      "options": [
+        "The GitHub billing statement",
+        "The plan trace and tool call log to find where execution stopped",
+        "Model version history",
+        "Only the final PR diff"
+      ],
+      "correctIndex": 1,
+      "explanation": "Silent failures require tracing backward: plan trace reveals intent, tool call log shows where execution stalled. Start there, then expand to environment logs if needed.",
+      "tags": [
+        "evaluation-tuning"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "mock-4-q40",
+      "domain": 3,
+      "domainName": "Evaluation & Tuning",
+      "question": "Automated scanning tools (SAST, CodeQL) in GitHub Actions serve which evaluation purpose?",
+      "options": [
+        "Replace human code review entirely",
+        "Generate objective quantitative signals about agent output quality without manual review per run",
+        "Configure MCP servers",
+        "Manage agent memory"
+      ],
+      "correctIndex": 1,
+      "explanation": "Automated scanners produce objective, reproducible signals — findings, counts, alerts — enabling evaluation at scale beyond what manual review can cover.",
+      "tags": [
+        "evaluation-tuning"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "mock-4-q41",
+      "domain": 3,
+      "domainName": "Evaluation & Tuning",
+      "question": "A newly deployed agent's output quality improves significantly over 3 weeks without changes. What most likely explains this?",
+      "options": [
+        "The CI pipeline warmed up",
+        "Copilot Memory built up validated repo-specific knowledge over time, improving contextual accuracy",
+        "The model was auto-updated",
+        "GitHub Actions became faster"
+      ],
+      "correctIndex": 1,
+      "explanation": "This is the benefit described in GitHub Docs for Copilot Memory — by building persistent validated knowledge of a codebase, Copilot's outputs improve over time without manual intervention.",
+      "tags": [
+        "evaluation-tuning"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "mock-4-q42",
+      "domain": 4,
+      "domainName": "Multi-Agent Coordination",
+      "question": "Agent B starts before Agent A finishes, producing incoherent output. What orchestration failure is this?",
+      "options": [
+        "Memory expiration in Agent B",
+        "Missing coordination gate — Agent B was not gated on Agent A's explicit completion signal",
+        "Tool misuse by Agent B",
+        "Context drift in Agent A"
+      ],
+      "correctIndex": 1,
+      "explanation": "Sequential agent dependencies require explicit completion gates. Agent B must wait for Agent A's defined signal — not start independently on a timer.",
+      "tags": [
+        "multi-agent-coordination"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "mock-4-q43",
+      "domain": 4,
+      "domainName": "Multi-Agent Coordination",
+      "question": "Three parallel agents all write to the same feature branch. Merging fails with conflicts. Root cause?",
+      "options": [
+        "Memory expiration",
+        "Insufficient isolation — agents were not given separate branches or workspaces, causing overlapping file changes",
+        "Tool misuse",
+        "Context drift"
+      ],
+      "correctIndex": 1,
+      "explanation": "Parallel agents must be isolated (separate branches or workspaces) to prevent overlapping changes. Without isolation, concurrent writes to shared files produce merge conflicts.",
+      "tags": [
+        "multi-agent-coordination"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "mock-4-q44",
+      "domain": 4,
+      "domainName": "Multi-Agent Coordination",
+      "question": "Two agents independently implement the same utility function in different files. What conflict type is this?",
+      "options": [
+        "Contradictory output",
+        "Duplicated effort — both solved the same problem without awareness of each other",
+        "Overlapping code change",
+        "Reasoning error"
+      ],
+      "correctIndex": 1,
+      "explanation": "\"Duplicated effort\" is a specific conflict category — multiple agents independently performing the same task due to insufficient coordination.",
+      "tags": [
+        "multi-agent-coordination"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "mock-4-q45",
+      "domain": 4,
+      "domainName": "Multi-Agent Coordination",
+      "question": "An agent has been running 30 minutes, produced no output, and has not errored. How should it be classified?",
+      "options": [
+        "Full failure; restart the entire pipeline",
+        "Stalled execution — investigate logs and trace, then apply targeted recovery (retry, redirect, or escalate)",
+        "Normal; wait indefinitely",
+        "Reasoning error; switch to a larger model"
+      ],
+      "correctIndex": 1,
+      "explanation": "\"Stalled\" is distinct from \"failed\" or \"partial.\" Diagnose via logs/trace; apply targeted recovery — not a blanket restart that discards completed work from other agents.",
+      "tags": [
+        "multi-agent-coordination"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "mock-4-q46",
+      "domain": 4,
+      "domainName": "Multi-Agent Coordination",
+      "question": "When retiring an agent from a multi-agent workflow, what must be preserved?",
+      "options": [
+        "Nothing — delete all artifacts to free storage",
+        "Audit artifacts, decision logs, and outputs — required for compliance and historical reconstruction of pipeline behavior",
+        "Only the final output file",
+        "The agent's model weights"
+      ],
+      "correctIndex": 1,
+      "explanation": "Retiring an agent must not destroy its audit trail. Logs, handoff records, and all outputs must be retained for compliance — even after the agent is fully decommissioned.",
+      "tags": [
+        "multi-agent-coordination"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "mock-4-q47",
+      "domain": 4,
+      "domainName": "Multi-Agent Coordination",
+      "question": "How should contradictory outputs from two parallel agents be detected?",
+      "options": [
+        "Compare billing records",
+        "Compare output artifacts (code, plan files, decision logs) at the integration step before any merge, using automated conflict detection or human review",
+        "Run both agents again with different prompts",
+        "Delete the lower-confidence output"
+      ],
+      "correctIndex": 1,
+      "explanation": "Contradictory outputs must be caught at integration — before merging — by comparing artifacts. Agents cannot reliably self-detect contradictions in each other's work.",
+      "tags": [
+        "multi-agent-coordination"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "mock-4-q48",
+      "domain": 4,
+      "domainName": "Multi-Agent Coordination",
+      "question": "What must per-agent audit artifacts contain to enable post-hoc analysis?",
+      "options": [
+        "Only the final merged diff",
+        "Inputs received, decisions made, tools called, outputs produced, and handoff context passed to downstream agents",
+        "Model temperature settings per agent",
+        "GitHub Actions run IDs only"
+      ],
+      "correctIndex": 1,
+      "explanation": "Post-hoc analysis requires reconstructing what each agent did, why, and how — demanding structured per-agent records across the full decision trail.",
+      "tags": [
+        "multi-agent-coordination"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "mock-4-q49",
+      "domain": 4,
+      "domainName": "Multi-Agent Coordination",
+      "question": "You need to update Agent B in an active pipeline while Agents A and C process tasks. Safest approach?",
+      "options": [
+        "Update Agent B immediately without stopping the pipeline",
+        "Drain in-flight tasks from Agent B, update it, validate in isolation, then reintroduce to the pipeline",
+        "Delete Agent B and recreate it fresh",
+        "Update all agents simultaneously for consistency"
+      ],
+      "correctIndex": 1,
+      "explanation": "Draining before updating prevents corrupted handoffs. Validating in isolation before reintroduction ensures the updated agent won't break the broader workflow.",
+      "tags": [
+        "multi-agent-coordination"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "mock-4-q50",
+      "domain": 4,
+      "domainName": "Multi-Agent Coordination",
+      "question": "What is the \"human-in-the-loop\" recovery pattern in a multi-agent context?",
+      "options": [
+        "Replacing all agents with human developers",
+        "When automated recovery is insufficient or failure is high-risk, halt execution and route to a human who makes the decision before the pipeline resumes",
+        "Asking agents to vote on the best path forward",
+        "Running a third agent to adjudicate between two conflicting agents"
+      ],
+      "correctIndex": 1,
+      "explanation": "Human-in-the-loop recovery is the escalation pattern for cases beyond automated recovery — particularly high-risk, ambiguous, or compliance-sensitive failures.",
+      "tags": [
+        "multi-agent-coordination"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "mock-4-q51",
+      "domain": 4,
+      "domainName": "Multi-Agent Coordination",
+      "question": "What orchestration pattern ensures a downstream agent only receives validated, complete outputs from upstream?",
+      "options": [
+        "Random load balancing across all agents",
+        "Explicit handoff gates with completion signals and artifact validation between each agent stage",
+        "Shared context window for all agents",
+        "Using the same branch for all agents"
+      ],
+      "correctIndex": 1,
+      "explanation": "Explicit handoff gates with completion signals and artifact validation are the correct pattern — each agent stage proceeds only on verified, complete inputs from the prior stage.",
+      "tags": [
+        "multi-agent-coordination"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "mock-4-q52",
+      "domain": 5,
+      "domainName": "Guardrails & Accountability",
+      "question": "Can Copilot cloud agent approve and merge its own pull requests?",
+      "options": [
+        "Yes, if all automated checks pass",
+        "Yes, if the repo owner enables auto-merge",
+        "No — Copilot cloud agent cannot mark its PRs as Ready for review, approve, or merge them; human review is always required",
+        "Yes, if confidence score exceeds 90%"
+      ],
+      "correctIndex": 2,
+      "explanation": "Per GitHub Docs, Copilot cloud agent cannot mark PRs Ready for review, approve, or merge them. Human review before merge is hard-coded — not configurable.",
+      "tags": [
+        "guardrails-accountability"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "mock-4-q53",
+      "domain": 5,
+      "domainName": "Guardrails & Accountability",
+      "question": "What is the Responsible AI (RAI) dimension of agent guardrails?",
+      "options": [
+        "Ensuring energy efficiency",
+        "Blocking actions that generate harmful content, propagate bias, or violate ethical AI policies — regardless of user authorization level",
+        "Preventing the agent from writing too many comments",
+        "Limiting output file size"
+      ],
+      "correctIndex": 1,
+      "explanation": "RAI guardrails operate at the output layer: even authorized actions must be blocked if the output violates Responsible AI policies (harmful content, bias, privacy violations).",
+      "tags": [
+        "guardrails-accountability"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "mock-4-q54",
+      "domain": 5,
+      "domainName": "Guardrails & Accountability",
+      "question": "On what two axes are autonomy levels correctly assigned?",
+      "options": [
+        "Model size and token budget",
+        "Risk of the action (operational/security/compliance) AND organisational policy constraints including RAI standards",
+        "Agent version and memory type",
+        "Number of tools and MCP servers configured"
+      ],
+      "correctIndex": 1,
+      "explanation": "Autonomy levels sit at the intersection of action risk profile and organisational policies. Both axes matter — a low-risk action in a high-compliance context may still need oversight.",
+      "tags": [
+        "guardrails-accountability"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "mock-4-q55",
+      "domain": 5,
+      "domainName": "Guardrails & Accountability",
+      "question": "An agent proposes to delete a production database table. The operation is reversible via backup. What guardrail applies?",
+      "options": [
+        "Allow it — reversibility makes it low risk",
+        "Classify by compliance context: production data deletion is high-risk regardless of reversibility; require explicit human authorisation",
+        "Block all database operations",
+        "Allow only during off-peak hours"
+      ],
+      "correctIndex": 1,
+      "explanation": "Risk classification considers context, not just technical reversibility. Production data deletion carries high compliance risk requiring explicit authorisation regardless of backup availability.",
+      "tags": [
+        "guardrails-accountability"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "mock-4-q56",
+      "domain": 5,
+      "domainName": "Guardrails & Accountability",
+      "question": "What does \"least-privilege execution context\" mean per invocation?",
+      "options": [
+        "The agent gets the maximum permissions it might ever need, pre-provisioned",
+        "Each agent invocation receives only the minimum permissions for that specific task — no broader access even if broader access exists",
+        "All agents share a single global permission set",
+        "Permissions are set at deployment and never change"
+      ],
+      "correctIndex": 1,
+      "explanation": "Least-privilege per invocation: the agent gets exactly what the current task needs. This limits blast radius — if the agent misbehaves or is compromised, damage is bounded.",
+      "tags": [
+        "guardrails-accountability"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "mock-4-q57",
+      "domain": 5,
+      "domainName": "Guardrails & Accountability",
+      "question": "A compliance team needs all agent actions auditable after the fact. Which configuration satisfies this?",
+      "options": [
+        "A Slack notification per action",
+        "Signed commits + co-author attribution + session logs with links in commit messages + audit log events — all reviewable by administrators",
+        "Only the PR description",
+        "A weekly CSV export"
+      ],
+      "correctIndex": 1,
+      "explanation": "Per GitHub Docs: signed commits + co-author attribution + session logs (linked from commits) + audit log events = complete multi-layer accountability trail for administrators.",
+      "tags": [
+        "guardrails-accountability"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "mock-4-q58",
+      "domain": 5,
+      "domainName": "Guardrails & Accountability",
+      "question": "Agents can operate freely on feature branches but require human approval before merging to release. Which pattern is this?",
+      "options": [
+        "Disable guardrails on feature branches and block all changes to release",
+        "Tiered autonomy — full agent autonomy in low-risk zones (feature branches); mandatory human approval at the high-risk transition (merge to release)",
+        "Block agents from all branches uniformly",
+        "Allow direct agent push to release for maximum speed"
+      ],
+      "correctIndex": 1,
+      "explanation": "Tiered autonomy: maximum freedom in low-risk zones, targeted gates at high-risk boundaries. This balances velocity with control without blocking routine work.",
+      "tags": [
+        "guardrails-accountability"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "mock-4-q59",
+      "domain": 5,
+      "domainName": "Guardrails & Accountability",
+      "question": "An authorised user asks the agent to take an action that violates a defined security policy. What must happen?",
+      "options": [
+        "Proceed — user authorisation overrides policy",
+        "Block the action, surface a clear policy violation message, and escalate if needed — security policies are hard constraints that override user requests",
+        "Log the violation and proceed anyway",
+        "Ask a second agent to approve it"
+      ],
+      "correctIndex": 1,
+      "explanation": "Security and compliance policies are hard constraints. They override user authorisation — even an authorised user cannot bypass a policy violation. Block, explain, escalate.",
+      "tags": [
+        "guardrails-accountability"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "mock-4-q60",
+      "domain": 5,
+      "domainName": "Guardrails & Accountability",
+      "question": "Why is \"minimising approvals that do not materially reduce risk\" listed as a guardrail design objective?",
+      "options": [
+        "Approvals are expensive in Actions minutes",
+        "Unnecessary gates impose velocity cost without safety benefit — every approval must be justified by the risk it genuinely mitigates",
+        "Users dislike approval gates",
+        "MCP servers cannot handle approval workflows"
+      ],
+      "correctIndex": 1,
+      "explanation": "From the official study guide: \"Preserve execution velocity by minimizing approvals that do not materially reduce risk.\" Approval theater imposes real costs with zero safety benefit.",
+      "tags": [
+        "guardrails-accountability"
+      ],
+      "difficulty": "medium"
+    }
+  ],
+  "metadata": {
+    "source": "gh600-mock-exam-captain-corgi-3.html",
+    "created": "2026-06-15",
+    "version": 1
+  }
+}

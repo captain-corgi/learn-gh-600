@@ -1,0 +1,119 @@
+.card {
+  border: var(--bw, 1.5px) solid var(--border);
+  border-radius: var(--r-lg);
+  background: var(--bg-elevated);
+  overflow: hidden;
+  transition: box-shadow var(--dur-fast) var(--ease-out);
+}
+
+.card:hover {
+  box-shadow: var(--shadow-1);
+}
+
+.card.open {
+  box-shadow: var(--shadow-2);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  width: 100%;
+  padding: var(--space-4);
+  border: none;
+  background: transparent;
+  color: var(--fg);
+  font-size: var(--fs-16);
+  text-align: left;
+  cursor: pointer;
+  transition: background var(--dur-fast) var(--ease-out);
+}
+
+.header:hover {
+  background: var(--bg-sunken);
+}
+
+.number {
+  display: inline-flex;
+  width: 1.75rem;
+  height: 1.75rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--r-full);
+  background: var(--accent);
+  color: var(--accent-fg);
+  font-family: var(--font-mono);
+  font-size: var(--fs-13);
+  font-weight: var(--fw-bold);
+  flex-shrink: 0;
+}
+
+.icon {
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+
+.name {
+  flex: 1;
+  font-weight: var(--fw-semi);
+}
+
+.chevron {
+  font-size: var(--fs-14);
+  color: var(--fg-3);
+  transition: transform var(--dur-base) var(--ease-out);
+}
+
+.chevronOpen {
+  transform: rotate(180deg);
+}
+
+.body {
+  padding: 0 var(--space-4) var(--space-4);
+  border-top: var(--bw, 1.5px) solid var(--border);
+  animation: slideDown var(--dur-base) var(--ease-out);
+}
+
+@keyframes slideDown {
+  from { opacity: 0; max-height: 0; }
+  to { opacity: 1; max-height: 600px; }
+}
+
+.bodyContent {
+  padding-top: var(--space-4);
+  font-size: var(--fs-14);
+  color: var(--fg-2);
+  line-height: var(--lh-relaxed);
+}
+
+.bodyContent strong {
+  color: var(--fg);
+  font-weight: var(--fw-semi);
+}
+
+.bodyContent code {
+  padding: 2px 6px;
+  border-radius: var(--r-xs);
+  background: var(--bg-sunken);
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+}
+
+.bodyContent ul,
+.bodyContent ol {
+  padding-left: var(--space-4);
+  margin: var(--space-2) 0;
+}
+
+.bodyContent li {
+  margin-bottom: var(--space-1);
+}
+
+.bodyContent a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.bodyContent a:hover {
+  text-decoration: underline;
+}

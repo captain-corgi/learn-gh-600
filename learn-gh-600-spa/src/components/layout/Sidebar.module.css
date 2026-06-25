@@ -1,0 +1,154 @@
+.sidebar {
+  width: 15.5rem;
+  flex-shrink: 0;
+  background: var(--bg-elevated);
+  border-right: var(--bw, 1.5px) solid var(--border);
+  padding: var(--space-5) var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  align-self: stretch;
+  max-height: 100vh;
+  min-height: 0;
+  overflow-y: auto;
+  flex-shrink: 0;
+  box-shadow: var(--shadow-1);
+  transition: width 260ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 200ms ease,
+    visibility 260ms linear,
+    padding 260ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.collapsed {
+  width: 0 !important;
+  padding: 0 !important;
+  border-right-width: 0 !important;
+  opacity: 0;
+  visibility: hidden;
+  overflow: clip;
+  pointer-events: none;
+}
+
+.header {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.toggleButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.125rem;
+  height: 2.125rem;
+  padding: 0;
+  border-radius: var(--r-md);
+  border: var(--bw, 1.5px) solid var(--border-strong);
+  background: var(--bg-sunken);
+  color: var(--fg-2);
+  font-size: 1rem;
+  line-height: 1;
+  transition: background var(--dur-fast) var(--ease-out), border-color var(--dur-fast) var(--ease-out), color var(--dur-fast) var(--ease-out);
+}
+
+.toggleButton:hover {
+  background: color-mix(in srgb, var(--accent) 14%, var(--bg-sunken));
+  border-color: color-mix(in srgb, var(--accent) 45%, var(--border));
+  color: var(--fg);
+}
+
+.toggleButton:focus-visible {
+  outline: none;
+  box-shadow: var(--ring-focus);
+}
+
+.navList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.navLink {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  width: 100%;
+  padding: var(--space-3);
+  border-radius: var(--r-md);
+  border: var(--bw, 1.5px) solid transparent;
+  background: transparent;
+  color: var(--fg);
+  text-decoration: none;
+  font-size: var(--fs-14);
+  transition: border-color var(--dur-fast) var(--ease-out), box-shadow var(--dur-fast) var(--ease-out), background var(--dur-fast) var(--ease-out);
+}
+
+.navLink:hover {
+  border-color: var(--border-strong);
+  background: var(--bg-sunken);
+}
+
+.navLink:focus-visible {
+  outline: none;
+  box-shadow: var(--ring-focus);
+}
+
+.active {
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+  border-color: color-mix(in srgb, var(--accent) 45%, var(--border));
+  box-shadow: inset 3px 0 0 var(--accent);
+}
+
+.navIcon {
+  font-size: 16px;
+  width: 22px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.navLabel {
+  font-weight: var(--fw-semi);
+  color: var(--fg);
+}
+
+.footer {
+  margin-top: auto;
+  padding-top: var(--space-4);
+  border-top: var(--bw, 1.5px) solid var(--border);
+}
+
+.footerLink {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--fs-12);
+  color: var(--link);
+  text-decoration: none;
+}
+
+.footerLink:hover {
+  color: var(--link-hover);
+  text-decoration: underline;
+}
+
+/* Mobile responsive */
+@media (max-width: 840px) {
+  .sidebar {
+    max-height: none;
+    overflow-y: visible;
+    position: absolute;
+    z-index: 50;
+    height: auto;
+    max-height: 100vh;
+  }
+
+  .collapsed {
+    display: none !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sidebar {
+    transition: none;
+  }
+}

@@ -1,0 +1,114 @@
+/* =========================================================================
+   Captain Corgi Hub — Design Tokens (React SPA)
+   Ported from assets/captain-corgi-hub-design/colors_and_type.css
+   ========================================================================= */
+
+/* Google Fonts: Bricolage Grotesque (display, variable),
+   Nunito (body, rounded), JetBrains Mono (code). */
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Nunito:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+:root {
+  /* ---------- Color — Brand (sampled from mascots) ------------------------ */
+  --corgi-orange: #FC8903;
+  --corgi-orange-deep: #E27506;
+  --captain-red: #E13429;
+  --captain-red-deep: #B82A21;
+  --star-yellow: #FBC00A;
+  --star-yellow-deep: #D9A209;
+  --sky-cyan: #51BBD7;
+  --sky-cyan-deep: #2E9CBA;
+  --hub-green: #3BB283;
+  --hub-green-deep: #289269;
+  --hub-coral: #DD5D5D;
+  --hub-coral-deep: #C24545;
+  --deep-teal: #3D768E;
+  --deep-teal-deep: #2C5A6E;
+  --petal-pink: #F2A8BC;
+  --petal-pink-deep: #D17A93;
+  --petal-pink-soft: #FBD9E2;
+
+  /* ---------- Color — Neutrals (clay-tinted) ----------------------------- */
+  --clay-cream: #F6F2EA;
+  --clay-cream-2: #EFE9DC;
+  --clay-cream-3: #E6DECB;
+  --ink: #1F2A33;
+  --ink-2: #38454F;
+  --ink-3: #6B7780;
+  --ink-4: #A0A9B0;
+
+  /* ---------- Typography — Families -------------------------------------- */
+  --font-display: 'Bricolage Grotesque', 'Nunito', ui-sans-serif, system-ui, sans-serif;
+  --font-body: 'Nunito', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+
+  /* ---------- Typography — Scale (1.250 — major third) ------------------ */
+  --fs-11: 0.6875rem;
+  --fs-12: 0.75rem;
+  --fs-13: 0.8125rem;
+  --fs-14: 0.875rem;
+  --fs-16: 1rem;
+  --fs-18: 1.125rem;
+  --fs-20: 1.25rem;
+  --fs-22: 1.375rem;
+  --fs-24: 1.5rem;
+  --fs-30: 1.875rem;
+  --fs-38: 2.375rem;
+  --fs-48: 3rem;
+  --fs-60: 3.75rem;
+  --fs-76: 4.75rem;
+
+  /* line-heights */
+  --lh-tight: 1.05;
+  --lh-snug: 1.2;
+  --lh-normal: 1.45;
+  --lh-relaxed: 1.6;
+
+  /* tracking */
+  --tr-tight: -0.02em;
+  --tr-normal: 0em;
+  --tr-loose: 0.04em;
+  --tr-caps: 0.08em;
+
+  /* weights */
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-semi: 600;
+  --fw-bold: 700;
+  --fw-black: 800;
+
+  /* ---------- Spacing (4px base) ----------------------------------------- */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --space-9: 96px;
+  --space-10: 128px;
+
+  /* ---------- Radii ------------------------------------------------------ */
+  --r-xs: 6px;
+  --r-sm: 8px;
+  --r-md: 12px;
+  --r-lg: 20px;
+  --r-xl: 28px;
+  --r-2xl: 40px;
+  --r-full: 999px;
+
+  /* ---------- Motion ----------------------------------------------------- */
+  --ease-clay: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --dur-fast: 180ms;
+  --dur-base: 240ms;
+  --dur-slow: 380ms;
+
+  /* ---------- Borders ---------------------------------------------------- */
+  --bw: 1.5px;
+
+  /* ---------- Layout ----------------------------------------------------- */
+  --content-max: 1280px;
+  --gutter: 24px;
+}
